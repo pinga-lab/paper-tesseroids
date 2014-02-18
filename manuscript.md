@@ -44,8 +44,11 @@ code (e.g. unit, functional, load etc.), and in which environments.
 
 ## Operating system
 
-The package has been used and tested under Windows XP/Vista/7
-and GNU/Linux.
+Tesseroids has been compiled, used, and tested
+under Windows XP/Vista/7 and GNU/Linux
+using the GCC compiler.
+However, it could theoretically be used
+in any operating system with an ANSI C compatible compiler.
 
 ## Programming language
 
@@ -75,7 +78,7 @@ There are no external dependencies.
 
 ### Code repository
 
-**Name**: Github
+**Name**: GitHub
 
 **Identifier**: https://github.com/leouieda/tesseroids
 
