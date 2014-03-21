@@ -1,0 +1,6 @@
+*.swp
+*.bbl
+*.fff
+*.log
+*.aux
+.ipynb_checkpoints/
