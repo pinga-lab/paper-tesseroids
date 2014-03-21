@@ -1,6 +1,8 @@
 *.swp
 *.bbl
+*.blg
 *.fff
 *.log
 *.aux
+manuscript.pdf
 .ipynb_checkpoints/
