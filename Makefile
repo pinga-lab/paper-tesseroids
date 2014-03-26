@@ -1,25 +1,21 @@
 MANUSCRIPT=manuscript
-BIB=references.bib
-LATEXHEADER=-H header.tex
-PANDOCARGS=-V fontsize=11pt --bibliography $(BIB)
 
-all: pdf
+help:
+	@echo "Rules:"
+	@echo "  pdf     compile the manuscript PDF from the source"
+	@echo "  wc      count the words in the document (approximate)"
+	@echo "  clean   remove generated files"
+
+wc:
+	@detex $(MANUSCRIPT).tex | wc -w
 
 pdf: $(MANUSCRIPT).pdf
 
-$(MANUSCRIPT).pdf: $(MANUSCRIPT).md $(BIB) header.tex
-	pandoc $(LATEXHEADER) $(PANDOCARGS) $< -o $(MANUSCRIPT).tex
-	pdflatex $(MANUSCRIPT).tex
-	pdflatex $(MANUSCRIPT).tex
-
-odt: $(MANUSCRIPT).odt
-
-$(MANUSCRIPT).odt: $(MANUSCRIPT).md $(BIB)
-	pandoc $(PANDOCARGS) $< -o $@
-
-wordcount:
-	@echo "Words in:"
-	@wc -w $(MANUSCRIPT).md
+$(MANUSCRIPT).pdf: $(MANUSCRIPT).tex
+	pdflatex $<
+	bibtex $(MANUSCRIPT)
+	pdflatex $<
+	pdflatex $<
 
 clean:
-	rm -f $(MANUSCRIPT).tex *.aux *.bbl *.log *.out *.blg *.fff *.lof
+	rm -rf *.aux *.log *.bbl *.blg *.fff *.lof $(MANUSCRIPT).pdf

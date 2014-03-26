@@ -1,0 +1,10 @@
+*.swp
+*.bbl
+*.blg
+*.fff
+*.log
+*.aux
+manuscript.pdf
+.ipynb_checkpoints/
+notebooks/model*.txt
+notebooks/points.txt
