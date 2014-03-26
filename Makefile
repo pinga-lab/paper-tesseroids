@@ -11,7 +11,7 @@ wc:
 
 pdf: $(MANUSCRIPT).pdf
 
-$(MANUSCRIPT).pdf: $(MANUSCRIPT).tex
+$(MANUSCRIPT).pdf: $(MANUSCRIPT).tex references.bib
 	pdflatex $<
 	bibtex $(MANUSCRIPT)
 	pdflatex $<

@@ -5,6 +5,7 @@
 \documentclass[paper,twocolumn,twoside]{geophysics}
 
 \usepackage{graphicx}
+\usepackage{amsmath}
 
 
 \newcommand{\vect}[1]{\mathbf{#1}}
@@ -64,90 +65,42 @@ pellentesque, quis molestie sem vestibulum.
 Citing articles in text \citet{Asgharzadeh2007} and with parenthesis
 \citep{Braitenberg2011}.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
-egestas mauris sed, dapibus quam. Duis hendrerit mollis nunc a consequat. Nulla
-et sem consectetur, interdum velit eget, aliquam ipsum. Praesent sagittis
-tortor diam, sed ultrices magna ullamcorper vitae. Proin vitae orci augue.
-Morbi dictum ligula gravida sem malesuada facilisis. Mauris nibh metus, cursus
-eget imperdiet vitae, pretium at lorem. Praesent nisi mauris, pretium ut risus
-fermentum, egestas tincidunt nibh. Mauris nulla orci, consequat eu pharetra
-non, mattis ut urna. Mauris facilisis orci eros. Nam mattis non magna iaculis
-consectetur. Morbi sodales dolor vitae felis sagittis, eget faucibus turpis
-convallis. Nullam malesuada, mauris et ultricies rutrum, odio nulla gravida
-nunc, ac volutpat eros lectus eget lacus. Integer venenatis velit vel justo
-pellentesque, quis molestie sem vestibulum.
-
-Ut quis justo non leo malesuada molestie a ut eros. Vestibulum ante ipsum
-primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi eros
-leo, elementum in dictum et, vulputate vel enim. Mauris pharetra lacinia augue
-eget placerat. Sed id massa ut massa blandit convallis. Quisque vel dolor eu
-nulla volutpat imperdiet. Nunc bibendum sem id elit accumsan, ac luctus leo
-gravida. Proin cursus justo sem, vulputate hendrerit libero pulvinar in.
-Suspendisse auctor sem at lorem pretium gravida. Vivamus aliquet cursus metus,
-ac pellentesque nunc auctor vel. Cras quis nibh ullamcorper, vestibulum est et,
-cursus ligula.
-
-Nunc euismod nunc nec lectus tempus, ultricies gravida quam rhoncus. Sed
-posuere vestibulum nulla, ut accumsan justo venenatis a. Etiam consequat in leo
-ac posuere. Fusce mattis ac sem non tempus. Aenean sollicitudin massa eu velit
-consequat, sed congue metus tincidunt. Pellentesque posuere, urna a consequat
-molestie, turpis libero rhoncus mi, lobortis accumsan nulla lectus at nunc.
-Suspendisse fermentum augue vel ornare cursus. Suspendisse sit amet eros
-facilisis, placerat nunc et, dapibus metus. Proin dolor enim, tempus at orci
-non, pharetra varius justo.
-
-Maecenas eget turpis vitae lorem pharetra venenatis in sed eros. Pellentesque
-orci lorem, egestas eu metus nec, hendrerit condimentum diam. Morbi quam neque,
-dictum ac erat a, lacinia facilisis risus. Phasellus ligula quam, suscipit eu
-congue ut, condimentum id leo. Donec convallis libero et aliquam mattis. Lorem
-ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed vestibulum neque.
-Praesent nec nunc pellentesque, suscipit mi a, congue magna. Pellentesque et
-libero vitae velit aliquet congue eget id lorem. Etiam dolor sapien, ultrices
-vel neque vel, ultrices tempus quam. Nulla ultricies vehicula sagittis. Nunc
-pulvinar eros lacus, sit amet viverra enim ultricies sed. Ut sagittis
-pellentesque tristique. Proin facilisis tempor enim eu iaculis. In odio nulla,
-facilisis non aliquet nec, facilisis non sapien. Sed auctor tincidunt mauris,
-at pellentesque nisi lobortis a.
-
-Integer ullamcorper ipsum in metus lobortis, eget venenatis tellus adipiscing.
-Integer mi nulla, accumsan nec auctor vitae, tempus in erat. In at nisl
-suscipit, malesuada nulla ac, suscipit erat. Maecenas placerat neque eget lacus
-elementum dictum. Praesent lobortis nisi at arcu vulputate dapibus. Ut quis
-hendrerit magna. Donec ut fringilla elit. Suspendisse varius, eros eget aliquet
-gravida, purus justo hendrerit est, in fermentum nisl augue a ligula. Nulla sit
-amet magna risus. Vestibulum semper dolor et mauris sodales pretium. Nullam
-tempus nibh pulvinar, ornare risus nec, suscipit eros.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
 
+Formula by \citet{Grombein2013}.
+
+First appears in \citet{Asgharzadeh2007}.
+
+Studied by \citet{Wild-Pfeiffer2008}.
+
+Numerical accuracy by \citet{Ku1977}.
+
+\subsection{Software implementation}
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
-egestas mauris sed, dapibus quam. Duis hendrerit mollis nunc a consequat. Nulla
-et sem consectetur, interdum velit eget, aliquam ipsum. Praesent sagittis
-tortor diam, sed ultrices magna ullamcorper vitae. Proin vitae orci augue.
-Morbi dictum ligula gravida sem malesuada facilisis. Mauris nibh metus, cursus
-eget imperdiet vitae, pretium at lorem. Praesent nisi mauris, pretium ut risus
-fermentum, egestas tincidunt nibh. Mauris nulla orci, consequat eu pharetra
-non, mattis ut urna. Mauris facilisis orci eros. Nam mattis non magna iaculis
-consectetur. Morbi sodales dolor vitae felis sagittis, eget faucibus turpis
-convallis. Nullam malesuada, mauris et ultricies rutrum, odio nulla gravida
-nunc, ac volutpat eros lectus eget lacus. Integer venenatis velit vel justo
-pellentesque, quis molestie sem vestibulum.
+
+\citet{Barrera-Figueroa2006}.
+
+\subsection{Comparison with a spherical half-shell}
+
+
+The potential of a spherical half-shell is
 
 \begin{equation}
-    \vect{d}^{\alpha\beta} = \sum\limits_{j=1}^{M} p_j \vect{a}_j^{\alpha\beta}.
-    \label{eq:dalphabeta_sum}
+    V(r) = 2\pi G \rho \left[ \dfrac{l^3 + {r'}^3}{3r} - 0.5 {r'}^2 \right]
+           \Biggr \rvert_{r'=r_1}^{r'=r_2}
+    \label{eq:halfshell-pot}
 \end{equation}
 
-Ut quis justo non leo malesuada molestie a ut eros. Vestibulum ante ipsum
-primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi eros
-leo, elementum in dictum et, vulputate vel enim. Mauris pharetra lacinia augue
-eget placerat. Sed id massa ut massa blandit convallis. Quisque vel dolor eu
-nulla volutpat imperdiet. Nunc bibendum sem id elit accumsan, ac luctus leo
-gravida. Proin cursus justo sem, vulputate hendrerit libero pulvinar in.
-Suspendisse auctor sem at lorem pretium gravida. Vivamus aliquet cursus metus,
-ac pellentesque nunc auctor vel. Cras quis nibh ullamcorper, vestibulum est et,
-cursus ligula.
+\noindent
+where $\rho$ is the density,
+$l = \sqrt{r^2 + {r'}^2}$,
+$r$ is the radial coordinate of the observation point,
+and
+$r_1$ and $r_2$ are the bottom and top of the spherical shell,
+respectively.
 
 \begin{figure}
     \centering
@@ -156,38 +109,36 @@ cursus ligula.
     \label{fig:shell}
 \end{figure}
 
-This is a reference to Figure \ref{fig:shell}.
+This is a reference to Figure~\ref{fig:shell}.
 
-Nunc euismod nunc nec lectus tempus, ultricies gravida quam rhoncus. Sed
-posuere vestibulum nulla, ut accumsan justo venenatis a. Etiam consequat in leo
-ac posuere. Fusce mattis ac sem non tempus. Aenean sollicitudin massa eu velit
-consequat, sed congue metus tincidunt. Pellentesque posuere, urna a consequat
-molestie, turpis libero rhoncus mi, lobortis accumsan nulla lectus at nunc.
-Suspendisse fermentum augue vel ornare cursus. Suspendisse sit amet eros
-facilisis, placerat nunc et, dapibus metus. Proin dolor enim, tempus at orci
-non, pharetra varius justo.
+The $g_z$ component of the gravitational attraction for this shell is the
+radial derivative of the potential.
 
-Maecenas eget turpis vitae lorem pharetra venenatis in sed eros. Pellentesque
-orci lorem, egestas eu metus nec, hendrerit condimentum diam. Morbi quam neque,
-dictum ac erat a, lacinia facilisis risus. Phasellus ligula quam, suscipit eu
-congue ut, condimentum id leo. Donec convallis libero et aliquam mattis. Lorem
-ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed vestibulum neque.
-Praesent nec nunc pellentesque, suscipit mi a, congue magna. Pellentesque et
-libero vitae velit aliquet congue eget id lorem. Etiam dolor sapien, ultrices
-vel neque vel, ultrices tempus quam. Nulla ultricies vehicula sagittis. Nunc
-pulvinar eros lacus, sit amet viverra enim ultricies sed. Ut sagittis
-pellentesque tristique. Proin facilisis tempor enim eu iaculis. In odio nulla,
-facilisis non aliquet nec, facilisis non sapien. Sed auctor tincidunt mauris,
-at pellentesque nisi lobortis a.
+The sign should be inverted because our convention is that z points down
+(toward the center of the Earth)
 
-Integer ullamcorper ipsum in metus lobortis, eget venenatis tellus adipiscing.
-Integer mi nulla, accumsan nec auctor vitae, tempus in erat. In at nisl
-suscipit, malesuada nulla ac, suscipit erat. Maecenas placerat neque eget lacus
-elementum dictum. Praesent lobortis nisi at arcu vulputate dapibus. Ut quis
-hendrerit magna. Donec ut fringilla elit. Suspendisse varius, eros eget aliquet
-gravida, purus justo hendrerit est, in fermentum nisl augue a ligula. Nulla sit
-amet magna risus. Vestibulum semper dolor et mauris sodales pretium. Nullam
-tempus nibh pulvinar, ornare risus nec, suscipit eros.
+\begin{equation}
+    g_z(r) = -\dfrac{\partial V}{\partial r} = 2\pi G \rho \left[ \dfrac{l^3 +
+            {r'}^3}{3r^2} - l \right] \Biggr \rvert_{r'=r_1}^{r'=r_2}
+    \label{eq:halfshell-gz}
+\end{equation}
+
+The gravity gradient tensor are the second derivatives of $V$:
+
+\begin{equation}
+    g_{xx}(r) = g_{yy}(r) = -\dfrac{1}{2} g_{zz}
+\end{equation}
+
+\begin{equation}
+    g_{xy}(r) = g_{xz}(r) = g_{yz}(r) = 0
+\end{equation}
+
+\begin{equation}
+    g_{zz}(r) = 2\pi G \rho \left[ 2\dfrac{l^3 + {r'}^3}{3r^3} - \dfrac{l}{r} +
+    \dfrac{r}{l} \right] \Biggr \rvert_{r'=r_1}^{r'=r_2}
+\end{equation}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
@@ -205,175 +156,23 @@ tempus nibh pulvinar, ornare risus nec, suscipit eros.
 %This Figure \ref{fig:composite} is made up of Figure \ref{fig:sub1} and
 %\ref{fig:sub2}.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{figs/error-20deg}
+    \caption{This is a figure caption.}
+    \label{fig:error20}
+\end{figure}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
-egestas mauris sed, dapibus quam. Duis hendrerit mollis nunc a consequat. Nulla
-et sem consectetur, interdum velit eget, aliquam ipsum. Praesent sagittis
-tortor diam, sed ultrices magna ullamcorper vitae. Proin vitae orci augue.
-Morbi dictum ligula gravida sem malesuada facilisis. Mauris nibh metus, cursus
-eget imperdiet vitae, pretium at lorem. Praesent nisi mauris, pretium ut risus
-fermentum, egestas tincidunt nibh. Mauris nulla orci, consequat eu pharetra
-non, mattis ut urna. Mauris facilisis orci eros. Nam mattis non magna iaculis
-consectetur. Morbi sodales dolor vitae felis sagittis, eget faucibus turpis
-convallis. Nullam malesuada, mauris et ultricies rutrum, odio nulla gravida
-nunc, ac volutpat eros lectus eget lacus. Integer venenatis velit vel justo
-pellentesque, quis molestie sem vestibulum.
+This is a reference to Figure \ref{fig:error20}.
 
-Ut quis justo non leo malesuada molestie a ut eros. Vestibulum ante ipsum
-primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi eros
-leo, elementum in dictum et, vulputate vel enim. Mauris pharetra lacinia augue
-eget placerat. Sed id massa ut massa blandit convallis. Quisque vel dolor eu
-nulla volutpat imperdiet. Nunc bibendum sem id elit accumsan, ac luctus leo
-gravida. Proin cursus justo sem, vulputate hendrerit libero pulvinar in.
-Suspendisse auctor sem at lorem pretium gravida. Vivamus aliquet cursus metus,
-ac pellentesque nunc auctor vel. Cras quis nibh ullamcorper, vestibulum est et,
-cursus ligula.
 
-Nunc euismod nunc nec lectus tempus, ultricies gravida quam rhoncus. Sed
-posuere vestibulum nulla, ut accumsan justo venenatis a. Etiam consequat in leo
-ac posuere. Fusce mattis ac sem non tempus. Aenean sollicitudin massa eu velit
-consequat, sed congue metus tincidunt. Pellentesque posuere, urna a consequat
-molestie, turpis libero rhoncus mi, lobortis accumsan nulla lectus at nunc.
-Suspendisse fermentum augue vel ornare cursus. Suspendisse sit amet eros
-facilisis, placerat nunc et, dapibus metus. Proin dolor enim, tempus at orci
-non, pharetra varius justo.
 
-Maecenas eget turpis vitae lorem pharetra venenatis in sed eros. Pellentesque
-orci lorem, egestas eu metus nec, hendrerit condimentum diam. Morbi quam neque,
-dictum ac erat a, lacinia facilisis risus. Phasellus ligula quam, suscipit eu
-congue ut, condimentum id leo. Donec convallis libero et aliquam mattis. Lorem
-ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed vestibulum neque.
-Praesent nec nunc pellentesque, suscipit mi a, congue magna. Pellentesque et
-libero vitae velit aliquet congue eget id lorem. Etiam dolor sapien, ultrices
-vel neque vel, ultrices tempus quam. Nulla ultricies vehicula sagittis. Nunc
-pulvinar eros lacus, sit amet viverra enim ultricies sed. Ut sagittis
-pellentesque tristique. Proin facilisis tempor enim eu iaculis. In odio nulla,
-facilisis non aliquet nec, facilisis non sapien. Sed auctor tincidunt mauris,
-at pellentesque nisi lobortis a.
-
-Integer ullamcorper ipsum in metus lobortis, eget venenatis tellus adipiscing.
-Integer mi nulla, accumsan nec auctor vitae, tempus in erat. In at nisl
-suscipit, malesuada nulla ac, suscipit erat. Maecenas placerat neque eget lacus
-elementum dictum. Praesent lobortis nisi at arcu vulputate dapibus. Ut quis
-hendrerit magna. Donec ut fringilla elit. Suspendisse varius, eros eget aliquet
-gravida, purus justo hendrerit est, in fermentum nisl augue a ligula. Nulla sit
-amet magna risus. Vestibulum semper dolor et mauris sodales pretium. Nullam
-tempus nibh pulvinar, ornare risus nec, suscipit eros.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
-egestas mauris sed, dapibus quam. Duis hendrerit mollis nunc a consequat. Nulla
-et sem consectetur, interdum velit eget, aliquam ipsum. Praesent sagittis
-tortor diam, sed ultrices magna ullamcorper vitae. Proin vitae orci augue.
-Morbi dictum ligula gravida sem malesuada facilisis. Mauris nibh metus, cursus
-eget imperdiet vitae, pretium at lorem. Praesent nisi mauris, pretium ut risus
-fermentum, egestas tincidunt nibh. Mauris nulla orci, consequat eu pharetra
-non, mattis ut urna. Mauris facilisis orci eros. Nam mattis non magna iaculis
-consectetur. Morbi sodales dolor vitae felis sagittis, eget faucibus turpis
-convallis. Nullam malesuada, mauris et ultricies rutrum, odio nulla gravida
-nunc, ac volutpat eros lectus eget lacus. Integer venenatis velit vel justo
-pellentesque, quis molestie sem vestibulum.
-
-Ut quis justo non leo malesuada molestie a ut eros. Vestibulum ante ipsum
-primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi eros
-leo, elementum in dictum et, vulputate vel enim. Mauris pharetra lacinia augue
-eget placerat. Sed id massa ut massa blandit convallis. Quisque vel dolor eu
-nulla volutpat imperdiet. Nunc bibendum sem id elit accumsan, ac luctus leo
-gravida. Proin cursus justo sem, vulputate hendrerit libero pulvinar in.
-Suspendisse auctor sem at lorem pretium gravida. Vivamus aliquet cursus metus,
-ac pellentesque nunc auctor vel. Cras quis nibh ullamcorper, vestibulum est et,
-cursus ligula.
-
-Nunc euismod nunc nec lectus tempus, ultricies gravida quam rhoncus. Sed
-posuere vestibulum nulla, ut accumsan justo venenatis a. Etiam consequat in leo
-ac posuere. Fusce mattis ac sem non tempus. Aenean sollicitudin massa eu velit
-consequat, sed congue metus tincidunt. Pellentesque posuere, urna a consequat
-molestie, turpis libero rhoncus mi, lobortis accumsan nulla lectus at nunc.
-Suspendisse fermentum augue vel ornare cursus. Suspendisse sit amet eros
-facilisis, placerat nunc et, dapibus metus. Proin dolor enim, tempus at orci
-non, pharetra varius justo.
-
-Maecenas eget turpis vitae lorem pharetra venenatis in sed eros. Pellentesque
-orci lorem, egestas eu metus nec, hendrerit condimentum diam. Morbi quam neque,
-dictum ac erat a, lacinia facilisis risus. Phasellus ligula quam, suscipit eu
-congue ut, condimentum id leo. Donec convallis libero et aliquam mattis. Lorem
-ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed vestibulum neque.
-Praesent nec nunc pellentesque, suscipit mi a, congue magna. Pellentesque et
-libero vitae velit aliquet congue eget id lorem. Etiam dolor sapien, ultrices
-vel neque vel, ultrices tempus quam. Nulla ultricies vehicula sagittis. Nunc
-pulvinar eros lacus, sit amet viverra enim ultricies sed. Ut sagittis
-pellentesque tristique. Proin facilisis tempor enim eu iaculis. In odio nulla,
-facilisis non aliquet nec, facilisis non sapien. Sed auctor tincidunt mauris,
-at pellentesque nisi lobortis a.
-
-Integer ullamcorper ipsum in metus lobortis, eget venenatis tellus adipiscing.
-Integer mi nulla, accumsan nec auctor vitae, tempus in erat. In at nisl
-suscipit, malesuada nulla ac, suscipit erat. Maecenas placerat neque eget lacus
-elementum dictum. Praesent lobortis nisi at arcu vulputate dapibus. Ut quis
-hendrerit magna. Donec ut fringilla elit. Suspendisse varius, eros eget aliquet
-gravida, purus justo hendrerit est, in fermentum nisl augue a ligula. Nulla sit
-amet magna risus. Vestibulum semper dolor et mauris sodales pretium. Nullam
-tempus nibh pulvinar, ornare risus nec, suscipit eros.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
-egestas mauris sed, dapibus quam. Duis hendrerit mollis nunc a consequat. Nulla
-et sem consectetur, interdum velit eget, aliquam ipsum. Praesent sagittis
-tortor diam, sed ultrices magna ullamcorper vitae. Proin vitae orci augue.
-Morbi dictum ligula gravida sem malesuada facilisis. Mauris nibh metus, cursus
-eget imperdiet vitae, pretium at lorem. Praesent nisi mauris, pretium ut risus
-fermentum, egestas tincidunt nibh. Mauris nulla orci, consequat eu pharetra
-non, mattis ut urna. Mauris facilisis orci eros. Nam mattis non magna iaculis
-consectetur. Morbi sodales dolor vitae felis sagittis, eget faucibus turpis
-convallis. Nullam malesuada, mauris et ultricies rutrum, odio nulla gravida
-nunc, ac volutpat eros lectus eget lacus. Integer venenatis velit vel justo
-pellentesque, quis molestie sem vestibulum.
-
-Ut quis justo non leo malesuada molestie a ut eros. Vestibulum ante ipsum
-primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi eros
-leo, elementum in dictum et, vulputate vel enim. Mauris pharetra lacinia augue
-eget placerat. Sed id massa ut massa blandit convallis. Quisque vel dolor eu
-nulla volutpat imperdiet. Nunc bibendum sem id elit accumsan, ac luctus leo
-gravida. Proin cursus justo sem, vulputate hendrerit libero pulvinar in.
-Suspendisse auctor sem at lorem pretium gravida. Vivamus aliquet cursus metus,
-ac pellentesque nunc auctor vel. Cras quis nibh ullamcorper, vestibulum est et,
-cursus ligula.
-
-Nunc euismod nunc nec lectus tempus, ultricies gravida quam rhoncus. Sed
-posuere vestibulum nulla, ut accumsan justo venenatis a. Etiam consequat in leo
-ac posuere. Fusce mattis ac sem non tempus. Aenean sollicitudin massa eu velit
-consequat, sed congue metus tincidunt. Pellentesque posuere, urna a consequat
-molestie, turpis libero rhoncus mi, lobortis accumsan nulla lectus at nunc.
-Suspendisse fermentum augue vel ornare cursus. Suspendisse sit amet eros
-facilisis, placerat nunc et, dapibus metus. Proin dolor enim, tempus at orci
-non, pharetra varius justo.
-
-Maecenas eget turpis vitae lorem pharetra venenatis in sed eros. Pellentesque
-orci lorem, egestas eu metus nec, hendrerit condimentum diam. Morbi quam neque,
-dictum ac erat a, lacinia facilisis risus. Phasellus ligula quam, suscipit eu
-congue ut, condimentum id leo. Donec convallis libero et aliquam mattis. Lorem
-ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed vestibulum neque.
-Praesent nec nunc pellentesque, suscipit mi a, congue magna. Pellentesque et
-libero vitae velit aliquet congue eget id lorem. Etiam dolor sapien, ultrices
-vel neque vel, ultrices tempus quam. Nulla ultricies vehicula sagittis. Nunc
-pulvinar eros lacus, sit amet viverra enim ultricies sed. Ut sagittis
-pellentesque tristique. Proin facilisis tempor enim eu iaculis. In odio nulla,
-facilisis non aliquet nec, facilisis non sapien. Sed auctor tincidunt mauris,
-at pellentesque nisi lobortis a.
-
-Integer ullamcorper ipsum in metus lobortis, eget venenatis tellus adipiscing.
-Integer mi nulla, accumsan nec auctor vitae, tempus in erat. In at nisl
-suscipit, malesuada nulla ac, suscipit erat. Maecenas placerat neque eget lacus
-elementum dictum. Praesent lobortis nisi at arcu vulputate dapibus. Ut quis
-hendrerit magna. Donec ut fringilla elit. Suspendisse varius, eros eget aliquet
-gravida, purus justo hendrerit est, in fermentum nisl augue a ligula. Nulla sit
-amet magna risus. Vestibulum semper dolor et mauris sodales pretium. Nullam
-tempus nibh pulvinar, ornare risus nec, suscipit eros.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgments}
