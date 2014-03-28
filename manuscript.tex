@@ -76,7 +76,7 @@ First appears in \citet{Asgharzadeh2007}.
 Studied by \citet{Wild-Pfeiffer2008}.
 
 Numerical accuracy by \citet{Ku1977}.
-
+\\
 The gravitational potential of a tesseroid is
 
 \begin{equation}
@@ -161,10 +161,36 @@ $r$ is radius.
 \end{figure}
 
 This is a reference to Figure~\ref{fig:tesseroid}.
+\\
+The above integrals are solved using the Gauss-Legendre Quadrature rule
+\citep{Asgharzadeh2007}
+
+\begin{multline}
+    g_{\alpha\beta}(r,\phi,\lambda) \approx G \rho
+        \frac{(\lambda_2 - \lambda_1)(\phi_2 - \phi_1)(r_2 - r_1)}{8}
+        \\
+        \sum\limits_{k=1}^{N^{\lambda}}
+        \sum\limits_{j=1}^{N^{\phi}}
+        \sum\limits_{i=1}^{N^r}
+        W^r_i W^{\phi}_j W^{\lambda}_k
+        I_{\alpha\beta}({r'}_i, {\phi'}_j, {\lambda'}_k )
+        \\
+        \alpha,\beta \in \{1,2,3\}
+\end{multline}
+
+where $W_i^r$, $W_j^{\phi}$, and $W_k^{\lambda}$
+are weighting coefficients
+and $N^r$, $N^{\phi}$, and $N^{\lambda}$
+are the number of quadrature nodes
+(i.e., the order of the quadrature),
+for the radius, latitude, and longitude, respectively.
+
+
+
 
 \begin{figure}
     \centering
-    \includegraphics[width=\columnwidth]{figs/tesseroid-split.png}
+    \includegraphics[width=\columnwidth]{figs/tesseroid-split}
     \caption{
         Adaptive discretization for a computation point P
         of the tesseroid shown in (a) using distance/size ratios of
@@ -203,7 +229,7 @@ respectively.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\columnwidth]{figs/spherical-shell.png}
+    \includegraphics[width=\columnwidth]{figs/spherical-shell}
     \caption{This is a figure caption.}
     \label{fig:shell}
 \end{figure}
