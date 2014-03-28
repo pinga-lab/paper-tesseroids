@@ -8,3 +8,4 @@ manuscript.pdf
 .ipynb_checkpoints/
 notebooks/model*.txt
 notebooks/points.txt
+figs/*eps-converted-to.pdf
