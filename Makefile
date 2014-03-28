@@ -18,5 +18,5 @@ $(MANUSCRIPT).pdf: $(MANUSCRIPT).tex references.bib figs/*.eps
 	pdflatex $<
 
 clean:
-	rm -rf *.aux *.log *.bbl *.blg *.fff *.lof $(MANUSCRIPT).pdf \
+	rm -rf *.aux *.lof *.log *.bbl *.blg *.fff *.lof $(MANUSCRIPT).pdf \
 		figs/*eps-converted-to.pdf

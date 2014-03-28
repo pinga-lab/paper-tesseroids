@@ -3,6 +3,7 @@
 *.blg
 *.fff
 *.log
+*.lof
 *.aux
 manuscript.pdf
 .ipynb_checkpoints/
