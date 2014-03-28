@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
    sodipodi:docname="spherical-shell.svg"
-   inkscape:export-filename="/home/leo/pub/paper-software-tesseroids/figs/spherical-shell.png"
+   inkscape:export-filename="spherical-shell.png"
    inkscape:export-xdpi="600"
    inkscape:export-ydpi="600">
   <defs
@@ -71,7 +71,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
+     inkscape:zoom="1.979899"
      inkscape:cx="74.542238"
      inkscape:cy="121.06714"
      inkscape:document-units="px"
@@ -91,7 +91,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -101,10 +101,11 @@
      id="layer1"
      transform="translate(0,-797.36162)">
     <image
+       sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/../notebooks/spherical-shell.png"
+       xlink:href="../notebooks/spherical-shell.png"
        y="791.505"
        x="-1.7342887e-05"
        id="image2993"
-       xlink:href="file:///home/leo/pub/paper-software-tesseroids/notebooks/spherical-shell.png"
        height="282"
        width="300"
        style="fill:#ffffff" />
@@ -134,7 +135,7 @@
        sodipodi:cy="133.57736"
        sodipodi:rx="3.0304577"
        sodipodi:ry="3.1350625"
-       d="m 279.30719,133.57736 a 3.0304577,3.1350625 0 1 1 -3.1e-4,-0.045"
+       d="m 279.30719,133.57736 c 0,1.73145 -1.35678,3.13506 -3.03046,3.13506 -1.67367,0 -3.03045,-1.40361 -3.03045,-3.13506 0,-1.73145 1.35678,-3.13506 3.03045,-3.13506 1.65672,0 3.00637,1.37634 3.03015,3.09006"
        transform="translate(-0.35714286,791.43304)"
        sodipodi:start="0"
        sodipodi:end="6.268831"
@@ -196,16 +197,22 @@
          style="font-size:10px">Tesseroids</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Mend)"
-       d="m 76.071429,913.16519 70.714281,48.125"
-       id="path5187" />
+       d="m 76.071429,913.16519 72.734591,38.52855"
+       id="path5187"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Mstart);marker-end:none"
-       d="M 146.07142,919.14734 76.339286,912.71877"
-       id="path5185" />
+       d="m 148.09172,908.54074 -71.752434,4.17803"
+       id="path5185"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Mend)"
-       d="M 76.160714,912.89734 145,940.21877"
-       id="path4443" />
+       d="m 76.160714,912.89734 73.384976,17.2199"
+       id="path4443"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
