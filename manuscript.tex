@@ -77,6 +77,75 @@ Studied by \citet{Wild-Pfeiffer2008}.
 
 Numerical accuracy by \citet{Ku1977}.
 
+The gravitational potential of a tesseroid is
+
+\begin{equation}
+    V(r,\phi,\lambda) = G \rho
+        \int\limits_{\lambda_1}^{\lambda_2}
+        \int\limits_{\phi_1}^{\phi_2}
+        \int\limits_{r_1}^{r_2}
+        \frac{1}{\ell} \kappa  dr' d\phi' d\lambda'
+\end{equation}
+
+The gravitational attraction
+can be calculated using the formula
+\citep{Grombein2013}:
+
+\begin{equation}
+    g_{\alpha}(r,\phi,\lambda) = G \rho
+        \int\limits_{\lambda_1}^{\lambda_2}
+        \int\limits_{\phi_1}^{\phi_2}
+        \int\limits_{r_1}^{r_2}
+        \frac{\Delta_{\alpha}}{\ell^3} \kappa dr' d\phi' d\lambda'
+        \ \ \ \alpha \in \{x,y,z\}
+\end{equation}
+
+The gravity gradients can be calculated
+using the general formula
+\citep{Grombein2013}:
+
+\begin{multline}
+    g_{\alpha\beta}(r,\phi,\lambda) = G \rho
+        \int\limits_{\lambda_1}^{\lambda_2}
+        \int\limits_{\phi_1}^{\phi_2}
+        \int\limits_{r_1}^{r_2}
+        I_{\alpha\beta}({r'}, {\phi'}, {\lambda'})
+        dr' d\phi' d\lambda'
+        \\
+        \alpha,\beta \in \{x,y,z\}
+\end{multline}
+
+\begin{equation}
+    I_{\alpha\beta}({r'}, {\phi'}, {\lambda'}) =
+        \left(
+            \frac{3\Delta_{\alpha} \Delta_{\beta}}{\ell^5} -
+            \frac{\delta_{\alpha\beta}}{\ell^3}
+        \right)
+        \kappa \ \ \ \alpha,\beta \in \{x,y,z\}
+\end{equation}
+
+where $\rho$ is density,
+$\{x, y, z\}$ correspond to the local coordinate system
+of the computation point P,
+$\delta_{\alpha\beta}$ is the Kronecker delta, and
+
+\begin{eqnarray}
+    \Delta_x &=& r' K_{\phi} \\
+    \Delta_y &=& r' \cos \phi' \sin(\lambda' - \lambda) \\
+    \Delta_z &=& r' \cos \psi - r\\
+    \ell &=& \sqrt{r'^2 + r^2 - 2 r' r \cos \psi} \\
+    \cos\psi &=& \sin\phi\sin\phi' + \cos\phi\cos\phi'
+                 \cos(\lambda' - \lambda) \\
+    K_{\phi} &=& \cos\phi\sin\phi' - \sin\phi\cos\phi'
+                 \cos(\lambda' - \lambda)\\
+    \kappa &=& {r'}^2 \cos \phi'
+\end{eqnarray}
+
+
+$\phi$ is latitude,
+$\lambda$ is longitude, and
+$r$ is radius.
+
 \begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{figs/tesseroid}
