@@ -28,10 +28,9 @@
 \address{
     \footnotemark[1]
     Universidade do Estado do Rio de Janeiro, Rio de Janeiro, Brazil,
-    e-mail: \\
+    e-mail: leouieda@gmail.com;\\
     \footnotemark[2]
-    Observat\'orio Nacional, Rio de Janeiro, Brazil,
-    e-mail:
+    Observat\'orio Nacional, Rio de Janeiro, Brazil;
 }
 
 \author{Leonardo Uieda\footnotemark[1]\footnotemark[2],
@@ -69,82 +68,74 @@ Citing articles in text \citet{Asgharzadeh2007} and with parenthesis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
 
-Formula by \citet{Grombein2013}.
-
-First appears in \citet{Asgharzadeh2007}.
-
-Studied by \citet{Wild-Pfeiffer2008}.
-
-Numerical accuracy by \citet{Ku1977}.
-\\
-The gravitational potential of a tesseroid is
+The gravitational potential,
+gravitational acceleration,
+and Marussi (gravity gradient) tensor
+caused by a homogeneous tesseroid
+with density $\rho$
+are \citep{Grombein2013}
 
 \begin{equation}
     V(r,\phi,\lambda) = G \rho
         \int\limits_{\lambda_1}^{\lambda_2}
         \int\limits_{\phi_1}^{\phi_2}
         \int\limits_{r_1}^{r_2}
-        \frac{1}{\ell} \kappa  dr' d\phi' d\lambda'
+        \frac{1}{\ell} \kappa  dr' d\phi' d\lambda',
+    \label{eq:tesspot}
 \end{equation}
-
-The gravitational attraction
-can be calculated using the formula
-\citep{Grombein2013}:
-
 \begin{equation}
     g_{\alpha}(r,\phi,\lambda) = G \rho
         \int\limits_{\lambda_1}^{\lambda_2}
         \int\limits_{\phi_1}^{\phi_2}
         \int\limits_{r_1}^{r_2}
         \frac{\Delta_{\alpha}}{\ell^3} \kappa dr' d\phi' d\lambda'
-        \ \ \ \alpha \in \{x,y,z\}
+        \ \ \ \alpha \in \{x,y,z\},
+    \label{eq:tessgrav}
 \end{equation}
 
-The gravity gradients can be calculated
-using the general formula
-\citep{Grombein2013}:
+\noindent
+and
 
-\begin{multline}
+\begin{equation}
     g_{\alpha\beta}(r,\phi,\lambda) = G \rho
         \int\limits_{\lambda_1}^{\lambda_2}
         \int\limits_{\phi_1}^{\phi_2}
         \int\limits_{r_1}^{r_2}
-        I_{\alpha\beta}({r'}, {\phi'}, {\lambda'})
-        dr' d\phi' d\lambda'
-        \\
-        \alpha,\beta \in \{x,y,z\}
-\end{multline}
+        I_{\alpha\beta}
+        dr' d\phi' d\lambda',
+    \label{eq:tesstensor}
+\end{equation}
 
-\begin{equation}
-    I_{\alpha\beta}({r'}, {\phi'}, {\lambda'}) =
+\noindent
+in which
+$(\phi, \lambda, r)$ are
+the latitude, longitude, and radius
+coordinates of computation point P (Figure~\ref{fig:tesseroid}),
+$\alpha,\beta \in \{x,y,z\}$
+(the local coordinate system of point P),
+and
+
+\begin{eqnarray}
+    I_{\alpha\beta} &=&
         \left(
             \frac{3\Delta_{\alpha} \Delta_{\beta}}{\ell^5} -
             \frac{\delta_{\alpha\beta}}{\ell^3}
-        \right)
-        \kappa \ \ \ \alpha,\beta \in \{x,y,z\}
-\end{equation}
-
-where $\rho$ is density,
-$\{x, y, z\}$ correspond to the local coordinate system
-of the computation point P,
-$\delta_{\alpha\beta}$ is the Kronecker delta, and
-
-\begin{eqnarray}
-    \Delta_x &=& r' K_{\phi} \\
-    \Delta_y &=& r' \cos \phi' \sin(\lambda' - \lambda) \\
-    \Delta_z &=& r' \cos \psi - r\\
-    \ell &=& \sqrt{r'^2 + r^2 - 2 r' r \cos \psi} \\
+        \right) \kappa, \\
+    \Delta_x &=& r' K_{\phi} , \\
+    \Delta_y &=& r' \cos \phi' \sin(\lambda' - \lambda) , \\
+    \Delta_z &=& r' \cos \psi - r, \\
+    \ell &=& \sqrt{r'^2 + r^2 - 2 r' r \cos \psi} , \\
     \cos\psi &=& \sin\phi\sin\phi' + \cos\phi\cos\phi'
-                 \cos(\lambda' - \lambda) \\
+                 \cos(\lambda' - \lambda) , \\
     K_{\phi} &=& \cos\phi\sin\phi' - \sin\phi\cos\phi'
-                 \cos(\lambda' - \lambda)\\
-    \kappa &=& {r'}^2 \cos \phi'
+                 \cos(\lambda' - \lambda), \\
+    \kappa &=& {r'}^2 \cos \phi'.
 \end{eqnarray}
 
-
-$\phi$ is latitude,
-$\lambda$ is longitude, and
-$r$ is radius.
+\noindent
+$\delta_{\alpha\beta}$ is the Kronecker delta,
+i.e. $\delta_{\alpha\beta}=1$ if $\alpha=\beta$
+and $\delta_{\alpha\beta}=0$ otherwise.
 
 \begin{figure}
     \centering
@@ -155,36 +146,123 @@ $r$ is radius.
         a geocentric coordinate system $(X, Y, Z)$,
         the computation $P$ and it's local coordinate system $(x, y, z)$.
         $r$, $\phi$, $\lambda$ are
-        the radius, latitude, and longitude, respectively, of point $P$.
+        the radius, latitude, and longitude, respectively, of point $P$,
+        and $\ell$ is the Cartesian distance between $P$ and $Q$.
     }
     \label{fig:tesseroid}
 \end{figure}
 
-This is a reference to Figure~\ref{fig:tesseroid}.
-\\
-The above integrals are solved using the Gauss-Legendre Quadrature rule
-\citep{Asgharzadeh2007}
+The above integrals
+have to be solved numerically
+\citep{Wild-Pfeiffer2008}
+and different approaches have been proposed.
+\citet{Heck2007}
+used a Taylor series expansion,
+while \citet{Asgharzadeh2007}
+used the Gauss-Legendre Quadrature (GLQ).
+\citet{Wild-Pfeiffer2008} investigated
+the use of both methods,
+along with alternative mass elements,
+and found the GLQ to be the most efficient method.
+Therefore, we have opted to use
+the 3D GLQ in our computations.
 
-\begin{multline}
-    g_{\alpha\beta}(r,\phi,\lambda) \approx G \rho
-        \frac{(\lambda_2 - \lambda_1)(\phi_2 - \phi_1)(r_2 - r_1)}{8}
-        \\
+The Gauss-Legendre Quadrature
+approximates the integral by
+a weighted sum
+\citep{Hildebrand1987},
+e.g.
+
+\begin{equation}
+    \int\limits_a^b f(x) dx \approx
+    \frac{b-a}{2}\sum\limits_{i=1}^N W_i f(x_i),
+\end{equation}
+
+\noindent
+where the discretization points (nodes) $x_i$
+are the roots of the $N$th order Legendre polynomial $P_N$
+and the weights $W_i$ are \citep{Hildebrand1987}
+
+\begin{equation}
+    W_i = \frac{2}{(1 - x_i^2)(P'_N(x_i))^2}.
+\end{equation}
+
+The triple integrals in equations
+\ref{eq:tesspot},
+\ref{eq:tessgrav},
+and
+\ref{eq:tesstensor}
+become
+
+\begin{equation}
+    V(r,\phi,\lambda) \approx
+        A
         \sum\limits_{k=1}^{N^{\lambda}}
         \sum\limits_{j=1}^{N^{\phi}}
         \sum\limits_{i=1}^{N^r}
         W^r_i W^{\phi}_j W^{\lambda}_k
-        I_{\alpha\beta}({r'}_i, {\phi'}_j, {\lambda'}_k )
-        \\
-        \alpha,\beta \in \{1,2,3\}
-\end{multline}
+        \frac{1}{\ell} \kappa,
+\end{equation}
+\begin{equation}
+    g_{\alpha}(r,\phi,\lambda) \approx
+        A
+        \sum\limits_{k=1}^{N^{\lambda}}
+        \sum\limits_{j=1}^{N^{\phi}}
+        \sum\limits_{i=1}^{N^r}
+        W^r_i W^{\phi}_j W^{\lambda}_k
+        \frac{\Delta_{\alpha}}{\ell^3} \kappa,
+\end{equation}
 
-where $W_i^r$, $W_j^{\phi}$, and $W_k^{\lambda}$
-are weighting coefficients
+\noindent
+and
+
+\begin{equation}
+    g_{\alpha\beta}(r,\phi,\lambda) \approx
+        A
+        \sum\limits_{k=1}^{N^{\lambda}}
+        \sum\limits_{j=1}^{N^{\phi}}
+        \sum\limits_{i=1}^{N^r}
+        W^r_i W^{\phi}_j W^{\lambda}_k
+        I_{\alpha\beta},
+\end{equation}
+
+\noindent
+where
+
+\begin{equation}
+    A = G \rho
+    \frac{(\lambda_2 - \lambda_1)(\phi_2 - \phi_1)(r_2 - r_1)}{8},
+\end{equation}
+
+\noindent
+$W_i^r$, $W_j^{\phi}$, and $W_k^{\lambda}$
+are the weights
 and $N^r$, $N^{\phi}$, and $N^{\lambda}$
-are the number of quadrature nodes
-(i.e., the order of the quadrature),
-for the radius, latitude, and longitude, respectively.
+are the number of nodes
+for the radial, latitudinal, and longitudinal dimensions, respectively.
 
+The accuracy of the numerical integration
+using the GLQ
+was investigated by \citet{Ku1977}
+for the case of the right-rectangular prism.
+\citet{Ku1977} found that the accuracy
+depends on the ratio between
+the average distance between GLQ nodes
+and the distance to the observation point P.
+As a rule-of-thumb,
+\citet{Ku1977} suggests that
+the distance between nodes
+should not be greater than
+the distance to point P.
+\citet{Li2011} devised a scheme that
+recursively subdivides the tesseroids
+into smaller ones,
+effectively decreasing the distance between nodes.
+This scheme guarantees that
+the rule-of-thumb is not violated.
+Hence,
+optimal accuracy of the numerical integration
+is achieved automatically.
 
 
 
@@ -192,15 +270,16 @@ for the radius, latitude, and longitude, respectively.
     \centering
     \includegraphics[width=\columnwidth]{figs/tesseroid-split}
     \caption{
-        Adaptive discretization for a computation point P
-        of the tesseroid shown in (a) using distance/size ratios of
+        Adaptive discretization
+        of the tesseroid shown in (a)
+        for a computation point P
+        using distance/size ratios of
         (b) 0.5, (c) 1, and (d) 2.
         $d$ is the distance between the tesseroid and P.
     }
     \label{fig:split}
 \end{figure}
 
-This is a reference to Figure~\ref{fig:split}.
 
 \subsection{Software implementation}
 
