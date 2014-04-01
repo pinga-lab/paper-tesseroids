@@ -14,13 +14,53 @@
    height="207.3"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="tesseroid-split.svg"
    inkscape:export-filename="tesseroid-split.png"
    inkscape:export-xdpi="600"
    inkscape:export-ydpi="600">
   <defs
-     id="defs4" />
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Send"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Send"
+       style="overflow:visible;">
+      <path
+         id="path3808"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.2) rotate(180) translate(6,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Sstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Sstart"
+       style="overflow:visible">
+      <path
+         id="path3805"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.2) translate(6,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mstart"
+       style="overflow:visible">
+      <path
+         id="path3799"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.4) translate(10,0)" />
+    </marker>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -28,17 +68,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="132.49564"
-     inkscape:cy="146.88016"
+     inkscape:zoom="1.4"
+     inkscape:cx="128.03135"
+     inkscape:cy="175.45159"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="pc"
      inkscape:window-width="1366"
-     inkscape:window-height="744"
+     inkscape:window-height="719"
      inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-y="25"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -48,7 +88,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -60,35 +100,35 @@
     <image
        sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/../notebooks/tesseroid-split0.5.png"
        xlink:href="../notebooks/tesseroid-split0.5.png"
-       width="150"
-       height="103.5"
-       id="image2993"
+       y="845.07532"
        x="150"
-       y="845.07532" />
+       id="image2993"
+       height="103.5"
+       width="150" />
     <image
        sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/../notebooks/tesseroid-split1.png"
        xlink:href="../notebooks/tesseroid-split1.png"
-       width="150"
-       height="103.5"
-       id="image3004"
+       y="948.86163"
        x="0"
-       y="948.86163" />
+       id="image3004"
+       height="103.5"
+       width="150" />
     <image
        sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/../notebooks/tesseroid-split2.png"
        xlink:href="../notebooks/tesseroid-split2.png"
-       width="150"
-       height="103.5"
-       id="image3015"
+       y="948.86163"
        x="150"
-       y="948.86163" />
+       id="image3015"
+       height="103.5"
+       width="150" />
     <image
        sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/../notebooks/tesseroid-whole.png"
        xlink:href="../notebooks/tesseroid-whole.png"
-       width="150"
-       height="103.5"
-       id="image3026"
+       y="845.07532"
        x="0"
-       y="845.07532" />
+       id="image3026"
+       height="103.5"
+       width="150" />
     <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
@@ -146,23 +186,39 @@
          y="864.47327"
          style="font-size:8px">P</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.5,1.5;stroke-dashoffset:0"
-       d="m 61.619305,22.442087 21.213204,6.565992"
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.5, 1.5;stroke-dashoffset:0"
+       d="m 61.619305,867.50371 21.213204,6.56599"
        id="path3104"
        inkscape:connector-curvature="0"
-       transform="translate(0,845.06162)"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
+       style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
        x="66.071434"
-       y="878.43304"
+       y="879.86163"
        id="text3874"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3876"
          x="66.071434"
-         y="878.43304"
-         style="font-size:8px">d</tspan></text>
+         y="879.86163"
+         style="font-size:9px">d</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:9px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="65.785713"
+       y="913.79022"
+       id="text2999"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3001"
+         x="65.785713"
+         y="913.79022">L</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-start:url(#Arrow1Sstart);marker-end:url(#Arrow1Send)"
+       d="m 35.821969,903.00719 69.784631,1.56599"
+       id="path3104-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
   </g>
 </svg>
