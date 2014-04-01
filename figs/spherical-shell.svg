@@ -14,7 +14,7 @@
    height="255"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="spherical-shell.svg"
    inkscape:export-filename="spherical-shell.png"
    inkscape:export-xdpi="600"
@@ -71,17 +71,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="74.542238"
+     inkscape:zoom="1.4"
+     inkscape:cx="247.27832"
      inkscape:cy="121.06714"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="pc"
      inkscape:window-width="1366"
-     inkscape:window-height="744"
+     inkscape:window-height="719"
      inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-y="25"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -103,24 +103,24 @@
     <image
        sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/../notebooks/spherical-shell.png"
        xlink:href="../notebooks/spherical-shell.png"
-       y="791.505"
-       x="-1.7342887e-05"
-       id="image2993"
-       height="282"
+       style="fill:#ffffff"
        width="300"
-       style="fill:#ffffff" />
+       height="282"
+       id="image2993"
+       x="-1.7342887e-05"
+       y="791.505" />
     <text
        xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
-       x="261.80194"
-       y="928.45166"
+       style="font-size:9.28571415px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="278.2305"
+       y="919.59454"
        id="text2996"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan2998"
-         x="261.80194"
-         y="928.45166"
-         style="font-size:12px">P</tspan></text>
+         x="278.2305"
+         y="919.59454"
+         style="font-size:9.28571415px;-inkscape-font-specification:Arial;font-family:Arial">P</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Mstart);marker-end:url(#Arrow1Mend)"
        d="m 296.66033,924.43645 -20.88868,0.23985 0,-21.23351"
@@ -152,7 +152,7 @@
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
+       style="font-size:9.28571415px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        x="278.39285"
        y="904.50446"
        id="text4406"
@@ -163,7 +163,7 @@
          y="904.50446">x</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
+       style="font-size:9.28571415px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        x="294.46429"
        y="920.93304"
        id="text4410"
@@ -174,27 +174,27 @@
          y="920.93304">z</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
+       style="font-size:9.28571415px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        x="279.10715"
-       y="932.00446"
+       y="934.00446"
        id="text4414"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4416"
          x="279.10715"
-         y="932.00446">y</tspan></text>
+         y="934.00446">y</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
-       x="53.571426"
-       y="909.14734"
+       style="font-size:9.28571415px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="47.142857"
+       y="909.00446"
        id="text4437"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4439"
-         x="53.571426"
-         y="909.14734"
-         style="font-size:10px">Tesseroids</tspan></text>
+         x="47.142857"
+         y="909.00446"
+         style="font-size:9.28571415px;font-family:Arial;-inkscape-font-specification:Arial">Tesseroids</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Mend)"
        d="m 76.071429,913.16519 72.734591,38.52855"
@@ -215,7 +215,7 @@
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
+       style="font-size:9.28571415px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        x="204.01682"
        y="1037.3108"
        id="text4437-9"
@@ -224,12 +224,30 @@
          id="tspan4439-0"
          x="204.01682"
          y="1037.3108"
-         style="font-size:10px">Spherical half-shell</tspan></text>
+         style="font-size:9.28571415px;-inkscape-font-specification:Arial;font-family:Arial">Spherical half-shell</tspan></text>
     <path
        inkscape:connector-curvature="0"
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Mend)"
        d="m 245.95491,1025.7843 -25.44643,-20.5357"
        id="path4443-3"
        sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 272.7818,127.72078 -26.82996,1.28571"
+       id="path3009"
+       inkscape:connector-curvature="0"
+       transform="translate(0,797.36162)"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:9.28571415px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="256.85715"
+       y="922.36163"
+       id="text3011"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3013"
+         x="256.85715"
+         y="922.36163">h</tspan></text>
   </g>
 </svg>

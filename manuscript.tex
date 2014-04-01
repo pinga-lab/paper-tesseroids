@@ -42,7 +42,6 @@
 \righthead{Gravity forward modeling with Tesseroids}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
 egestas mauris sed, dapibus quam. Duis hendrerit mollis nunc a consequat. Nulla
@@ -58,14 +57,14 @@ nunc, ac volutpat eros lectus eget lacus. Integer venenatis velit vel justo
 pellentesque, quis molestie sem vestibulum.
 \end{abstract}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
 Citing articles in text \citet{Asgharzadeh2007} and with parenthesis
 \citep{Braitenberg2011}.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
 
 The gravitational potential,
@@ -351,88 +350,99 @@ for which exist analytical expressions.
 
 \subsection{Comparison with a spherical half-shell}
 
-The gravitational potential
-of a homogeneous spherical half-shell
-at a computation point P
-located at a height $h$
-from the center of the shells top face
-(Figure~\ref{fig:shell})
-is
+The gravitational potential,
+gravitational attraction,
+and
+Marussi (gravity gradient) tensor
+caused by the homogeneous spherical half-shell
+shown in Figure~\ref{fig:shell}
+at a computation point
+$P = (\lambda=90^\circ, \phi=0^\circ, r=r_2+h)$
+are
 
 \begin{equation}
-    V(r) = 2\pi G \rho \left[ \dfrac{l^3 + {r'}^3}{3r} - 0.5 {r'}^2 \right]
-           \Biggr \rvert_{r'=r_1}^{r'=r_2},
-    \label{eq:halfshell-pot}
+    V(h) = 2\pi G \rho \left[
+        \dfrac{l^3 + {r'}^3}{3(r_2 + h)} - 0.5 {r'}^2 \right]
+         \Biggr \rvert_{r'=r_1}^{r'=r_2},
+    \label{eq:shellpot}
+\end{equation}
+\begin{equation}
+    g_z(h) = 2\pi G \rho \left[
+        \dfrac{l^3 + {r'}^3}{3(r_2 + h)^2} - l \right]
+        \Biggr \rvert_{r'=r_1}^{r'=r_2},
+    \label{eq:shellgz}
+\end{equation}
+\begin{equation}
+    g_{xx}(h) = g_{yy}(h) = -\dfrac{1}{2} g_{zz}(h),
+\end{equation}
+\begin{equation}
+    g_{xy}(h) = g_{xz}(h) = g_{yz}(h) = 0,
+\end{equation}
+
+\noindent
+and
+
+\begin{equation}
+    g_{zz}(h) = 2\pi G \rho \left[
+        2\dfrac{l^3 + {r'}^3}{3(r_2 + h)^3}
+        - \dfrac{l}{r_2 + h} + \dfrac{r_2 + h}{l}
+        \right]
+        \Biggr \rvert_{r'=r_1}^{r'=r_2},
+    \label{eq:shellgzz}
 \end{equation}
 
 \noindent
 where $\rho$ is the density,
-$l = \sqrt{r^2 + {r'}^2}$,
-$r$ is the radial coordinate of the observation point,
+$l = \sqrt{(r_2 + h)^2 + {r'}^2}$,
 and
-$r_1$ and $r_2$ are the bottom and top of the spherical shell,
+$r_1$ and $r_2$ are radial coordinates of
+the bottom and top of the spherical shell,
 respectively.
 
 \begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{figs/spherical-shell}
-    \caption{This is a figure caption.}
+    \caption{A spherical half-shell
+        spanning the ranges $0^{\circ} \le \lambda \le 180^\circ$,
+        $-90^\circ \le \phi \le 90^\circ$,
+        and $r_1 \le r \le r_2$,
+        the corresponding tesseroid model,
+        the computation point $P$
+        at $(\lambda=90^\circ,\phi=0^\circ,r=r_2+h)$,
+        and its local coordinate system $(x, y, z)$.
+    }
     \label{fig:shell}
 \end{figure}
 
-This is a reference to Figure~\ref{fig:shell}.
-
-The $g_z$ component of the gravitational attraction for this shell is the
-radial derivative of the potential.
-
-The sign should be inverted because our convention is that z points down
-(toward the center of the Earth)
-
-\begin{equation}
-    g_z(r) = -\dfrac{\partial V}{\partial r} = 2\pi G \rho \left[ \dfrac{l^3 +
-            {r'}^3}{3r^2} - l \right] \Biggr \rvert_{r'=r_1}^{r'=r_2}
-    \label{eq:halfshell-gz}
-\end{equation}
-
-The gravity gradient tensor are the second derivatives of $V$:
-
-\begin{equation}
-    g_{xx}(r) = g_{yy}(r) = -\dfrac{1}{2} g_{zz}
-\end{equation}
-
-\begin{equation}
-    g_{xy}(r) = g_{xz}(r) = g_{yz}(r) = 0
-\end{equation}
-
-\begin{equation}
-    g_{zz}(r) = 2\pi G \rho \left[ 2\dfrac{l^3 + {r'}^3}{3r^3} - \dfrac{l}{r} +
-    \dfrac{r}{l} \right] \Biggr \rvert_{r'=r_1}^{r'=r_2}
-\end{equation}
-
+For our comparison,
+we used a spherical half-shell with
+$\rho=2.7\ g.cm^{-3}$,
+$r_1=6378.137\ km$ (mean Earth radius),
+and
+$r_2 = r_1 + 50\ km$.
+We discretized the half-shell
+into tesseroids of equal size
+and calculated the gravitational effects of
+the half-shell
+(using equations \ref{eq:shellpot}-\ref{eq:shellgzz})
+and the corresponding tesseroid model
+at various heights.
+These calculations were repeated
+for varying values of
+the distance/size ratio $R$.
+This analysis
+allows us to establish
+the optimal value of $R$
+that achieves a desired error level.
 
 \subsection{Software implementation}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
 
 \citet{Barrera-Figueroa2006}.
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
-
-%\begin{figure}
-    %\centering
-    %\subfigure[]{
-        %\includegraphics[width=0.4\textwidth]{figs/sub1.png}\label{fig:sub1}}
-    %\subfigure[]{
-        %\includegraphics[width=0.4\textwidth]{figs/sub2.png}\label{fig:sub2}}
-  %\caption{This is a figure caption.}
-  %\label{fig:composite}
-%\end{figure}
-
-%This Figure \ref{fig:composite} is made up of Figure \ref{fig:sub1} and
-%\ref{fig:sub2}.
 
 \begin{figure}
     \centering
@@ -446,13 +456,13 @@ This is a reference to Figure \ref{fig:error20}.
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgments}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
@@ -468,7 +478,6 @@ convallis. Nullam malesuada, mauris et ultricies rutrum, odio nulla gravida
 nunc, ac volutpat eros lectus eget lacus. Integer venenatis velit vel justo
 pellentesque, quis molestie sem vestibulum.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{seg}
 \bibliography{references}
 
