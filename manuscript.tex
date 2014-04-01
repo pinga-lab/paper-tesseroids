@@ -7,7 +7,6 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 
-
 \newcommand{\vect}[1]{\mathbf{#1}}
 \newcommand{\mat}[1]{\mathbf{#1}}
 \newcommand{\comp}[1]{#1^{\alpha\beta}}
@@ -435,10 +434,90 @@ allows us to establish
 the optimal value of $R$
 that achieves a desired error level.
 
+Data and source code to produce the results of this comparison
+are provided by \textbf{(cite notebook on figshare)}.
+
 \subsection{Software implementation}
 
-\citet{Barrera-Figueroa2006}.
+The methods described above
+were implemented the software package
+Tesseroids version 1.1.1.
+The package consists
+of a range of command-line programs
+written in the C programming language.
+Tesseroids is free and open-source software
+under the terms of
+the 3-clause BSD license.
 
+Each program performs a single type of calculation.
+Programs receive input from
+the standard input stream (\texttt{stdin})
+and command-line arguments.
+Output is made in plain text
+through the standard output stream (\texttt{stdout}).
+
+The main programs in Tesseroids are
+\texttt{tesspot},
+\texttt{tessgx},
+\texttt{tessgy},
+\texttt{tessgz},
+\texttt{tessgxx},
+\ldots ,
+\texttt{tessgzz}
+(henceforth referred to collectively as \texttt{tess*} programs).
+These programs
+calculate the gravitational potential,
+gravitational attraction,
+and Marussi tensor
+caused by a tesseroid model.
+The computation points are passed
+through the standard input stream
+and the tesseroid model
+is passed through
+a simple model file.
+All programs receive
+optional command-line arguments
+that control the GLQ order (default is $N^\lambda=N^\phi=N^r=2$)
+and distance/size ratio $R$
+for the recursive division scheme.
+
+The complete list of programs provided in Tesseroids is:
+
+\begin{itemize}
+    \item \texttt{tesspot}, \texttt{tessgx}, \texttt{tessgy}, \texttt{tessgz},
+        \texttt{tessgxx}, \texttt{tessgxy}, \texttt{tessgxz},
+        \texttt{tessgyy}, \texttt{tessgyz}, \texttt{tessgzz}:
+        Calculate the gravitational potential, gravitational attraction,
+        and Marussi tensor caused by a tesseroid model.
+    \item \texttt{prismpot},
+        \texttt{prismgx}, \texttt{prismgy}, \texttt{prismgz},
+        \texttt{prismgxx}, \texttt{prismgxy}, \texttt{prismgxz},
+        \texttt{prismgyy}, \texttt{prismgyz}, \texttt{prismgzz}:
+        Calculate the gravitational potential, gravitational attraction,
+        and Marussi tensor caused by a right-rectangular prism model
+        in Cartesian coordinates
+        using the formula of \citet{Nagy2000}.
+    \item \texttt{prismpots}, \texttt{prismgs}, \texttt{prismggts}:
+        Calculate the gravitational potential, gravitational attraction,
+        and Marussi tensor caused by a right-rectangular prism model
+        in spherical coordinates
+        using the formula of \citet{Wild-Pfeiffer2008}.
+    \item \texttt{tess2prism}: Converts a tesseroid model into
+        right-rectangular prisms of equal mass.
+    \item \texttt{tessgrd}: Generate regular grids.
+    \item \texttt{tessdefaults}: Output the default values
+        and values of physical constants used.
+    \item \texttt{tessmodgen}: Generate a tesseroid model
+        from a gridded relief (e.g., a digital elevation model).
+    \item \texttt{tesslayers}: Generate a tesseroid model of
+        a series of stacked layers.
+    \item \texttt{tessmass}: Calculate the total mass of a tesseroid model.
+\end{itemize}
+
+Tesseroids is freely available
+online\footnote{www.leouieda.com/tesseroids}.
+\textbf{(cite archive on figshare)} provides a persistent
+archive for the source code and compiled binaries of Tesseroids.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
