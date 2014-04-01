@@ -6,6 +6,7 @@
 *.lof
 *.aux
 manuscript.pdf
+references.bib.bak
 .ipynb_checkpoints/
 notebooks/model*.txt
 notebooks/points.txt
