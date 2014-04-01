@@ -264,7 +264,60 @@ Hence,
 optimal accuracy of the numerical integration
 is achieved automatically.
 
+We use a modified version
+of the recursive scheme of \citet{Li2011}.
+We fix the number of nodes in the GLQ
+$N^\lambda=N^\phi=N^r=2$.
+In this case, the maximum distance between nodes
+is approximately the largest dimension of the tesseroid ($L$)
+\citep{Wild-Pfeiffer2008}.
+For a computation point $P$
+at a distance $d$ from
+the center of the top face of the tesseroid
+(Figure~\ref{fig:ratio}a),
+the tesseroid is divided in eight parts if
 
+\begin{equation}
+    \frac{d}{L} < R,
+    \label{eq:ratio}
+\end{equation}
+
+\noindent
+where $R$ is the minimum distance/size ratio desired.
+In case the tesseroid is divided,
+the inequality in equation \ref{eq:ratio}
+is checked for each of the eight parts.
+This process is repeated recursively
+until no divisions are required,
+ensuring that equation \ref{eq:ratio}
+holds for all tesseroids created.
+The gravitational effect
+of the original tesseroid
+is then calculated as
+the sum of the effect
+of the smaller tesseroids.
+
+The rule-of-thumb of \citet{Ku1977}
+used by \citet{Li2011}
+is equivalent to setting $R=1$.
+Figure~\ref{fig:ratio}
+illustrates the subdivision of a tesseroid
+(Figure~\ref{fig:ratio}a)
+for computation point $P$
+using increasing values of $R$.
+Note that increasing $R$
+results is a finer division of the tesseroid
+around the computation point
+and thus a more accurate GLQ integration.
+However, higher values of $R$
+also result in
+larger computation times.
+For example,
+the tesseroid in Figure~\ref{fig:ratio}a
+is replaced by
+50 tesseroids for $R=0.5$ (Figure~\ref{fig:ratio}b),
+344 tesseroids for $R=1$ (Figure~\ref{fig:ratio}c),
+and 2472 tesseroids for  $R=2$ (Figure~\ref{fig:ratio}d).
 
 \begin{figure}
     \centering
@@ -273,28 +326,42 @@ is achieved automatically.
         Adaptive discretization
         of the tesseroid shown in (a)
         for a computation point P
-        using distance/size ratios of
+        using $R$ equal to
         (b) 0.5, (c) 1, and (d) 2.
-        $d$ is the distance between the tesseroid and P.
+        $d$ is the distance between
+        the center of the top face of the tesseroid
+        and $P$.
+        $L$ is the largest dimension of the tesseroid.
     }
-    \label{fig:split}
+    \label{fig:ratio}
 \end{figure}
 
+Clearly,
+there is need to determine
+an optimal value of $R$
+that yields the desired accuracy
+in the GLQ integration.
+In the following section,
+we compare the computed gravitational effects
+of a tesseroid model
+with that of a spherical half-shell
+(Figure~\ref{fig:shell}),
+for which exist analytical expressions.
 
-\subsection{Software implementation}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
-
-\citet{Barrera-Figueroa2006}.
 
 \subsection{Comparison with a spherical half-shell}
 
-
-The potential of a spherical half-shell is
+The gravitational potential
+of a homogeneous spherical half-shell
+at a computation point P
+located at a height $h$
+from the center of the shells top face
+(Figure~\ref{fig:shell})
+is
 
 \begin{equation}
     V(r) = 2\pi G \rho \left[ \dfrac{l^3 + {r'}^3}{3r} - 0.5 {r'}^2 \right]
-           \Biggr \rvert_{r'=r_1}^{r'=r_2}
+           \Biggr \rvert_{r'=r_1}^{r'=r_2},
     \label{eq:halfshell-pot}
 \end{equation}
 
@@ -341,6 +408,13 @@ The gravity gradient tensor are the second derivatives of $V$:
     g_{zz}(r) = 2\pi G \rho \left[ 2\dfrac{l^3 + {r'}^3}{3r^3} - \dfrac{l}{r} +
     \dfrac{r}{l} \right] \Biggr \rvert_{r'=r_1}^{r'=r_2}
 \end{equation}
+
+
+\subsection{Software implementation}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
+
+\citet{Barrera-Figueroa2006}.
 
 
 
