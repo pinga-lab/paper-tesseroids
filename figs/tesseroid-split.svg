@@ -69,7 +69,7 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="128.03135"
+     inkscape:cx="129.45992"
      inkscape:cy="175.45159"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -98,37 +98,37 @@
      id="layer1"
      transform="translate(0,-845.06162)">
     <image
-       sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/../notebooks/tesseroid-split0.5.png"
-       xlink:href="../notebooks/tesseroid-split0.5.png"
-       y="845.07532"
-       x="150"
+       sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/tesseroid-split-ratio0.5.png"
+       xlink:href="tesseroid-split-ratio0.5.png"
+       width="150"
+       height="103.5"
        id="image2993"
-       height="103.5"
-       width="150" />
-    <image
-       sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/../notebooks/tesseroid-split1.png"
-       xlink:href="../notebooks/tesseroid-split1.png"
-       y="948.86163"
-       x="0"
-       id="image3004"
-       height="103.5"
-       width="150" />
-    <image
-       sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/../notebooks/tesseroid-split2.png"
-       xlink:href="../notebooks/tesseroid-split2.png"
-       y="948.86163"
        x="150"
-       id="image3015"
-       height="103.5"
-       width="150" />
+       y="845.07532" />
     <image
-       sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/../notebooks/tesseroid-whole.png"
-       xlink:href="../notebooks/tesseroid-whole.png"
-       y="845.07532"
-       x="0"
-       id="image3026"
+       sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/tesseroid-split-ratio1.png"
+       xlink:href="tesseroid-split-ratio1.png"
+       width="150"
        height="103.5"
-       width="150" />
+       id="image3004"
+       x="0"
+       y="948.86163" />
+    <image
+       sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/tesseroid-split-ratio2.png"
+       xlink:href="tesseroid-split-ratio2.png"
+       width="150"
+       height="103.5"
+       id="image3015"
+       x="150"
+       y="948.86163" />
+    <image
+       sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/tesseroid-split-whole.png"
+       xlink:href="tesseroid-split-whole.png"
+       width="150"
+       height="103.5"
+       id="image3026"
+       x="0"
+       y="845.07532" />
     <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
