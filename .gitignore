@@ -11,4 +11,5 @@ references.bib.bak
 notebooks/model*.txt
 notebooks/points.txt
 notebooks/tesseroid_vs_prism_files/
+notebooks/tesseroid_vs_spherical_shell_files/
 figs/*eps-converted-to.pdf
