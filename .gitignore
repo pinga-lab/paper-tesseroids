@@ -10,4 +10,5 @@ references.bib.bak
 .ipynb_checkpoints/
 notebooks/model*.txt
 notebooks/points.txt
+notebooks/tesseroid_vs_prism_files/
 figs/*eps-converted-to.pdf
