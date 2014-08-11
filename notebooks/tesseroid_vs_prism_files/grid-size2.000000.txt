@@ -1,5 +1,5 @@
-# Grid generated with tessgrd 1.1.1:
-#   local time: Thu Aug  7 10:07:26 2014
+# Grid generated with tessgrd 1.1.1-52-gc5058b8:
+#   local time: Mon Aug 11 18:13:03 2014
 #   args: -r-1.5/1.5/-1.5/1.5 -b31/31 -z2220
 #   grid spacing: 0.1000000000 lon / 0.1000000000 lat
 #   total 961 points
