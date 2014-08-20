@@ -1,47 +1,29 @@
-%\documentclass[manuscript]{geophysics}
-%\usepackage[nomarkers]{endfloat}
-% For a two-column format that looks like the final product, uncomment bellow
-% and comment the two lines above
-\documentclass[paper,twocolumn,twoside]{geophysics}
-
+%\documentclass[extra,mreferee]{gji}
+% Use the option below to make a nicely formatted manuscript
+\documentclass[extra]{gji}
+\usepackage{timet}
 \usepackage{graphicx}
-\usepackage{amsmath}
 
-\newcommand{\vect}[1]{\mathbf{#1}}
-\newcommand{\mat}[1]{\mathbf{#1}}
-\newcommand{\comp}[1]{#1^{\alpha\beta}}
-\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\title[Optimal forward modeling using tesseroids]{
+    Optimal forward modeling of gravitational fields
+    using tesseroids with adaptive discretization
+}
+\author[Uieda et al.]{
+    Leonardo Uieda$^{1,2}$,
+    Vanderlei C. Oliveira Jr$^2$,
+    Val\'eria C. F. Barbosa$^2$
+    \\
+    $^1$Universidade do Estado do Rio de Janeiro, Rio de Janeiro, Brazil.
+    $^2$Observat\'orio Nacional, Rio de Janeiro, Brazil.
+}
 
 \begin{document}
 
-\title{
-    Tesseroids:
-    command-line tools for
-    gravity field forward modeling
-    in spherical coordinates
-}
-
-% manuscript number
-\ms{}
-
-\address{
-    \footnotemark[1]
-    Universidade do Estado do Rio de Janeiro, Rio de Janeiro, Brazil,
-    e-mail: leouieda@gmail.com;\\
-    \footnotemark[2]
-    Observat\'orio Nacional, Rio de Janeiro, Brazil;
-}
-
-\author{Leonardo Uieda\footnotemark[1]\footnotemark[2],
-        Vanderlei C. Oliveira Jr\footnotemark[2],
-        and
-        Val\'eria C. F. Barbosa\footnotemark[2]}
-
-\lefthead{Uieda et al.}
-\righthead{Gravity forward modeling with Tesseroids}
+\label{firstpage}
+\maketitle
 
 
-\begin{abstract}
+\begin{summary}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
 egestas mauris sed, dapibus quam. Duis hendrerit mollis nunc a consequat. Nulla
 et sem consectetur, interdum velit eget, aliquam ipsum. Praesent sagittis
@@ -54,7 +36,7 @@ consectetur. Morbi sodales dolor vitae felis sagittis, eget faucibus turpis
 convallis. Nullam malesuada, mauris et ultricies rutrum, odio nulla gravida
 nunc, ac volutpat eros lectus eget lacus. Integer venenatis velit vel justo
 pellentesque, quis molestie sem vestibulum.
-\end{abstract}
+\end{summary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
@@ -108,7 +90,7 @@ and
 in which
 $(\phi, \lambda, r)$ are
 the latitude, longitude, and radius
-coordinates of computation point P (Figure~\ref{fig:tesseroid}),
+coordinates of computation point P (Fig.~\ref{fig:tesseroid}),
 $\alpha,\beta \in \{x,y,z\}$
 (the local coordinate system of point P),
 and
@@ -272,7 +254,7 @@ is approximately the largest dimension of the tesseroid ($L$)
 For a computation point $P$
 at a distance $d$ from
 the center of the top face of the tesseroid
-(Figure~\ref{fig:ratio}a),
+(Fig.~\ref{fig:ratio}a),
 the tesseroid is divided in eight parts if
 
 \begin{equation}
@@ -298,9 +280,9 @@ of the smaller tesseroids.
 The rule-of-thumb of \citet{Ku1977}
 used by \citet{Li2011}
 is equivalent to setting $R=1$.
-Figure~\ref{fig:ratio}
+Fig.~\ref{fig:ratio}
 illustrates the subdivision of a tesseroid
-(Figure~\ref{fig:ratio}a)
+(Fig.~\ref{fig:ratio}a)
 for computation point $P$
 using increasing values of $R$.
 Note that increasing $R$
@@ -311,11 +293,11 @@ However, higher values of $R$
 also result in
 larger computation times.
 For example,
-the tesseroid in Figure~\ref{fig:ratio}a
+the tesseroid in Fig.~\ref{fig:ratio}a
 is replaced by
-50 tesseroids for $R=0.5$ (Figure~\ref{fig:ratio}b),
-344 tesseroids for $R=1$ (Figure~\ref{fig:ratio}c),
-and 2472 tesseroids for  $R=2$ (Figure~\ref{fig:ratio}d).
+50 tesseroids for $R=0.5$ (Fig.~\ref{fig:ratio}b),
+344 tesseroids for $R=1$ (Fig.~\ref{fig:ratio}c),
+and 2472 tesseroids for  $R=2$ (Fig.~\ref{fig:ratio}d).
 
 \begin{figure}
     \centering
@@ -343,7 +325,7 @@ In the following section,
 we compare the computed gravitational effects
 of a tesseroid model
 with that of a spherical half-shell
-(Figure~\ref{fig:shell}),
+(Fig.~\ref{fig:shell}),
 for which exist analytical expressions.
 
 
@@ -354,25 +336,25 @@ gravitational attraction,
 and
 Marussi (gravity gradient) tensor
 caused by the homogeneous spherical half-shell
-shown in Figure~\ref{fig:shell}
+shown in Fig.~\ref{fig:shell}
 at a computation point
 $P = (\lambda=90^\circ, \phi=0^\circ, r=r_2+h)$
 are
 
 \begin{equation}
     V(h) = 2\pi G \rho \left[
-        \dfrac{l^3 + {r'}^3}{3(r_2 + h)} - 0.5 {r'}^2 \right]
-         \Biggr \rvert_{r'=r_1}^{r'=r_2},
+        \frac{l^3 + {r'}^3}{3(r_2 + h)} - 0.5 {r'}^2 \right]
+         \Biggr|_{r'=r_1}^{r'=r_2},
     \label{eq:shellpot}
 \end{equation}
 \begin{equation}
     g_z(h) = 2\pi G \rho \left[
-        \dfrac{l^3 + {r'}^3}{3(r_2 + h)^2} - l \right]
-        \Biggr \rvert_{r'=r_1}^{r'=r_2},
+        \frac{l^3 + {r'}^3}{3(r_2 + h)^2} - l \right]
+        \Biggr|_{r'=r_1}^{r'=r_2},
     \label{eq:shellgz}
 \end{equation}
 \begin{equation}
-    g_{xx}(h) = g_{yy}(h) = -\dfrac{1}{2} g_{zz}(h),
+    g_{xx}(h) = g_{yy}(h) = -\frac{1}{2} g_{zz}(h),
 \end{equation}
 \begin{equation}
     g_{xy}(h) = g_{xz}(h) = g_{yz}(h) = 0,
@@ -383,10 +365,10 @@ and
 
 \begin{equation}
     g_{zz}(h) = 2\pi G \rho \left[
-        2\dfrac{l^3 + {r'}^3}{3(r_2 + h)^3}
-        - \dfrac{l}{r_2 + h} + \dfrac{r_2 + h}{l}
+        2\frac{l^3 + {r'}^3}{3(r_2 + h)^3}
+        - \frac{l}{r_2 + h} + \frac{r_2 + h}{l}
         \right]
-        \Biggr \rvert_{r'=r_1}^{r'=r_2},
+        \Biggr|_{r'=r_1}^{r'=r_2},
     \label{eq:shellgzz}
 \end{equation}
 
@@ -523,16 +505,7 @@ archive for the source code and compiled binaries of Tesseroids.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\columnwidth]{figs/error-20deg}
-    \caption{This is a figure caption.}
-    \label{fig:error20}
-\end{figure}
-
-This is a reference to Figure \ref{fig:error20}.
-
-
+Meh.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -557,7 +530,7 @@ convallis. Nullam malesuada, mauris et ultricies rutrum, odio nulla gravida
 nunc, ac volutpat eros lectus eget lacus. Integer venenatis velit vel justo
 pellentesque, quis molestie sem vestibulum.
 
-\bibliographystyle{seg}
+\bibliographystyle{gji}
 \bibliography{references}
 
 \end{document}
