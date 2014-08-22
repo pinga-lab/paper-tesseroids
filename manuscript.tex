@@ -268,32 +268,41 @@ and $N^r$, $N^{\phi}$, and $N^{\lambda}$
 are the number of nodes
 for the radial, latitudinal, and longitudinal dimensions, respectively.
 
+THE EFFECTS OF THE NUMBER OF NODES AND DISTANCE ON THE COMPUTATIONS.
+
+\subsection{Recursive division algorithm}
+
 We have developed a modified version
-of the recursive scheme of \citet{Li2011}.
+of the recursive division scheme of \citet{Li2011}.
 We fix the number of nodes in the GLQ
 $N^\lambda=N^\phi=N^r=2$
 so that the distance between nodes
 in the radial, longitudinal, and latitudinal directions
-are approximately the dimensions of the tesseroid.
+are approximately the dimensions of the tesseroid
+\citep{Wild-Pfeiffer2008}.
 We define the distance $d$ as
 the Cartesian distance between
 the computation point $P$
 and the center of the top face of the tesseroid
 (Fig.~\ref{fig:ratio}a).
+
+DESCRIBE ALGORITHM FIRST.
+
 Thus, the rule-of-thumb of \citet{Ku1977}
-can be written as
+can be interpreted as
 
 \begin{equation}
-    \frac{d}{L} < r,
+    \frac{d}{L_\zeta} < r,
     \label{eq:ratio}
 \end{equation}
 
 \noindent
 where
-$L$ is one of the dimensions of the tesseroid
+$L_\zeta$, $\zeta \in \{r, \phi, \lambda\}$,
+is one of the dimensions of the tesseroid
 and
-$r$ is the distance/size ratio.
-For \citet{Ku1977} this ratio should be equal to one.
+$r$ is the maximum allowed ratio between distance and size.
+For \citet{Ku1977}, this ratio should be equal to one.
 The dimensions of the tesseroid are
 
 \begin{eqnarray*}
@@ -371,7 +380,7 @@ with that of a spherical half-shell
 for which exist analytical expressions.
 
 
-\subsection{Comparison with a spherical half-shell}
+\subsection{Determination of $r$ by comparison with a spherical shell}
 
 The gravitational potential,
 gravitational attraction,
