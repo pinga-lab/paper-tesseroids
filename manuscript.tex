@@ -107,6 +107,7 @@ are \citep{Grombein2013}
         \frac{1}{\ell} \kappa  dr' d\phi' d\lambda',
     \label{eq:tesspot}
 \end{equation}
+
 \begin{equation}
     g_{\alpha}(r,\phi,\lambda) = G \rho
         \int\limits_{\lambda_1}^{\lambda_2}
@@ -132,6 +133,7 @@ and
 
 \noindent
 in which
+$G$ is the gravitational constant,
 $(\phi, \lambda, r)$ are
 the latitude, longitude, and radius
 coordinates of computation point P (Fig.~\ref{fig:tesseroid}),
@@ -317,16 +319,33 @@ the error committed in the numerical integration.
     \label{fig:sample}
 \end{figure*}
 
+
 \subsection{Recursive division algorithm}
 
 We have developed a modified version
-of the recursive division algorithm of \citet{Li2011}.
-We fix the number of nodes in the GLQ
-$N^\lambda=N^\phi=N^r=2$
-so that the distance between nodes
-in the radial, longitudinal, and latitudinal directions
+of the recursive division algorithm proposed by \citet{Li2011}.
+One of the modifications made is that
+we fix the number of GLQ nodes as
+$N^\lambda=N^\phi=N^r=2$.
+In this way, the distances between adjacent nodes
 are approximately the dimensions of the tesseroid
-\citep{Wild-Pfeiffer2008}.
+\citep[see][]{Wild-Pfeiffer2008}.
+Thus, we may use the tesseroid dimensions
+as proxies for the distance between nodes.
+We define the dimensions of a tesseroid
+in the radial, latitudinal, longitudinal directions, respectively,
+as
+
+\begin{eqnarray}
+    L_r &=& r_2 - r_1,\\
+    L_\phi &=& R(\phi_2 - \phi_1),\\
+    L_\lambda &=& R(\lambda_2 - \lambda_1),
+\end{eqnarray}
+
+\noindent
+where $R=6378137\ m$ is the mean Earth radius
+and the longitudes and latitudes are given in radians.
+
 We define the distance $d$ as
 the Cartesian distance between
 the computation point $P$
@@ -352,15 +371,6 @@ $r$ is the maximum allowed ratio between distance and size.
 For \citet{Ku1977}, this ratio should be equal to one.
 The dimensions of the tesseroid are
 
-\begin{eqnarray*}
-    L_r &=& r_2 - r_1,\\
-    L_\phi &=& R(\phi_2 - \phi_1),\\
-    L_\lambda &=& R(\lambda_2 - \lambda_1),
-\end{eqnarray*}
-
-\noindent
-where $R$ is the mean Earth radius
-and the longitudes and latitudes are given in radians.
 
 In case the tesseroid is divided,
 the inequality in equation \ref{eq:ratio}
