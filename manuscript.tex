@@ -1,6 +1,7 @@
 %\documentclass[extra,mreferee]{gji}
 % Use the option below to make a nicely formatted manuscript
 \documentclass[extra]{gji}
+
 \usepackage{timet}
 \usepackage{graphicx}
 
@@ -270,9 +271,9 @@ for the radial, latitudinal, and longitudinal dimensions, respectively.
 
 THE EFFECTS OF THE NUMBER OF NODES AND DISTANCE ON THE COMPUTATIONS.
 
-\begin{figure}
+\begin{figure*}
     \centering
-    \includegraphics[width=\columnwidth]{figs/vary-height-and-order}
+    \includegraphics[width=\textwidth]{figs/vary-height-and-order}
     \caption{
         Example of the effect of varying
         the computation height and the Gauss-Legendre Quadrature order
@@ -291,7 +292,7 @@ THE EFFECTS OF THE NUMBER OF NODES AND DISTANCE ON THE COMPUTATIONS.
         again similar to the maps in \citet{Asgharzadeh2007}.
     }
     \label{fig:sample}
-\end{figure}
+\end{figure*}
 
 \subsection{Recursive division algorithm}
 
@@ -399,7 +400,6 @@ In the following section,
 we compare the computed gravitational effects
 of a tesseroid model
 with that of a spherical half-shell
-(Fig.~\ref{fig:shell}),
 for which exist analytical expressions.
 
 
@@ -410,7 +410,6 @@ gravitational attraction,
 and
 Marussi (gravity gradient) tensor
 caused by the homogeneous spherical half-shell
-shown in Fig.~\ref{fig:shell}
 at a computation point
 $P = (\lambda=90^\circ, \phi=0^\circ, r=r_2+h)$
 are
@@ -453,21 +452,6 @@ and
 $r_1$ and $r_2$ are radial coordinates of
 the bottom and top of the spherical shell,
 respectively.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\columnwidth]{figs/spherical-shell}
-    \caption{A spherical half-shell
-        spanning the ranges $0^{\circ} \le \lambda \le 180^\circ$,
-        $-90^\circ \le \phi \le 90^\circ$,
-        and $r_1 \le r \le r_2$,
-        the corresponding tesseroid model,
-        the computation point $P$
-        at $(\lambda=90^\circ,\phi=0^\circ,r=r_2+h)$,
-        and its local coordinate system $(x, y, z)$.
-    }
-    \label{fig:shell}
-\end{figure}
 
 For our comparison,
 we used a spherical half-shell with
