@@ -1,10 +1,13 @@
 *.swp
+*.fls
 *.bbl
 *.blg
 *.fff
 *.log
 *.lof
 *.aux
+*.pyc
+manuscript.tex
 manuscript.pdf
 references.bib.bak
 .sconsign.dblite
