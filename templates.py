@@ -84,19 +84,16 @@ class Manuscript(object):
             heads=['Author et al.', 'Short title'],
             bibfile='references.bib')
         env = Environment()
-        ms = env.Command('manuscript.tex', 'body.tex', builder.build)
+        ms = env.Command('manuscript.tex', 'body.tex', builder.build_ms)
         pdf = env.PDF(target='manuscript.pdf', source=ms)
 
     Then running 'scons' will produce 'manuscript.tex' and compile it to
     'manuscript.pdf' using the Geophysical Journal International template.
-
-    Pass 'pretty=True' to 'Manuscript' to produce a 'final paper'-looking
-    output.
     """
 
 
     def __init__(self, title, author, affil, author_affil, journal, heads,
-                 bibfile, pretty=False):
+                 bibfile):
         self.title = title
         self.author = author
         self.affil = affil
@@ -104,15 +101,15 @@ class Manuscript(object):
         self.journal = journal
         self.heads = heads
         self.bibfile = bibfile
-        self.pretty = pretty
 
 
-    def build(self, target, source, env):
+    def build_ms(self, target, source, env):
         """
         To be used in a SCons Command as:
 
             builder = Manuscript(title=...)
-            ms = env.Command('manuscrit.tex', 'ms_body.tex', builder.build)
+            latexfile = env.Command('paper.tex', 'ms_body.tex',
+                                    builder.build_ms)
 
         This will take the body of the text (just the sections and text, no
         documentclass, title, bibiliography, etc) and make the final tex file
@@ -125,7 +122,26 @@ class Manuscript(object):
             f.write(text)
 
 
-    def geophysics(self, body):
+    def build_paper(self, target, source, env):
+        """
+        To be used in a SCons Command as:
+
+            builder = Manuscript(title=...)
+            latexfile = env.Command('paper.tex', 'ms_body.tex',
+                                    builder.build_paper)
+
+        Same as 'build_ms' but will make a latex file for a pretty
+        (published-looking) version of the paper (if the document class has
+        options for this).
+        """
+        with open(str(source[0])) as f:
+            body = f.read()
+        text = getattr(self, self.journal)(body, pretty=True)
+        with open(str(target[0]), 'w') as f:
+            f.write(text)
+
+
+    def geophysics(self, body, pretty=False):
         """
         Builds manuscripts for Geophysics articles.
         """
@@ -141,7 +157,7 @@ class Manuscript(object):
             author=',\n'.join(author_list))
         options = 'manuscript'
         endfloat = '\usepackage[nomarkers]{endfloat}'
-        if self.pretty:
+        if pretty:
             options = 'paper,twocolumn,twoside'
             endfloat = ''
         header = GEOPHYISICS_HEAD.format(
@@ -152,7 +168,7 @@ class Manuscript(object):
         return text
 
 
-    def gji(self, body):
+    def gji(self, body, pretty=False):
         """
         Builds manuscripts for Geophysical Journal International.
         """
@@ -168,7 +184,7 @@ class Manuscript(object):
             ])
 
         options = 'extra,mreferee'
-        if self.pretty:
+        if pretty:
             options = 'extra'
         header = GJI_HEAD.format(
             title=self.title, heads=self.heads, authors=authors,

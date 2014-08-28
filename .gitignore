@@ -9,6 +9,8 @@
 *.pyc
 manuscript.tex
 manuscript.pdf
+paper.tex
+paper.pdf
 references.bib.bak
 .sconsign.dblite
 .ipynb_checkpoints/
