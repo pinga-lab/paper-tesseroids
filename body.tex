@@ -276,20 +276,26 @@ the error committed in the numerical integration.
     \includegraphics[width=\textwidth]{figs/vary-height-and-order}
     \caption{
         Example of the effect of varying
-        the computation height and the Gauss-Legendre Quadrature order
-        (number of nodes in each dimension).
-        The $g_{xy}$ component caused by a
+        the computation height
+        and the number of nodes in the Gauss-Legendre Quadrature
+        (i.e., the GLQ order).
+        The $g_{xy}$ component was produced by a
         $7^\circ \times 7^\circ \times 20\ km$ tesseroid
         with $2.67\ g.cm^{-3}$ density
-        and top at $z=0$
-        was calculated on a regular grid
-        at different heights and using different orders.
-        The GLQ order used was the same for all three dimensions.
-        a) At $400\ km$ height and order 2, the effect is similar to that
-        presented by \citet{Asgharzadeh2007}. b) At $150\ km$ height and order
-        2, the effect resembles that of four point sources located at the GLQ
-        nodes. c) At $150\ km$ but with a higher order of 30, the effect is
-        again similar to the maps in \citet{Asgharzadeh2007}.
+        and top at $z=0\ km$.
+        The maps were calculated on a regular grid
+        with $100\times100$ points.
+        The GLQ order used was the same
+        in the radial, longitudinal, and latitudial dimensions.
+        a) Field calculated at $400\ km$ height using GLQ order 2.
+        The effect is similar to that presented by \citet{Asgharzadeh2007}.
+        b) At $150\ km$ height and order 2,
+        the field resembles that of
+        four point sources located at the GLQ nodes.
+        This effect was shown by \citet{Ku1977}
+        for the case of the $g_z$ component of a right rectangular prism.
+        c) At $150\ km$ but with a higher GLQ order of 30,
+        the field is similiar to that expected for a single mass source.
     }
     \label{fig:sample}
 \end{figure*}
