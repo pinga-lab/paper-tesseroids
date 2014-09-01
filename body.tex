@@ -450,88 +450,55 @@ The gravitational potential,
 gravitational attraction,
 and
 Marussi (gravity gradient) tensor
-caused by the homogeneous spherical half-shell
-at a computation point
-$P = (\lambda=90^\circ, \phi=0^\circ, r=r_2+h)$
-are
+of a homogeneous spherical shell
+are \citep{Grombein2013}
+
 
 \begin{equation}
-    V(h) = 2\pi G \rho \left[
-        \frac{l^3 + {r'}^3}{3(r_2 + h)} - 0.5 {r'}^2 \right]
-         \Biggr|_{r'=r_1}^{r'=r_2},
-    \label{eq:shellpot}
+V(r) = \frac{4}{3}\pi G \rho \frac{r_2^3 - r_1^3}{r},
 \end{equation}
+
 \begin{equation}
-    g_z(h) = 2\pi G \rho \left[
-        \frac{l^3 + {r'}^3}{3(r_2 + h)^2} - l \right]
-        \Biggr|_{r'=r_1}^{r'=r_2},
-    \label{eq:shellgz}
+g_z(r) = \frac{V(r)}{r},
 \end{equation}
+
 \begin{equation}
-    g_{xx}(h) = g_{yy}(h) = -\frac{1}{2} g_{zz}(h),
+g_{zz}(r) = 2\frac{V(r)}{r^2},
 \end{equation}
+
 \begin{equation}
-    g_{xy}(h) = g_{xz}(h) = g_{yz}(h) = 0,
+g_{xx}(r) = g_{yy}(r) = -\frac{g_{zz}}{2},
 \end{equation}
 
 \noindent
 and
 
 \begin{equation}
-    g_{zz}(h) = 2\pi G \rho \left[
-        2\frac{l^3 + {r'}^3}{3(r_2 + h)^3}
-        - \frac{l}{r_2 + h} + \frac{r_2 + h}{l}
-        \right]
-        \Biggr|_{r'=r_1}^{r'=r_2},
-    \label{eq:shellgzz}
+g_x(r) = g_y(r) = g_{xy}(r) = g_{xz}(r) = g_{yz}(r) = 0,
 \end{equation}
 
 \noindent
-where $\rho$ is the density,
-$l = \sqrt{(r_2 + h)^2 + {r'}^2}$,
-and
-$r_1$ and $r_2$ are radial coordinates of
-the bottom and top of the spherical shell,
-respectively.
+where $r$ is the radial coordinate of the computation point and
+$r_1$ and $r_2$ are radial coordinates
+of the bottom and top of the spherical shell, respectively.
 
-For our comparison,
-we used a spherical half-shell with
-$\rho=2.7\ g.cm^{-3}$,
-$r_1=6378.137\ km$ (mean Earth radius),
-and
-$r_2 = r_1 + 50\ km$.
-We discretized the half-shell
-into tesseroids of equal size
-and calculated the gravitational effects of
-the half-shell
-(using equations \ref{eq:shellpot}-\ref{eq:shellgzz})
-and the corresponding tesseroid model
-at various heights.
-These calculations were repeated
-for varying values of
-the distance/size ratio $R$.
-This analysis
-allows us to establish
-the optimal value of $R$
-that achieves a desired error level.
-
-Data and source code to produce the results of this comparison
-are provided by \textbf{(cite notebook on figshare)}.
 
 \subsection{Software implementation}
 
-The methods described above
-were implemented the software package
-Tesseroids version 1.1.1.
+The recursive division algorithm described above
+is implemented in the software package
+Tesseroids.
 The package consists
-of a range of command-line programs
+of command-line programs
 written in the C programming language.
-It is freely available
-online\footnote{www.leouieda.com/tesseroids}
-under the terms of
-the open-source BSD 3-clause license.
-\textbf{(cite archive on figshare)} provides a persistent
-archive for the source code and compiled binaries of Tesseroids.
+Tesseroids is open-source software
+and is freely available
+on the internet\footnote{www.leouieda.com/tesseroids}
+\textbf{CITE ARCHIVE} provides a persistent
+archive for the source code.
+
+The code used to produce the results and figures presented here
+is available at \textbf{DOI LINK AND CITATION}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -556,16 +523,3 @@ Meh.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgments}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu dolor pretium,
-egestas mauris sed, dapibus quam. Duis hendrerit mollis nunc a consequat. Nulla
-et sem consectetur, interdum velit eget, aliquam ipsum. Praesent sagittis
-tortor diam, sed ultrices magna ullamcorper vitae. Proin vitae orci augue.
-Morbi dictum ligula gravida sem malesuada facilisis. Mauris nibh metus, cursus
-eget imperdiet vitae, pretium at lorem. Praesent nisi mauris, pretium ut risus
-fermentum, egestas tincidunt nibh. Mauris nulla orci, consequat eu pharetra
-non, mattis ut urna. Mauris facilisis orci eros. Nam mattis non magna iaculis
-consectetur. Morbi sodales dolor vitae felis sagittis, eget faucibus turpis
-convallis. Nullam malesuada, mauris et ultricies rutrum, odio nulla gravida
-nunc, ac volutpat eros lectus eget lacus. Integer venenatis velit vel justo
-pellentesque, quis molestie sem vestibulum.
