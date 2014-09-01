@@ -112,7 +112,7 @@ $(\phi, \lambda, r)$ are
 the latitude, longitude, and radius
 coordinates of computation point P (Fig.~\ref{fig:tesseroid}),
 $\alpha,\beta \in \{x,y,z\}$
-are the local coordinate system of point P,
+are directions in the local coordinate system of point P,
 and
 
 \begin{eqnarray}
@@ -152,13 +152,14 @@ and $\delta_{\alpha\beta}=0$ otherwise.
     \label{fig:tesseroid}
 \end{figure}
 
-We have opted to use
-the 3D Gauss-Legendre Quadrature
-to numerically integrate
+Equations
 \ref{eq:tesspot},
 \ref{eq:tessgrav},
 and
-\ref{eq:tesstensor}.
+\ref{eq:tesstensor}
+can be numerically integrated using
+the 3D Gauss-Legendre Quadrature (GLQ)
+\citep{Asgharzadeh2007}.
 The GLQ
 approximates the integral by
 a weighted sum
@@ -174,8 +175,8 @@ e.g.
 where
 $W_i$ are weights and
 the discretization points (nodes) $x_i$
-are the roots of the $N$th order Legendre polynomial $P_N$
-scaled to the integration limits.
+are the roots of the $N$th order Legendre polynomial $P_N$.
+Note that the roots have to be scaled to the integration limits.
 The roots of a second-order Legendre polynomial are
 $x_1=-0.577350269$ and $x_2=0.577350269$.
 For an arbitrary order $N$,
