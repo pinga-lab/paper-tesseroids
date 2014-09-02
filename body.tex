@@ -452,13 +452,12 @@ and gravity gradient tensor.
 
 \subsection{Comparison with a spherical shell}
 
-The gravitational potential,
-gravitational attraction,
-and
-Marussi (gravity gradient) tensor
-of a homogeneous spherical shell
-are \citep{Grombein2013}
+We must establish reference values to evaluate the error of the numerical
+integration.
 
+The homogeneous spherical shell is a convenient geometry with analytical
+solutions for
+the gravitational potential, attraction, and gravity gradient tensor \citep{Grombein2013}
 
 \begin{equation}
 V(r) = \frac{4}{3}\pi G \rho \frac{r_2^3 - r_1^3}{r},
@@ -487,6 +486,37 @@ g_x(r) = g_y(r) = g_{xy}(r) = g_{xz}(r) = g_{yz}(r) = 0,
 where $r$ is the radial coordinate of the computation point and
 $r_1$ and $r_2$ are radial coordinates
 of the bottom and top of the spherical shell, respectively.
+
+The computation point can be considered at any longitude or latitude because of
+the symmetry of the spherical shell.
+
+The spherical shell had dimensions of $r_1 = R$ ($R$ is the mean Earth radius) and $r_2 = R +
+1\ km$ and density $\rho = 2.67\ g.cm^{-3}$.
+
+The largest errors due are concentrated directly on top of the tesseroid
+(Fig.~\ref{fig:sample}b).
+
+Therefore, we perform the computations on an $11 \times 11$ point regular grid
+in an area directly on top of the tesseroid with corner at $\lambda = 0^\circ$
+$\phi = 0^\circ$.
+
+
+The computation grid was located at a constant height above the spherical shell
+$h = r_2 + 1\ km$.
+
+
+Table~\ref{tab:shell} contains the parameters defining the spherical shell.
+
+\begin{table}
+    \caption{Parameters of the spherical shell.}
+    \label{tab:shell}
+    \begin{tabular}{lr}
+        $\rho$                    & $2.76\ g.cm^{-3}$ \\
+        $\Delta r$                & $1\ km$ \\
+        $r_1 = R$                 & $6,378.137\ km$ \\
+        $r_2 = r_1 + \Delta r$    & $6,379.137\ km$ \\
+    \end{tabular}
+\end{table}
 
 
 \subsection{Software implementation}
