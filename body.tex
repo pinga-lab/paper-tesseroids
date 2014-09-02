@@ -365,10 +365,12 @@ each of which is calculated using a second-order GLQ.
 
 However, this would result in unnecessary divisions,
 specially if one dimension of the tesseroid is much smaller than the others.
-A more efficient approach is to check if the condition is met for each of the
-three dimensions of the tesseroid ($L_r$, $L_\phi$, and $L_\lambda$).
-We only divide the tesseroid in half along dimensions for which the condition
-is not met.
+A more efficient approach is
+to check if equation~\ref{eq:ratio} is met
+for each of the three dimensions of the tesseroid
+($L_r$, $L_\phi$, and $L_\lambda$).
+We only divide the tesseroid in half
+along dimensions for which the condition is not met.
 
 This algorithm can be implemented
 in the form of a recursive function
