@@ -452,12 +452,15 @@ and gravity gradient tensor.
 
 \subsection{Comparison with a spherical shell}
 
-We must establish reference values to evaluate the error of the numerical
-integration.
-
-The homogeneous spherical shell is a convenient geometry with analytical
-solutions for
-the gravitational potential, attraction, and gravity gradient tensor \citep{Grombein2013}
+We must establish reference values
+to evaluate the error of the numerical integration.
+For this purpose, we have used a homogeneous spherical shell
+with its bottom at a sphere with radius $R$ (the mean Earth radius),
+thickness $\Delta r$, and density $\rho$.
+It is a convenient geometry
+with analytical solutions for
+the gravitational potential, attraction, and gravity gradient tensor
+\citep{Grombein2013}
 
 \begin{equation}
 V(r) = \frac{4}{3}\pi G \rho \frac{r_2^3 - r_1^3}{r},
@@ -484,8 +487,9 @@ g_x(r) = g_y(r) = g_{xy}(r) = g_{xz}(r) = g_{yz}(r) = 0,
 
 \noindent
 where $r$ is the radial coordinate of the computation point and
-$r_1$ and $r_2$ are radial coordinates
+$r_1 = R$ and $r_2 = r_1 + \Delta r$ are radial coordinates
 of the bottom and top of the spherical shell, respectively.
+Table~\ref{tab:shell} summarises the parameters defining the spherical shell.
 
 The computation point can be considered at any longitude or latitude because of
 the symmetry of the spherical shell.
@@ -505,13 +509,12 @@ The computation grid was located at a constant height above the spherical shell
 $h = r_2 + 1\ km$.
 
 
-Table~\ref{tab:shell} contains the parameters defining the spherical shell.
 
 \begin{table}
     \caption{Parameters of the spherical shell.}
     \label{tab:shell}
     \begin{tabular}{lr}
-        $\rho$                    & $2.76\ g.cm^{-3}$ \\
+        $\rho$                    & $2.67\ g.cm^{-3}$ \\
         $\Delta r$                & $1\ km$ \\
         $r_1 = R$                 & $6,378.137\ km$ \\
         $r_2 = r_1 + \Delta r$    & $6,379.137\ km$ \\
