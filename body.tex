@@ -16,8 +16,10 @@ pellentesque, quis molestie sem vestibulum.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-Citing articles in text \citet{Asgharzadeh2007} and with parenthesis
-\citep{Braitenberg2011}.
+Using optimized Cartesian integration kernels by \citet{Grombein2013}.
+Their advantage over the spherical integration kernels
+\citep{Wild-Pfeiffer2008} is that they do not suffer from a singularity at the
+poles.
 
 The above integrals
 have to be solved numerically
@@ -87,8 +89,7 @@ are \citep{Grombein2013}
         \int\limits_{\lambda_1}^{\lambda_2}
         \int\limits_{\phi_1}^{\phi_2}
         \int\limits_{r_1}^{r_2}
-        \frac{\Delta_{\alpha}}{\ell^3} \kappa dr' d\phi' d\lambda'
-        \ \ \ \alpha \in \{x,y,z\},
+        \frac{\Delta\alpha}{\ell^3} \kappa dr' d\phi' d\lambda',
     \label{eq:tessgrav}
 \end{equation}
 
@@ -118,12 +119,12 @@ and
 \begin{eqnarray}
     I_{\alpha\beta} &=&
         \left(
-            \frac{3\Delta_{\alpha} \Delta_{\beta}}{\ell^5} -
+            \frac{3\Delta\alpha \Delta\beta}{\ell^5} -
             \frac{\delta_{\alpha\beta}}{\ell^3}
         \right) \kappa, \\
-    \Delta_x &=& r' K_{\phi} , \\
-    \Delta_y &=& r' \cos \phi' \sin(\lambda' - \lambda) , \\
-    \Delta_z &=& r' \cos \psi - r, \\
+    \Delta x &=& r' K_{\phi} , \\
+    \Delta y &=& r' \cos \phi' \sin(\lambda' - \lambda) , \\
+    \Delta z &=& r' \cos \psi - r, \\
     \ell &=& \sqrt{r'^2 + r^2 - 2 r' r \cos \psi} , \\
     \cos\psi &=& \sin\phi\sin\phi' + \cos\phi\cos\phi'
                  \cos(\lambda' - \lambda) , \\
@@ -157,9 +158,10 @@ Equations
 \ref{eq:tessgrav},
 and
 \ref{eq:tesstensor}
-can be numerically integrated using
-the 3D Gauss-Legendre Quadrature (GLQ)
-\citep{Asgharzadeh2007}.
+must be numerically integrated
+\citep{Grombein2013}.
+We follow \citet{Asgharzadeh2007}
+and use the 3D Gauss-Legendre Quadrature (GLQ) integration.
 The GLQ
 approximates the integral by
 a weighted sum
@@ -285,7 +287,9 @@ and make some improvements to the algorithm.
         The maps were calculated on a regular grid
         with $100\times100$ points.
         The GLQ order used was the same
-        in the radial, longitudinal, and latitudial dimensions.
+        in the radial, longitudinal, and latitudinal dimensions.
+        Black circles represent the horizontal location of the GLQ nodes
+        (not shown for GLQ order 30).
         a) Field calculated at $400\ km$ height using GLQ order 2.
         The effect is similar to that presented by \citet{Asgharzadeh2007}.
         b) At $150\ km$ height and order 2,
@@ -294,7 +298,7 @@ and make some improvements to the algorithm.
         This effect was shown by \citet{Ku1977}
         for the case of the $g_z$ component of a right rectangular prism.
         c) At $150\ km$ but with a higher GLQ order of 30,
-        the field is similiar to that expected for a single mass source.
+        the field is similar to that expected for a single mass source.
     }
     \label{fig:sample}
 \end{figure*}
@@ -305,8 +309,8 @@ and make some improvements to the algorithm.
 We start by fixing the number of GLQ nodes to
 $N^\lambda=N^\phi=N^r=2$.
 In this way, the distances between adjacent nodes
-are approximately the dimensions of the tesseroid
-\citep[see][]{Wild-Pfeiffer2008}.
+can be roughly approximated by the dimensions of the tesseroid
+(Fig.~\ref{fig:sample}a-b).
 Thus, we may use the tesseroid dimensions
 as proxies for the distance between nodes.
 We define the dimensions of a tesseroid
