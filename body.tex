@@ -381,11 +381,11 @@ function gravity(P, model):
   result = 0
   for each tesseroid in model:
     d = distance from P to the top of tesseroid
-    if d < r*L_lon:
+    if d/L_lon < r:
       divide_lon = true
-    if d < r*L_lat:
+    if d/L_lat < r:
       divide_lat = true
-    if d < r*L_r:
+    if d/L_r < r:
       divide_r = true
     if divide_lon or divide_lat or divide_r:
       newmodel = (divide tesseroid in the
