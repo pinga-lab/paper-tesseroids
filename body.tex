@@ -490,6 +490,9 @@ where $r$ is the radial coordinate of the computation point and
 $r_1$ and $r_2$ are radial coordinates
 of the bottom and top of the spherical shell, respectively.
 Table~\ref{tab:shell} summarizes the parameters defining the spherical shell.
+Table~\ref{tab:shell-data} contains the values of the gravitational potential,
+attraction, and gravity gradient tensor for such a shell computed at a height
+$h = 1\ km$ above the shell.
 
 The shell was discretized into tesseroids with $S \times S \times 1\ km$ size.
 
@@ -508,25 +511,24 @@ Fig.~\ref{fig:sample}b shows that the largest errors are concentrated directly
 on top of the tesseroid and near the quadrature nodes.
 
 Because of that, comparing the shell and tesseroid effects at a single point
-would not be representative of the actual error committed.
+would not be representative of the actual error.
 
 The gravitational fields of the spherical shell are the same for any point at a
 radial distance $r>r_2$ because of the symmetry of the shell.
 
-We perform the computations for the tesseroid model on an $11 \times 11$ point regular grid.
+We performed the computations for the tesseroid model on an $11 \times 11$ point regular grid.
 
 The southwestern corner of the grid is $(\lambda, \phi) = (0, 0)$
 and the northeastern corner is $(S, S)$, i.e., directly on top of a tesseroid.
 
-The grid is located at a constant height $h = 1\ km$ above the spherical shell.
+The grid was located at a constant height $h = 1\ km$ above the spherical shell.
 
+We can take the error in the computation as the maximum absolute difference between the
+value calculated for the spherical shell and the corresponding value for the
+tesseroid model.
 
-The computations where repeated for discretization into tesseroids of sizes $S = 1^\circ$, $2^\circ$,
-$5^\circ$, and $30^\circ$.
-
-
-
-
+The above computations were repeated for tesseroids of sizes $S = 1^\circ$, $2^\circ$,
+$5^\circ$, and $30^\circ$ to verify if the result depends on the discretization.
 
 
 \begin{table}
@@ -546,10 +548,11 @@ $5^\circ$, and $30^\circ$.
     gravity gradient tensor of the spherical shell.}
     \label{tab:shell-data}
     \begin{tabular}{ll}
-        $V$                    &    $14278.021191\ m^2.s^{-2}$ \\
-        $g_z$                  &    $223.788630$ mGal \\
-        $g_{xx} = g_{yy}$      &    $-0.350758$ E\"otv\"os\\
-        $g_{zz}$               &    $0.701517$ E\"otv\"os\\
+        $V$                                         &  $14278.021191\ m^2.s^{-2}$ \\
+        $g_z$                                       &  $223.788630$ mGal \\
+        $g_{xx}$, $g_{yy}$                          &  $-0.350758$ E\"otv\"os\\
+        $g_{zz}$                                    &  $0.701517$ E\"otv\"os\\
+        $g_x$, $g_y$, $g_{xy}$, $g_{xz}$, $g_{yz}$  &  $0$\\
     \end{tabular}
 \end{table}
 
@@ -564,7 +567,7 @@ of command-line programs
 written in the C programming language.
 Tesseroids is open-source software
 and is freely available
-on the internet\footnote{www.leouieda.com/tesseroids}
+on the Internet\footnote{leouieda.com/tesseroids}
 \textbf{CITE ARCHIVE} provides a persistent
 archive for the source code.
 
@@ -574,8 +577,6 @@ is available at \textbf{DOI LINK AND CITATION}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
-
-Meh.
 
 \begin{figure*}
     \centering
