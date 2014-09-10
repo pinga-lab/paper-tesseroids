@@ -344,12 +344,12 @@ and the center of the top face of the tesseroid
 In a more general form, the condition can be expressed as
 
 \begin{equation}
-    \frac{d}{L} > r,
+    \frac{d}{L} > D,
     \label{eq:ratio}
 \end{equation}
 
 \noindent
-for a positive non-zero scalar $r$,
+for a positive non-zero scalar $D$,
 henceforth referred to as
 the ``distance-size ratio''.
 
@@ -381,11 +381,11 @@ function gravity(P, model):
   result = 0
   for each tesseroid in model:
     d = distance from P to the top of tesseroid
-    if d/L_lon < r:
+    if d/L_lon < D:
       divide_lon = true
-    if d/L_lat < r:
+    if d/L_lat < D:
       divide_lat = true
-    if d/L_r < r:
+    if d/L_r < D:
       divide_r = true
     if divide_lon or divide_lat or divide_r:
       newmodel = (divide tesseroid in the
@@ -396,10 +396,10 @@ function gravity(P, model):
   return result
 \end{verbatim}
 
-The distance-size ratio $r$ controls
+The distance-size ratio $D$ controls
 how far away $P$ has to be
 compared to the dimensions of the tesseroid.
-A ratio $r=2$ means that
+A ratio $D=2$ means that
 the recursive division algorithm will ensure that
 tesseroids are smaller than
 half the distance to $P$.
@@ -407,24 +407,24 @@ Thus, the ratio determines how many divisions are required.
 Fig.~\ref{fig:ratio}
 illustrates the recursive division of a tesseroid
 (Fig.~\ref{fig:ratio}a)
-using increasing values of $r$.
+using increasing values of $D$.
 The tesseroid is divided into
-$28$ tesseroids for $r=1$ (Fig.~\ref{fig:ratio}b),
-$146$ tesseroids for $r=2$ (Fig.~\ref{fig:ratio}c),
-and $3106$ tesseroids for $r=6$ (Fig.~\ref{fig:ratio}d).
+$28$ tesseroids for $D=1$ (Fig.~\ref{fig:ratio}b),
+$146$ tesseroids for $D=2$ (Fig.~\ref{fig:ratio}c),
+and $3106$ tesseroids for $D=6$ (Fig.~\ref{fig:ratio}d).
 
-Because the number of tesseroids increases with $r$,
+Because the number of tesseroids increases with $D$,
 so does the computation time.
 Hence, there is need to determine
-an optimal value of the distance-size ratio $r$
+an optimal value of the distance-size ratio $D$
 that yields an acceptable trade-off between
 accuracy and computation time.
 In the following section,
 we describe a methodology
 to quantify the error of the GLQ integration
-as a function of the distance-size ratio $r$.
+as a function of the distance-size ratio $D$.
 These results can be used
-to determine optimal values of $r$
+to determine optimal values of $D$
 for the gravitational potential,
 gravitational attraction,
 and gravity gradient tensor.
@@ -436,13 +436,13 @@ and gravity gradient tensor.
         Adaptive discretization
         of the tesseroid shown in (a)
         for a computation point P
-        using the distance-size ratio $r$ equal to
+        using the distance-size ratio $D$ equal to
         (b) 1, (c) 2, and (d) 6.
         $d$ is the Cartesian distance between
         the center of the top face of the tesseroid
         and $P$.
         $L_r$, $L_\phi$, and $L_\lambda$ are the dimensions of the tesseroid.
-        Note that increasing $r$
+        Note that increasing $D$
         results in a fine division of the tesseroid
         close the computation point
         and a coarser division further away.
@@ -487,26 +487,46 @@ g_x(r) = g_y(r) = g_{xy}(r) = g_{xz}(r) = g_{yz}(r) = 0,
 
 \noindent
 where $r$ is the radial coordinate of the computation point and
-$r_1 = R$ and $r_2 = r_1 + \Delta r$ are radial coordinates
+$r_1$ and $r_2$ are radial coordinates
 of the bottom and top of the spherical shell, respectively.
-Table~\ref{tab:shell} summarises the parameters defining the spherical shell.
+Table~\ref{tab:shell} summarizes the parameters defining the spherical shell.
 
-The computation point can be considered at any longitude or latitude because of
+The shell was discretized into tesseroids with $S \times S \times 1\ km$ size.
+
+We then compared the result of the spherical shell with that calculated for the
+tesseroid model.
+
+The tesseroid calculations were performed with the recursive division
+algorithm.
+
+The tesseroid calculations were repeated for values of the distance/size ratio
+$D$ ranging from zero (i.e., no divisions) to eight with an interval of 0.5.
+
+
+
+
+The computation point can be considered at any longitude and latitude because of
 the symmetry of the spherical shell.
 
-The spherical shell had dimensions of $r_1 = R$ ($R$ is the mean Earth radius) and $r_2 = R +
-1\ km$ and density $\rho = 2.67\ g.cm^{-3}$.
+Fig.~\ref{fig:sample}b shows that the largest errors are concentrated directly
+on top of the tesseroid.
 
-The largest errors due are concentrated directly on top of the tesseroid
-(Fig.~\ref{fig:sample}b).
-
-Therefore, we perform the computations on an $11 \times 11$ point regular grid
-in an area directly on top of the tesseroid with corner at $\lambda = 0^\circ$
-$\phi = 0^\circ$.
+Making the comparison between the tesseroid
 
 
-The computation grid was located at a constant height above the spherical shell
-$h = r_2 + 1\ km$.
+We perform the computations on an $11 \times 11$ point regular grid.
+
+The southwestern corner of the grid is $(\lambda, \phi) = (0, 0)$
+and the northeastern corner is $(S, S)$, i.e., directly on top of a tesseroid.
+
+The grid is located at a constant height $h = 1\ km$ above the spherical shell.
+
+
+The computations where repeated for discretization into tesseroids of sizes $S = 1^\circ$, $2^\circ$,
+$5^\circ$, and $30^\circ$.
+
+
+
 
 
 
