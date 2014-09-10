@@ -504,17 +504,16 @@ $D$ ranging from zero (i.e., no divisions) to eight with an interval of 0.5.
 
 
 
-
-The computation point can be considered at any longitude and latitude because of
-the symmetry of the spherical shell.
-
 Fig.~\ref{fig:sample}b shows that the largest errors are concentrated directly
-on top of the tesseroid.
+on top of the tesseroid and near the quadrature nodes.
 
-Making the comparison between the tesseroid
+Because of that, comparing the shell and tesseroid effects at a single point
+would not be representative of the actual error committed.
 
+The gravitational fields of the spherical shell are the same for any point at a
+radial distance $r>r_2$ because of the symmetry of the shell.
 
-We perform the computations on an $11 \times 11$ point regular grid.
+We perform the computations for the tesseroid model on an $11 \times 11$ point regular grid.
 
 The southwestern corner of the grid is $(\lambda, \phi) = (0, 0)$
 and the northeastern corner is $(S, S)$, i.e., directly on top of a tesseroid.
@@ -533,11 +532,24 @@ $5^\circ$, and $30^\circ$.
 \begin{table}
     \caption{Parameters of the spherical shell.}
     \label{tab:shell}
-    \begin{tabular}{lr}
+    \begin{tabular}{ll}
         $\rho$                    & $2.67\ g.cm^{-3}$ \\
-        $\Delta r$                & $1\ km$ \\
+        $\Delta r$                & $1\ km$\\
         $r_1 = R$                 & $6,378.137\ km$ \\
         $r_2 = r_1 + \Delta r$    & $6,379.137\ km$ \\
+    \end{tabular}
+\end{table}
+
+
+\begin{table}
+    \caption{Reference values of the gravitational potential, attraction, and
+    gravity gradient tensor of the spherical shell.}
+    \label{tab:shell-data}
+    \begin{tabular}{ll}
+        $V$                    &    $14278.021191\ m^2.s^{-2}$ \\
+        $g_z$                  &    $223.788630$ mGal \\
+        $g_{xx} = g_{yy}$      &    $-0.350758$ E\"otv\"os\\
+        $g_{zz}$               &    $0.701517$ E\"otv\"os\\
     \end{tabular}
 \end{table}
 
