@@ -9,7 +9,7 @@ text.color       : 3a3a3a
 figure.facecolor : white
 axes.linewidth   : 1
 axes.edgecolor   : 3a3a3a
-axes.facecolor   : f1f1f1
+axes.facecolor   : white
 lines.linewidth  : 2
 xtick.major.size : 2
 ytick.major.size : 2
