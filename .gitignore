@@ -7,14 +7,8 @@
 *.lof
 *.aux
 *.pyc
-manuscript.tex
 manuscript.pdf
-paper.tex
-paper.pdf
 references.bib.bak
-.sconsign.dblite
 .ipynb_checkpoints/
-notebooks/model*.txt
-notebooks/points.txt
 notebooks/tesseroid_vs_spherical_shell_files/
 figs/*eps-converted-to.pdf
