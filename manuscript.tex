@@ -3,18 +3,21 @@
 \usepackage{timet}
 \usepackage{graphicx}
 
-\title[Tesseroid forward modeling with adaptive discretization]{
-Forward modeling of gravitational fields using tesseroids with adaptive
-discretization
+
+\title[Quantifying the error in tesseroid forward modeling]{
+Quantifying the error in forward modeling gravitational fields using tesseroids
+with adaptive discretization
 }
 
 \author[Uieda et al.]{
 Leonardo Uieda$^{1,2}$,
 Val\'eria C. F. Barbosa$^{2}$,
-Vanderlei C. Oliveira Jr$^{2}$
+Vanderlei C. Oliveira Jr$^{2}$,
+Carla Braitenberg$^{3}$
 \\
-$^1$Universidade do Estado do Rio de Janeiro, Rio de Janeiro, Brazil.
-$^2$Observat\'orio Nacional, Rio de Janeiro, Brazil.
+$^1$Universidade do Estado do Rio de Janeiro, Rio de Janeiro, Brazil. \\
+$^2$Observat\'orio Nacional, Rio de Janeiro, Brazil. \\
+$^3$Department of Mathematics and Geosciences, University of Trieste, Trieste, Italy.
 }
 
 \begin{document}
@@ -128,18 +131,177 @@ amount of point masses will be greater only close to the computation point.
 
 This makes the adaptive discretization more computationally efficient.
 
-We propose an improvement over the adaptive discretization algorithm of
-\citet{Li2011} to further increase the computational efficiency.
 
-We will also quantify the error committed for the gravity gradients.
+We will attempt to quantify the error committed in the computation of the
+gravity gradients using the GLQ with adaptive discretization.
 
-This is done in an attempt to establish an optimal minimum threshold for the
-ratio between the distance to the computation point and the dimensions of the
-tesseroid.
+We will establish an empirical relationship between the integration error and
+the ratio between the distance to the computation point and the dimensions of
+the tesseroid.
+
+This will allow one to choose the appropriate amount of discretization to
+achieve the desired accuracy.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
+
+\citet{Grombein2013} provides Cartesian kernels for the tesseroid volume
+internals that define the gravitational potential, gravitational attraction,
+and Marussi tensor (EQUATIONS).
+\begin{equation}
+    V(r,\phi,\lambda) = G \rho
+        \int\limits_{\lambda_1}^{\lambda_2}
+        \int\limits_{\phi_1}^{\phi_2}
+        \int\limits_{r_1}^{r_2}
+        \frac{1}{\ell} \kappa  dr' d\phi' d\lambda',
+    \label{eq:tesspot}
+\end{equation}
+\begin{equation}
+    g_{\alpha}(r,\phi,\lambda) = G \rho
+        \int\limits_{\lambda_1}^{\lambda_2}
+        \int\limits_{\phi_1}^{\phi_2}
+        \int\limits_{r_1}^{r_2}
+        \frac{\Delta\alpha}{\ell^3} \kappa dr' d\phi' d\lambda',
+    \label{eq:tessgrav}
+\end{equation}
+\noindent
+and
+\begin{equation}
+    g_{\alpha\beta}(r,\phi,\lambda) = G \rho
+        \int\limits_{\lambda_1}^{\lambda_2}
+        \int\limits_{\phi_1}^{\phi_2}
+        \int\limits_{r_1}^{r_2}
+        I_{\alpha\beta}
+        dr' d\phi' d\lambda',
+    \label{eq:tesstensor}
+\end{equation}
+
+\citet{Grombein2013} follows \citet{Heck2007} and solves the integrals by a
+Taylor expansion around the geometric center of the tesseroid.
+
+We will follow \citet{Asgharzadeh2007} and perform the numerical integration
+using the Gauss-Legendre Quadrature (GLQ) instead.
+
+The GLQ consists of approximating the integral by a weighted sum of the
+integration kernel \citep{Hildebrand1987},
+\begin{equation}
+    \int\limits_a^b f(x) dx \approx
+    \frac{b-a}{2}\sum\limits_{i=1}^N W_i f(x_i),
+    \label{eq:glq1d}
+\end{equation}
+
+$N$ is the number of points used in the GLQ, i.e. the order of the quadrature.
+
+The points $x_i$ where the kernel is evaluated are called the quadrature nodes.
+
+The points are roots of the $N^{th}$ order Legendre polynomial $P_N(x)$.
+
+The roots are $x = \pm 0.577350269$ for a second order polynomial ($P_2(x)$).
+
+A root finder algorithm can be used to determine the roots for larger order
+polynomials.
+
+We refer the reader to \citet{Barrera-Figueroa2006} for an algorithm tailored
+for Legendre polynomials in particular.
+
+The second order roots, as well as the ones determined by a root finder
+algorithm, will be within the range $[-1, 1]$.
+
+Thus, the roots must be scaled to the integration limits $[a, b]$ by
+\begin{equation}
+    x^{scaled}_i = \frac{b - a}{2} x_i + \frac{b + a}{2}.
+\end{equation}
+
+The weights of the GLQ are given by \citep{Hildebrand1987},
+\begin{equation}
+    W_i = \frac{2}{(1 - x_i^2)(P^\prime_N(x_i))^2},
+\end{equation}
+
+The values of the $P_N(x)$ and its first derivative $P^\prime_N(x)$ can be
+calculated with recursive relations (PUT FORMULA HERE?).
+
+The Gauss-Legendre Quadrature for volume integrals, like equations
+\ref{eq:tesspot}, \ref{eq:tessgrav}, and \ref{eq:tesstensor},
+becomes \citep{Asgharzadeh2007} (EQUATION).
+
+Applying equation (GLQ 3D) to equations
+\ref{eq:tesspot}, \ref{eq:tessgrav}, and \ref{eq:tesstensor},
+we see that $f(r_i, \phi_j, \lambda_k)$ is the effect of a point
+mass located on the quadrature nodes.
+
+It can be said that the GLQ integration approximates the volume integrals  by a
+weighted sum of point mass effects.
+
+
+\section{Adaptive discretization algorithm}
+
+The quantity of, and therefore distance between, point masses regulates the
+accuracy of the numerical integration \citep{Ku1977}.
+
+\citet{Ku1977} determined an empirical criterion that the distance between
+point masses (quadrature nodes) should be smaller than the minimum distance to
+the computation point.
+
+Thus, if a computation point is too close to the tesseroid one would have to
+decrease the distance between the point masses in order to obtain an accurate
+result.
+
+One way to do this would be increase the order of the quadrature $N$ in all
+three dimensions.
+
+An alternative way would be to fix the quadrature order (e.g., $N=2$) and
+instead divide the tesseroid in half along each dimension.
+
+The gravitational effect of the larger tesseroid would be calculated as the sum
+of the effects of the eight smaller tesseroids.
+
+This division would effectively decrease the distance between nodes because of
+the smaller tesseroids.
+
+
+
+\citet{Li2011} developed an algorithm based on the tesseroid division approach.
+
+In their algorithm, a tesseroid is divided in half along one of its dimensions
+if the minimum distance to the computation point is smaller than a multiple of
+the size of the tesseroid along that dimension.
+
+The criterion check and (possible) subsequent division is repeated recursively
+(i.e., to each of the smaller tesseroids and so on).
+
+The recursion stops when none of the smaller tesseroids fail the criterion.
+
+The advantage of this adaptive discretization is that the number of point
+masses is only increased in regions of the tesseroid that are closer to the
+computation point.
+
+Alternatively, simply increasing the order of the GLQ would increase the number
+of point masses evenly throughout the whole tesseroid.
+
+
+The key controlling point of their algorithm is the ratio between
+the smallest distance to the computation point and
+the largest side length of the tesseroid.
+
+The value of this ratio is used to decide whether a tesseroid will be divided
+or not.
+
+Thus, the value chosen for the minimum allowed value of this ratio determines
+how many divisions are made.
+
+Consequently, the value for the minimum distance-size ratio controls both the
+accuracy of the integration and the computation time.
+
+\citet{Li2011} provide a few examples of values for this ratio in the case of
+the vertical component of gravitational attraction.
+
+However, there has been no further investigation into
+the relationship between values of the minimum distance-size
+ratio and the computation error.
+
+It is also not clear whether the same relationship holds for the gravitational
+attraction as well as for the gradient tensor components.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
