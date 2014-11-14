@@ -1,28 +1,37 @@
-\documentclass[extra,mreferee]{gji}
-%\documentclass[extra,paper]{gji}
-\usepackage{timet}
+\documentclass[paper,twocolumn]{geophysics}
+%\documentclass[manuscript]{geophysics}
+%\documentclass[manuscript,endfloat]{geophysics}
 \usepackage{graphicx}
-
-
-\title[Quantifying the error in tesseroid forward modeling]{
-Quantifying the error in forward modeling gravitational fields using tesseroids
-with adaptive discretization
-}
-
-\author[Uieda et al.]{
-Leonardo Uieda$^{1,2}$,
-Val\'eria C. F. Barbosa$^{2}$,
-Vanderlei C. Oliveira Jr$^{2}$,
-Carla Braitenberg$^{3}$
-\\
-$^1$Universidade do Estado do Rio de Janeiro, Rio de Janeiro, Brazil. \\
-$^2$Observat\'orio Nacional, Rio de Janeiro, Brazil. \\
-$^3$Department of Mathematics and Geosciences, University of Trieste, Trieste, Italy.
-}
+\newcommand{\mitbf}[1]{\mathbf{{#1}}}
 
 \begin{document}
 
-\label{firstpage}
+\title{Title}
+\lefthead{Meh}
+\righthead{Meh}
+% manuscript number
+\ms{Submission}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\address{
+\footnotemark[1] Universidade do Estado do Rio de Janeiro,
+Rio de Janeiro, Brazil.
+\\
+\footnotemark[2] Observat\'orio Nacional,
+Rio de Janeiro, Brazil.
+\\
+\footnotemark[3] Department of Mathematics and Geosciences,
+University of Trieste, Trieste, Italy.
+}
+
+\author{
+    Leonardo Uieda\footnotemark[1]\footnotemark[2]
+    Val\'eria C. F. Barbosa\footnotemark[2],
+    Vanderlei C. Oliveira Jr\footnotemark[2],
+    and
+    Carla Braitenberg\footnotemark[3]
+}
+
 \maketitle
 
 \begin{abstract}
@@ -144,7 +153,7 @@ achieve the desired accuracy.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Methodology}
+\section{Theory}
 
 \citet{Grombein2013} provides Cartesian kernels for the tesseroid volume
 internals that define the gravitational potential, gravitational attraction,
@@ -177,11 +186,8 @@ and
     \label{eq:tesstensor}
 \end{equation}
 
-\citet{Grombein2013} follows \citet{Heck2007} and solves the integrals by a
-Taylor expansion around the geometric center of the tesseroid.
-
 We will follow \citet{Asgharzadeh2007} and perform the numerical integration
-using the Gauss-Legendre Quadrature (GLQ) instead.
+using the Gauss-Legendre Quadrature (GLQ).
 
 The GLQ consists of approximating the integral by a weighted sum of the
 integration kernel \citep{Hildebrand1987},
@@ -191,7 +197,7 @@ integration kernel \citep{Hildebrand1987},
     \label{eq:glq1d}
 \end{equation}
 
-$N$ is the number of points used in the GLQ, i.e. the order of the quadrature.
+$N$ is the order of the quadrature, i.e. the number of points used in the GLQ.
 
 The points $x_i$ where the kernel is evaluated are called the quadrature nodes.
 
@@ -234,10 +240,36 @@ It can be said that the GLQ integration approximates the volume integrals  by a
 weighted sum of point mass effects.
 
 
-\section{Adaptive discretization algorithm}
+The accuracy of the integration
+depends on the number of point masses used in the summation.
 
-The quantity of, and therefore distance between, point masses regulates the
-accuracy of the numerical integration \citep{Ku1977}.
+\citet{Ku1977} showed that it also depends on the ratio between
+the distance to the computation point and the distance between adjacent nodes.
+
+Figure~\ref{fig:glqerrorsample}
+illustrates this effect on the $g_{xy}$ gravity gradient component.
+
+The $g_{xy}$ component was produced by a
+$7^\circ \times 7^\circ \times 20\ km$ tesseroid
+with $2.67\ g.cm^{-3}$ density
+and top at $z=0\ km$.
+
+The maps were calculated on a regular grid
+with $100\times100$ points.
+
+The GLQ order used was the same
+in the radial, longitudinal, and latitudinal dimensions.
+
+Figure~\ref{fig:glqerrorsample}a shows the $g_{xy}$ component
+calculated at 400 km height using
+GLQ with order two (two point masses in the longitude, latitude, and vertical
+directions, respectively).
+
+Figure~\ref{fig:glqerrorsample}b shows $g_{xy}$ computed with order two
+GLQ as well but at 150 km height.
+
+Notice that the computed effect is concentrated around each point mass (black
+dots) and does not resemble the effect of a tesseroid.
 
 \citet{Ku1977} determined an empirical criterion that the distance between
 point masses (quadrature nodes) should be smaller than the minimum distance to
@@ -247,11 +279,48 @@ Thus, if a computation point is too close to the tesseroid one would have to
 decrease the distance between the point masses in order to obtain an accurate
 result.
 
-One way to do this would be increase the order of the quadrature $N$ in all
-three dimensions.
+One way to accomplish this would be increase the order of the quadrature
+$N$ in all three directions.
 
-An alternative way would be to fix the quadrature order (e.g., $N=2$) and
-instead divide the tesseroid in half along each dimension.
+Figure~\ref{fig:glqerrorsample}c shows the $g_{xy}$ component calculated at
+150km height but with a GLQ order of 30.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figs/vary-height-and-order}
+    \caption{
+        Example of the effect of varying
+        the computation height
+        and the number of point masses in the Gauss-Legendre Quadrature
+        (i.e., the GLQ order).
+        Black circles represent the horizontal location of the GLQ nodes
+        (not shown for GLQ order 30).
+        a) Field calculated at $400\ km$ height using GLQ order 2.
+        The effect is similar to that presented by \citet{Asgharzadeh2007}.
+        b) At $150\ km$ height and order 2,
+        the field resembles that of
+        four point sources located at the GLQ nodes.
+        This effect was shown by \citet{Ku1977}
+        for the case of the $g_z$ component of a right rectangular prism.
+        c) At $150\ km$ but with a higher GLQ order of 30,
+        the field is similar to that expected for a single mass source.
+    }
+    \label{fig:glqerrorsample}
+\end{figure}
+
+
+
+
+
+\subsection{Adaptive discretization}
+
+
+\citet{Li2011} proposed an alternative way to decrease the distance between
+point masses and achieve an accurate integration.
+
+Instead of increasing the GLQ order,
+they divide the tesseroid into smaller tesseroids while keeping the number of
+point masses per tesseroid fixed.
 
 The gravitational effect of the larger tesseroid would be calculated as the sum
 of the effects of the eight smaller tesseroids.
@@ -259,18 +328,18 @@ of the effects of the eight smaller tesseroids.
 This division would effectively decrease the distance between nodes because of
 the smaller tesseroids.
 
+The criterion for dividing a tesseroid is that
+the distance to the computation point must be smaller than
+a constant times the size of the tesseroid.
 
+The size of the tesseroid is used as proxy for the distance between point
+masses.
 
-\citet{Li2011} developed an algorithm based on the tesseroid division approach.
+This procedure is repeated recursively
+(i.e., to each of the smaller tesseroids)
+until all tesseroids are within the acceptable distance-size ratio
+or a minimum size is achieved.
 
-In their algorithm, a tesseroid is divided in half along one of its dimensions
-if the minimum distance to the computation point is smaller than a multiple of
-the size of the tesseroid along that dimension.
-
-The criterion check and (possible) subsequent division is repeated recursively
-(i.e., to each of the smaller tesseroids and so on).
-
-The recursion stops when none of the smaller tesseroids fail the criterion.
 
 The advantage of this adaptive discretization is that the number of point
 masses is only increased in regions of the tesseroid that are closer to the
@@ -279,6 +348,13 @@ computation point.
 Alternatively, simply increasing the order of the GLQ would increase the number
 of point masses evenly throughout the whole tesseroid.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Implementation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Numerical evaluation of the accuracy}
 
 The key controlling point of their algorithm is the ratio between
 the smallest distance to the computation point and
@@ -318,6 +394,6 @@ attraction as well as for the gradient tensor components.
 \section{Acknowledgments}
 
 
-\bibliographystyle{gji}
+\bibliographystyle{seg}
 \bibliography{references.bib}
 \end{document}
