@@ -242,15 +242,17 @@ algorithm, will be within the range $[-1, 1]$.
 Thus, the roots must be scaled to the integration limits $[a, b]$ by
 \begin{equation}
     x^{scaled}_i = \frac{b - a}{2} x_i + \frac{b + a}{2}.
+    \label{eq:glq_scaling}
 \end{equation}
 
 The weights of the GLQ are given by \citep{Hildebrand1987},
 \begin{equation}
     W_i = \frac{2}{(1 - x_i^2)(P^\prime_N(x_i))^2},
+    \label{eq:glq_weights}
 \end{equation}
 
 The values of the $P_N(x)$ and its first derivative $P^\prime_N(x)$ can be
-calculated with recursive relations (PUT FORMULA HERE?).
+calculated with recursive relations.
 
 The Gauss-Legendre Quadrature for volume integrals, like equations
 \ref{eq:tesspot}, \ref{eq:tessgrav}, and \ref{eq:tesstensor},
@@ -383,8 +385,9 @@ Tesseroids is freely available under the BSD 3-clause free-software license.
 
 An archived version of the source code is available along with this article.
 
-The latest version can be downloaded from the official
-website\footnote{http://www.leouieda.com/tesseroids}.
+The official website\footnote{http://www.leouieda.com/tesseroids}
+hosts the software documentation and
+archives of the latest binary executables and source code.
 
 Ongoing development takes place through the source code hosting site
 Github\footnote{https://github.com/leouieda/tesseroids}.
@@ -432,7 +435,8 @@ tessgrd -rW/E/S/N -bNLON/NLAT -zHEIGHT | \
 
 
 The \texttt{src} folder of the distribution archive
-contains the \texttt{.c} files that build the command-line programs.
+contains the C files that build the command-line programs
+(e.g., \texttt{tessgz.c}).
 
 The \texttt{src/lib} folder contains the source files that implement the
 numerical computations.
@@ -449,13 +453,62 @@ and the adaptive discretization of tesseroids.
 
 \subsection{Numerical integration}
 
-The first step in the numerical integration with the GLQ is to compute the
+The source file \texttt{src/lib/glq.c} contains the code necessary to perform a
+Gauss-Legendre Quadrature integration.
+
+The first step in the GLQ is to compute the
 locations of the point masses (i.e., the discretization points).
 
 These points are roots of Legendre polynomials.
 
-We use the
+Precomputed values for these roots are available low order polynomials,
+usually up to order 5.
 
+For flexibility, we use the multiple root-finder algorithm of
+\citet{Barrera-Figueroa2006} to compute the roots for polynomials of any order.
+
+The additional computational load is minimal since the root-finder algorithm
+must be run only once per program execution.
+
+The root-finder algorithm is implemented in functions \texttt{glq\_nodes} and
+\texttt{glq\_next\_root}.
+
+The computed roots will be in the range $[-1, 1]$
+and must be scaled to the integration limits (the limits of the tesseroid)
+using function \texttt{glq\_set\_limits} (see equation~\ref{eq:glq_scaling}).
+
+The GLQ weights are computed using equation~\ref{eq:glq_weights} by function
+\texttt{glq\_weights}.
+
+Both the computed roots and weights are stored in a data structure (a C
+\texttt{struct}) called \texttt{GLQ}.
+
+Function \texttt{glq\_new} allocates the memory necessary,
+calculates the roots and weights,
+and returns the complete \texttt{GLQ} structure.
+
+
+
+The numerical integration is performed by the functions in module
+\texttt{src/lib/grav\_tess.c}.
+
+The functions \texttt{tess\_pot}, \texttt{tess\_gx}, \texttt{tess\_gy},
+and so on, compute the gravitational fields of a single tesseroid on a single
+computation point using the GLQ.
+
+These functions require three \texttt{GLQ} structures with roots scaled to the
+integration limits $[\lambda_1, \lambda_2], [\phi_1, \phi_2], [r_1, r_2]$.
+
+The integration consists of three \texttt{for} loops: one for longitude, one
+for latitude, and one for radius.
+
+The evaluation of the trigonometric functions in
+equations~\ref{eq:tesspot}-\ref{eq:tesstensor} inside the inner loops
+are the biggest bottlenecks for the numerical integration.
+
+Better performance is achieved by moving some trigonometric function
+evaluations to the outer loops
+and precomputing the sine and cossine of latitudes.
 
 
 \subsection{Implementation of adaptive discretization}
