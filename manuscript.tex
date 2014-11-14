@@ -12,18 +12,6 @@
 % manuscript number
 \ms{Submission}
 
-\renewcommand{\thefootnote}{\fnsymbol{footnote}}
-\address{
-\footnotemark[1] Universidade do Estado do Rio de Janeiro,
-Rio de Janeiro, Brazil.
-\\
-\footnotemark[2] Observat\'orio Nacional,
-Rio de Janeiro, Brazil.
-\\
-\footnotemark[3] Department of Mathematics and Geosciences,
-University of Trieste, Trieste, Italy.
-}
-
 \author{
     Leonardo Uieda\footnotemark[1]\footnotemark[2]
     Val\'eria C. F. Barbosa\footnotemark[2],
@@ -31,6 +19,19 @@ University of Trieste, Trieste, Italy.
     and
     Carla Braitenberg\footnotemark[3]
 }
+
+\address{
+\footnotemark[1]Universidade do Estado do Rio de Janeiro,
+Rio de Janeiro, Brazil.
+email: leouieda@gmail.com
+\\
+\footnotemark[2]Observat\'orio Nacional,
+Rio de Janeiro, Brazil.
+\\
+\footnotemark[3]Department of Mathematics and Geosciences,
+University of Trieste, Trieste, Italy.
+}
+
 
 \maketitle
 
@@ -375,7 +376,89 @@ of point masses evenly throughout the whole tesseroid.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}
 
+The calculation of the tesseroid gravitational fields with adaptive
+discretization is implemented in the open-source package \textit{Tesseroids}.
 
+Tesseroids is freely available under the BSD 3-clause free-software license.
+
+An archived version of the source code is available along with this article.
+
+The latest version can be downloaded from the official
+website\footnote{http://www.leouieda.com/tesseroids}.
+
+Ongoing development takes place through the source code hosting site
+Github\footnote{https://github.com/leouieda/tesseroids}.
+
+
+
+\textit{Tesseroids} is written in the C programming language.
+
+Tesseroids consists of command-line programs.
+
+Tesseroids tries to follow the Unix principals of
+(1) making each program do one thing well,
+(2) using plain text for input and output,
+(3) making each program a ``filter'' that can be used in conjunction with other
+programs.
+
+The gravitational potential, attraction, and Marussi tensor components
+are each computed by a separate program.
+
+Programs for model and computation grid generation are also included.
+
+The package also includes programs for computing the gravitational fields of
+right rectangular prisms in Cartesian and spherical coordinates.
+
+Tesseroids programs receive input through command-line arguments and the
+standard input channel (STDIN) and output the results through
+the standard output channel (STDOUT).
+
+The command-line interface of each program was designed so that they
+can be called in sequence using a Unix pipe.
+
+For example, the command to
+generate a regular grid with $NLON \times NLAT$ points,
+calculate on it the $g_z$ and $g_{zz}$ caused by the tesseroids in file
+MODELFILE,
+and save the results to a file called OUTPUT
+is:
+
+\begin{verbatim}
+tessgrd -rW/E/S/N -bNLON/NLAT -zHEIGHT | \
+    tessgz MODELFILE | \
+    tessgzz MODELFILE > OUTPUT
+\end{verbatim}
+
+
+
+The \texttt{src} folder of the distribution archive
+contains the \texttt{.c} files that build the command-line programs.
+
+The \texttt{src/lib} folder contains the source files that implement the
+numerical computations.
+
+We will not describe here the implementation of the input/output parsing and
+other miscellanea.
+
+Instead, we will focus on the details of the Gauss-Legendre Quadrature
+integration of equations~\ref{eq:tesspot},~\ref{eq:tessgrav},
+and~\ref{eq:tesstensor}
+and the adaptive discretization of tesseroids.
+
+
+
+\subsection{Numerical integration}
+
+The first step in the numerical integration with the GLQ is to compute the
+locations of the point masses (i.e., the discretization points).
+
+These points are roots of Legendre polynomials.
+
+We use the
+
+
+
+\subsection{Implementation of adaptive discretization}
 
 \begin{figure}
     \centering
