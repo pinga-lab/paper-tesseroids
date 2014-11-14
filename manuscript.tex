@@ -155,9 +155,33 @@ achieve the desired accuracy.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Theory}
 
+A tesseroid is a spherical mass element defined in geocentric coordinates
+(Figure~\ref{fig:tesseroid}).
+It is bounded by two meridians, two parallels, and two concentric circles.
+The gravitational fields of a tesseroid at a point $P = (r,\phi,\lambda)$
+are determined with respect to the local North-oriented coordinate system at
+P (x, y, z in Figure~\ref{fig:tesseroid}).
+Notice that this is a left-handed coordinate system.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{figs/tesseroid}
+    \caption{
+        View of a tesseroid,
+        the integration point $Q$ inside the tesseroid,
+        a geocentric coordinate system $(X, Y, Z)$,
+        the computation $P$ and it's local coordinate system $(x, y, z)$.
+        $r$, $\phi$, $\lambda$ are
+        the radius, latitude, and longitude, respectively, of point $P$,
+        and $\ell$ is the Cartesian distance between $P$ and $Q$.
+    }
+    \label{fig:tesseroid}
+\end{figure}
+
 \citet{Grombein2013} provides Cartesian kernels for the tesseroid volume
 internals that define the gravitational potential, gravitational attraction,
-and Marussi tensor (EQUATIONS).
+and Marussi tensor, respectively,
+
 \begin{equation}
     V(r,\phi,\lambda) = G \rho
         \int\limits_{\lambda_1}^{\lambda_2}
@@ -182,7 +206,7 @@ and
         \int\limits_{\phi_1}^{\phi_2}
         \int\limits_{r_1}^{r_2}
         I_{\alpha\beta}
-        dr' d\phi' d\lambda',
+        dr' d\phi' d\lambda'.
     \label{eq:tesstensor}
 \end{equation}
 
@@ -287,7 +311,7 @@ Figure~\ref{fig:glqerrorsample}c shows the $g_{xy}$ component calculated at
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{figs/vary-height-and-order}
+    \includegraphics[width=0.4\textwidth]{figs/vary-height-and-order}
     \caption{
         Example of the effect of varying
         the computation height
@@ -307,9 +331,6 @@ Figure~\ref{fig:glqerrorsample}c shows the $g_{xy}$ component calculated at
     }
     \label{fig:glqerrorsample}
 \end{figure}
-
-
-
 
 
 \subsection{Adaptive discretization}
@@ -348,13 +369,34 @@ computation point.
 Alternatively, simply increasing the order of the GLQ would increase the number
 of point masses evenly throughout the whole tesseroid.
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}
 
 
+
+\begin{figure}
+    \centering
+    \includegraphics{figs/tesseroid-split}
+    \caption{
+        Adaptive discretization
+        of the tesseroid shown in (a)
+        for a computation point P
+        using the distance-size ratio $D$ equal to
+        (b) 1, (c) 2, and (d) 6.
+        $d$ is the Cartesian distance between
+        the center of the top face of the tesseroid
+        and $P$.
+        $L_r$, $L_\phi$, and $L_\lambda$ are the dimensions of the tesseroid.
+        Note that increasing $D$
+        results in a fine division of the tesseroid
+        close the computation point
+        and a coarser division further away.
+    }
+    \label{fig:ratio}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Numerical evaluation of the accuracy}
+\section{Evaluation of the accuracy}
 
 The key controlling point of their algorithm is the ratio between
 the smallest distance to the computation point and
@@ -380,12 +422,6 @@ It is also not clear whether the same relationship holds for the gravitational
 attraction as well as for the gradient tensor components.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Discussion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
