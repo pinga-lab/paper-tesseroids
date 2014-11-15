@@ -2,22 +2,24 @@
 %\documentclass[manuscript]{geophysics}
 %\documentclass[manuscript,endfloat]{geophysics}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \newcommand{\mitbf}[1]{\mathbf{{#1}}}
 
 \begin{document}
 
-\title{Title}
-\lefthead{Meh}
-\righthead{Meh}
+\title{
+Tesseroids: forward modeling gravitational fields in spherical coordinates
+}
+\righthead{Tesseroids}
 % manuscript number
 \ms{Submission}
 
 \author{
-    Leonardo Uieda\footnotemark[1]\footnotemark[2]
+    Leonardo Uieda\footnotemark[1]\footnotemark[2],
     Val\'eria C. F. Barbosa\footnotemark[2],
-    Vanderlei C. Oliveira Jr\footnotemark[2],
+    Carla Braitenberg\footnotemark[3],
     and
-    Carla Braitenberg\footnotemark[3]
+    Vanderlei C. Oliveira Jr\footnotemark[2]
 }
 
 \address{
@@ -497,7 +499,8 @@ and so on, compute the gravitational fields of a single tesseroid on a single
 computation point using the GLQ.
 
 These functions require three \texttt{GLQ} structures with roots scaled to the
-integration limits $[\lambda_1, \lambda_2], [\phi_1, \phi_2], [r_1, r_2]$.
+integration limits $[\lambda_1, \lambda_2], [\phi_1, \phi_2], [r_1, r_2]$
+(see equations~\ref{eq:tesspot}-\ref{eq:tesstensor}).
 
 The integration consists of three \texttt{for} loops: one for longitude, one
 for latitude, and one for radius.
@@ -506,12 +509,130 @@ The evaluation of the trigonometric functions in
 equations~\ref{eq:tesspot}-\ref{eq:tesstensor} inside the inner loops
 are the biggest bottlenecks for the numerical integration.
 
-Better performance is achieved by moving some trigonometric function
-evaluations to the outer loops
-and precomputing the sine and cossine of latitudes.
+Better performance is achieved by
+precomputing the sine and cossine of latitudes
+and moving some trigonometric function
+evaluations to the outer loops.
+
 
 
 \subsection{Implementation of adaptive discretization}
+
+
+The adaptive discretization algorithm of \citet{Li2011} recursively
+divides a tesseroid.
+
+A tesseroid will be divided when the smallest distance between it and the
+computation point is smaller than a constant times the largest dimension of the
+tesseroid.
+
+In our implementation,
+we measure the distance between
+the computation point
+and the center of the top face tesseroid
+(see Figure~\ref{fig:division}a).
+
+The distance $d$ is
+
+\begin{equation}
+    d = \left[
+        r^2 + r_2^2 - 2 r r_2
+        \cos(\sin\phi\sin\Delta\phi + \cos\phi\cos\Delta\phi
+            \cos(\lambda - \Delta\lambda))
+        \right],
+    \label{eq:distance}
+\end{equation}
+
+where
+$(r, \lambda, \phi)$ are the coordinates of the computation point,
+$\Delta\lambda = 0.5(\lambda_2 + \lambda_1)$,
+and
+$\Delta\phi = 0.5(\phi_2 + \phi_1)$.
+
+We define the dimensions of the tesseroid
+along longitude, latitude, and radius, respectively, as
+
+\begin{equation}
+    L_\lambda = r_2 \arccos(\sin^2\Delta\phi +
+        \cos^2\Delta\phi\cos(\lambda_2 - \lambda_1)),
+    \label{eq:sizelon}
+\end{equation}
+\begin{equation}
+    L_\phi = r_2 \arccos(\sin\phi_2\sin\phi_1 + \cos\phi_2\cos\phi_1),
+\end{equation}
+\begin{equation}
+    L_r = r_2 - r_2.
+    \label{eq:sizer}
+\end{equation}
+
+We fix the GLQ order $N=2$ for all three dimensions, resulting in eight point
+masses in total.
+
+The criterion we use to determine if a tesseroid must be divided is
+
+\begin{equation}
+    \frac{d}{L_i} < D,
+    \label{eq:condition}
+\end{equation}
+\noindent
+where $i \in (\lambda, \phi, r)$
+and $D$ is a positive scalar called the ``distance-size ratio''.
+$D$ determines how close the
+computation point can be before we must divide the tesseroid.
+
+
+We used a stack-based implementation of the algorithm instead of using
+recursive function calls.
+
+Stacks are array-like data structures with a particular way of inserting and
+removing elements from it.
+
+In a stack, one can only insert elements on the top (the last empty position).
+
+Likewise,
+one can only remove the last element that was placed on the stack
+(commonly referred to as ``popping'' the stack).
+
+Because of this stacks are also known as ``Last-in-first-out'', or LIFO,
+structures.
+
+LIFOs are often described as being analogous to a stack of plates.
+
+One can only place a new plate on the top of the stack and
+can only remove a plate safely from the top of the stack.
+
+
+The algorithm is described for a single tesseroid and computation point.
+
+The recursive division algorithm implemented with a stack is as follows.
+
+Start by initializing the stack with the tesseroid.
+
+Thus, so far, the stack has only one element.
+
+Once the stack is initialized, the steps of the algorithm are:
+
+\begin{enumerate}
+    \item ``Pop'' the stack (i.e., take the last element from it).
+    \item Compute the distance $d$ between the tesseroid and
+        the computation point (equation~\ref{eq:distance}).
+    \item Compute the dimensions of the tesseroid $L_\lambda$, $L_\phi$,
+        and $L_r$ (equations~\ref{eq:sizelon}-\ref{eq:sizer}).
+    \item Check the condition in equation~\ref{eq:condition} for each
+        dimension of the tesseroid.
+    \item If none of the dimensions fail the above condition,
+        compute the gravitational effect of the tesseroid using the
+        Gauss-Legendre Quadrature with order two
+        (equation~\ref{eq:glq3d}).
+    \item If any of the dimensions fail the condition,
+        divide the tesseroid in half along each dimension that failed the
+        condition.
+        Then, place the smaller tesseroids into the stack.
+    \item Repeat the above steps until the stack is empty.
+\end{enumerate}
+
+
+
 
 \begin{figure}
     \centering
@@ -531,7 +652,7 @@ and precomputing the sine and cossine of latitudes.
         close the computation point
         and a coarser division further away.
     }
-    \label{fig:ratio}
+    \label{fig:division}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
