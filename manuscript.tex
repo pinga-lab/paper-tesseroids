@@ -1,5 +1,5 @@
-\documentclass[paper,twocolumn]{geophysics}
-%\documentclass[manuscript]{geophysics}
+%\documentclass[paper,twocolumn]{geophysics}
+\documentclass[manuscript]{geophysics}
 %\documentclass[manuscript,endfloat]{geophysics}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -552,7 +552,7 @@ The distance $d$ is
         r^2 + r_2^2 - 2 r r_2
         \cos(\sin\phi\sin\Delta\phi + \cos\phi\cos\Delta\phi
             \cos(\lambda - \Delta\lambda))
-        \right],
+        \right]^{\frac{1}{2}},
     \label{eq:distance}
 \end{equation}
 
@@ -577,6 +577,9 @@ along longitude, latitude, and radius, respectively, as
     L_r = r_2 - r_2.
     \label{eq:sizer}
 \end{equation}
+
+
+USE THE MAX OF SOUTH AND NORTH FOR DLON? MIGHT MAKE IT BETTER IN THE POLES.
 
 We fix the GLQ order $N=2$ for all three dimensions, resulting in eight point
 masses in total.
@@ -605,7 +608,7 @@ programs.
 
 
 We used a stack-based implementation of the algorithm instead of using
-recursive function calls, as  originally proposed by \citet{Li2011}.
+recursive function calls, as originally proposed by \citet{Li2011}.
 
 Stacks are array-like data structures with a particular way of inserting and
 removing elements from it.
@@ -616,8 +619,7 @@ Likewise,
 one can only remove the last element that was placed on the stack
 (commonly referred to as ``popping'' the stack).
 
-Because of this stacks are also known as ``Last-in-first-out'', or LIFO,
-structures.
+Stacks are also known as ``Last-in-first-out'', or LIFO, structures.
 
 LIFOs are often described as being analogous to a stack of plates.
 
@@ -637,7 +639,11 @@ Start by creating an empty stack of tesseroids.
 The  stack is represented by the \texttt{stack} variable,
 an array of \texttt{TESSEROID} structures.
 
-We must define a maximum size for the stack.
+We must define a maximum size for the stack to allocate memory for it.
+
+Defining a maximum size allows us to avoid an infinite loop and large
+consumption of computer memory in case the computation point is
+on (or sufficiently close to) the surface of the tesseroid.
 
 We use the integer \texttt{stktop} to keep track of the index of the last
 element in the stack (the top of the stack).
@@ -666,16 +672,16 @@ Once the stack is initialized, the steps of the algorithm are:
     \begin{enumerate}
         \item Divide the tesseroid in half along each dimension that failed
              the condition.
-        \item Check if the number new (smaller) tesseroids fit in the stack.
-             In other words, the number of new elements plus \texttt{stktop}
-             must be smaller than the maximum stack size.
-             If the stack is full, warn the user of a ``stack overflow''
+        \item Check if the number of new elements plus \texttt{stktop}
+             is smaller than the maximum stack size.
+             If it is not (i.e., the stack is full),
+             warn the user of a ``stack overflow''
              and compute the effect of the larger tesseroid (step 5).
         \item If the stack is not full, place the smaller tesseroids into
              the stack.
     \end{enumerate}
     \item Repeat the above steps until the stack is empty
-        (\texttt{stktop = -1}).
+        (\texttt{stktop} is equal to -1).
 \end{enumerate}
 
 
@@ -703,6 +709,24 @@ In the stack-based implementation, the developer has complete control.
 Overflowing of the stack can be handled gracefully with an error message or
 even performing a suitable approximation of the result.
 
+
+
+Figure~\ref{fig:division} shows the effect of the distance-size ration $D$
+in the adaptive discretization of a tesseroid for the computation at a point P.
+
+Computing the gravitational effect of the tesseroid in
+Figure~\ref{fig:division}a using the algorithm described above
+is equivalent to computing the effect of the tesseroids in
+Figures~\ref{fig:division}b-d.
+
+Note that increasing the value of $D$ results in a finer mesh of tesseroids.
+
+For $D = 1$ (Figure~\ref{fig:division}b) the number of tesseroids in the
+adaptive discretization is 12,
+for $D = 2$ (Figure~\ref{fig:division}c) it is 52,
+and for $D = 6$ (Figure~\ref{fig:division}d) it is 1092.
+
+
 \begin{figure}
     \centering
     \includegraphics{figs/tesseroid-split}
@@ -720,12 +744,12 @@ even performing a suitable approximation of the result.
         results in a fine division of the tesseroid
         close the computation point
         and a coarser division further away.
+        The number of tesseroids in the discretization is (b) 12, (c) 52,
+        and (d) 1092.
     }
     \label{fig:division}
 \end{figure}
 
-
-\subsection{Automated tests}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Evaluation of the accuracy}
