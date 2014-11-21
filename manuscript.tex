@@ -1,5 +1,5 @@
-%\documentclass[paper,twocolumn]{geophysics}
-\documentclass[manuscript]{geophysics}
+\documentclass[paper,twocolumn]{geophysics}
+%\documentclass[manuscript]{geophysics}
 %\documentclass[manuscript,endfloat]{geophysics}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -511,12 +511,15 @@ The functions \texttt{tess\_pot}, \texttt{tess\_gx}, \texttt{tess\_gy},
 and so on, compute the gravitational fields of a single tesseroid on a single
 computation point using the GLQ.
 
-These functions require three \texttt{GLQ} structures with roots scaled to the
+These functions require three \texttt{GLQ} structures that contain the roots
+and weights for GLQ integration in the three dimensions.
+
+The roots must be scaled to the
 integration limits $[\lambda_1, \lambda_2], [\phi_1, \phi_2], [r_1, r_2]$
 (see equations~\ref{eq:tesspot}-\ref{eq:tesstensor}).
 
-The integration consists of three \texttt{for} loops: one for longitude, one
-for latitude, and one for radius.
+The integration consists of three \texttt{for} loops that sum the weighted
+kernel functions evaluated at each GLQ point mass (the scaled roots).
 
 The evaluation of the trigonometric functions in
 equations~\ref{eq:tesspot}-\ref{eq:tesstensor} inside the inner loops
@@ -532,8 +535,8 @@ evaluations to the outer loops.
 \subsection{Implementation of adaptive discretization}
 
 
-The adaptive discretization algorithm of \citet{Li2011} recursively
-divides a tesseroid.
+The adaptive discretization algorithm of \citet{Li2011}
+divides a tesseroid recursively.
 
 A tesseroid will be divided when the smallest distance between it and the
 computation point is smaller than a constant times the largest dimension of the
@@ -555,6 +558,10 @@ The distance $d$ is
         \right]^{\frac{1}{2}},
     \label{eq:distance}
 \end{equation}
+
+
+UPDATE THE EQUATION TO THE CENTER OF THE TESSEROID + NUMBER OF DIVISION IN
+EXAMPLE FIGURE.
 
 where
 $(r, \lambda, \phi)$ are the coordinates of the computation point,
