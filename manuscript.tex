@@ -158,13 +158,6 @@ achieve the desired accuracy.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Theory}
 
-A tesseroid is a spherical mass element defined in geocentric coordinates
-(Figure~\ref{fig:tesseroid}).
-It is bounded by two meridians, two parallels, and two concentric circles.
-The gravitational fields of a tesseroid at a point $P = (r,\phi,\lambda)$
-are determined with respect to the local North-oriented coordinate system at
-P (x, y, z in Figure~\ref{fig:tesseroid}).
-Notice that this is a left-handed coordinate system.
 
 \begin{figure}
     \centering
@@ -181,8 +174,15 @@ Notice that this is a left-handed coordinate system.
     \label{fig:tesseroid}
 \end{figure}
 
-\citet{Grombein2013} provides Cartesian kernels for the tesseroid volume
-internals that define the gravitational potential, gravitational attraction,
+A tesseroid is a spherical mass element defined in geocentric spherical
+coordinates
+(Figure~\ref{fig:tesseroid}).
+It is bounded by two meridians, two parallels, and two concentric circles.
+The gravitational fields of a tesseroid at a point $P = (r,\phi,\lambda)$
+are determined with respect to the local North-oriented coordinate system at
+P (x, y, z in Figure~\ref{fig:tesseroid}).
+\citet{Grombein2013} formulated Cartesian kernels for the volume integrals
+that define the tesseroid gravitational potential, gravitational attraction,
 and Marussi tensor, respectively,
 
 \begin{equation}
@@ -190,7 +190,8 @@ and Marussi tensor, respectively,
         \int\limits_{\lambda_1}^{\lambda_2}
         \int\limits_{\phi_1}^{\phi_2}
         \int\limits_{r_1}^{r_2}
-        \frac{1}{\ell} \kappa  dr' d\phi' d\lambda',
+        \frac{1}{\ell}
+        \kappa\  dr^\prime d\phi^\prime d\lambda^\prime,
     \label{eq:tesspot}
 \end{equation}
 \begin{equation}
@@ -198,7 +199,8 @@ and Marussi tensor, respectively,
         \int\limits_{\lambda_1}^{\lambda_2}
         \int\limits_{\phi_1}^{\phi_2}
         \int\limits_{r_1}^{r_2}
-        \frac{\Delta\alpha}{\ell^3} \kappa dr' d\phi' d\lambda',
+        \frac{\Delta_\alpha}{\ell^3}
+        \kappa\ dr^\prime d\phi^\prime d\lambda^\prime,
     \label{eq:tessgrav}
 \end{equation}
 \noindent
@@ -208,10 +210,29 @@ and
         \int\limits_{\lambda_1}^{\lambda_2}
         \int\limits_{\phi_1}^{\phi_2}
         \int\limits_{r_1}^{r_2}
-        I_{\alpha\beta}
-        dr' d\phi' d\lambda'.
+        \left(
+            \frac{3\Delta_{\alpha} \Delta_{\beta}}{\ell^5} -
+            \frac{\delta_{\alpha\beta}}{\ell^3}
+        \right)
+        \kappa\ dr^\prime d\phi^\prime d\lambda^\prime.
     \label{eq:tesstensor}
 \end{equation}
+
+where $\alpha, \beta \in \{x, y, z\}$,
+$\rho$ is the density,
+$G = 0.00000000006673\ m^3kg^{-1}s^{-1}$ is the gravitational constant,
+$\kappa = {r^\prime}^2 \cos \phi^\prime$,
+and
+
+\begin{eqnarray}
+    \Delta_x &=& r^\prime\cos\phi\sin\phi^\prime - \sin\phi\cos\phi^\prime
+                 \cos(\lambda^\prime - \lambda), \\
+    \Delta_y &=& r^\prime \cos \phi^\prime \sin(\lambda^\prime - \lambda), \\
+    \Delta_z &=& r^\prime \cos \psi - r,\\
+    \ell &=& \sqrt{{r^\prime}^2 + r^2 - 2 r^\prime r \cos \psi}, \\
+    \cos\psi &=& \sin\phi\sin\phi^\prime + \cos\phi\cos\phi^\prime
+                 \cos(\lambda^\prime - \lambda).
+\end{eqnarray}
 
 We will follow \citet{Asgharzadeh2007} and perform the numerical integration
 using the Gauss-Legendre Quadrature (GLQ).
@@ -235,19 +256,19 @@ The roots are $x = \pm 0.577350269$ for a second order polynomial ($P_2(x)$).
 A root finder algorithm can be used to determine the roots for larger order
 polynomials.
 
-We refer the reader to \citet{Barrera-Figueroa2006} for an algorithm tailored
-for Legendre polynomials in particular.
-
 The second order roots, as well as the ones determined by a root finder
 algorithm, will be within the range $[-1, 1]$.
 
-Thus, the roots must be scaled to the integration limits $[a, b]$ by
+Before being used for GLQ integration,
+the roots must be scaled to the integration limits $[a, b]$ using
+
 \begin{equation}
     x^{scaled}_i = \frac{b - a}{2} x_i + \frac{b + a}{2}.
     \label{eq:glq_scaling}
 \end{equation}
 
 The weights of the GLQ are given by \citep{Hildebrand1987},
+
 \begin{equation}
     W_i = \frac{2}{(1 - x_i^2)(P^\prime_N(x_i))^2},
     \label{eq:glq_weights}
@@ -258,9 +279,28 @@ calculated with recursive relations.
 
 The Gauss-Legendre Quadrature for volume integrals, like equations
 \ref{eq:tesspot}, \ref{eq:tessgrav}, and \ref{eq:tesstensor},
-becomes \citep{Asgharzadeh2007} (EQUATION).
+becomes \citep{Asgharzadeh2007}
 
-Applying equation (GLQ 3D) to equations
+\begin{equation}
+    \iiint\limits_{\Omega}
+    f(r^\prime, \lambda^\prime, \phi^\prime)
+    dr^\prime d\lambda^\prime d\phi^\prime
+    \approx
+    A
+    \sum\limits_{i=1}^{N^r}
+    \sum\limits_{j=1}^{N^\phi}
+    \sum\limits_{k=1}^{N^\lambda}
+    f(r_i, \phi_j, \lambda_k),
+    \label{eq:glq3d}
+\end{equation}
+
+where
+
+\begin{equation}
+    A = \frac{(\lambda_2 - \lambda_1)(\phi_2 - \phi_1)(r_2 - r_1)}{8}.
+\end{equation}
+
+Applying equation~\ref{eq:glq3d} to equations
 \ref{eq:tesspot}, \ref{eq:tessgrav}, and \ref{eq:tesstensor},
 we see that $f(r_i, \phi_j, \lambda_k)$ is the effect of a point
 mass located on the quadrature nodes.
@@ -344,8 +384,10 @@ The computed $g_{xy}$ component more closely resembles the results from
 \subsection{Adaptive discretization}
 
 
-\citet{Li2011} proposed an alternative way to decrease the distance between
-point masses and achieve an accurate integration.
+Instead of increasing the GLQ order,
+\citet{Li2011} proposed an alternative method
+for decreasing the distance between point masses
+and achieve an accurate integration.
 
 Instead of increasing the GLQ order,
 they divide the tesseroid into smaller tesseroids while keeping the number of
