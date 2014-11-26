@@ -23,19 +23,19 @@ Tesseroids: forward modeling gravitational fields in spherical coordinates
 }
 
 \address{
-\footnotemark[1]Universidade do Estado do Rio de Janeiro,
-Rio de Janeiro, Brazil.
-email: leouieda@gmail.com
-\\
-\footnotemark[2]Observat\'orio Nacional,
-Rio de Janeiro, Brazil.
-\\
-\footnotemark[3]Department of Mathematics and Geosciences,
-University of Trieste, Trieste, Italy.
+    \footnotemark[1]Universidade do Estado do Rio de Janeiro,
+    Rio de Janeiro, Brazil.
+    email: leouieda@gmail.com
+    \\
+    \footnotemark[2]Observat\'orio Nacional,
+    Rio de Janeiro, Brazil.
+    \\
+    \footnotemark[3]Department of Mathematics and Geosciences,
+    University of Trieste, Trieste, Italy.
 }
 
-
 \maketitle
+
 
 \begin{abstract}
 \end{abstract}
@@ -218,6 +218,7 @@ and
     \label{eq:tesstensor}
 \end{equation}
 
+\noindent
 where $\alpha, \beta \in \{x, y, z\}$,
 $\rho$ is the density,
 $G = 0.00000000006673\ m^3kg^{-1}s^{-1}$ is the gravitational constant,
@@ -236,7 +237,6 @@ and
 
 We will follow \citet{Asgharzadeh2007} and perform the numerical integration
 using the Gauss-Legendre Quadrature (GLQ).
-
 The GLQ consists of approximating the integral by a weighted sum of the
 integration kernel \citep{Hildebrand1987},
 \begin{equation}
@@ -245,20 +245,17 @@ integration kernel \citep{Hildebrand1987},
     \label{eq:glq1d}
 \end{equation}
 
-$N$ is the order of the quadrature, i.e. the number of points used in the GLQ.
-
-The points $x_i$ where the kernel is evaluated are called the quadrature nodes.
-
-The points are roots of the $N^{th}$ order Legendre polynomial $P_N(x)$.
-
-The roots are $x = \pm 0.577350269$ for a second order polynomial ($P_2(x)$).
-
-A root finder algorithm can be used to determine the roots for larger order
-polynomials.
-
-The second order roots, as well as the ones determined by a root finder
-algorithm, will be within the range $[-1, 1]$.
-
+\noindent
+in which $N$ is the order of the quadrature,
+i.e. the number of points used in the GLQ.
+The points $x_i$ are called the quadrature nodes.
+They are the roots of the $N^{th}$ order Legendre polynomial $P_N(x)$.
+For a second order polynomial ($P_2(x)$),
+the roots are $x = \pm 0.577350269$.
+Roots for larger order polynomials
+can be determined by a root finder algorithm.
+Roots of Legendre polynomials
+will be within the range $[-1, 1]$.
 Before being used for GLQ integration,
 the roots must be scaled to the integration limits $[a, b]$ using
 
@@ -270,14 +267,16 @@ the roots must be scaled to the integration limits $[a, b]$ using
 The weights of the GLQ are given by \citep{Hildebrand1987},
 
 \begin{equation}
-    W_i = \frac{2}{(1 - x_i^2)(P^\prime_N(x_i))^2},
+    W_i = \frac{2}{(1 - x_i^2)(P^\prime_N(x_i))^2}.
     \label{eq:glq_weights}
 \end{equation}
 
-The values of the $P_N(x)$ and its first derivative $P^\prime_N(x)$ can be
-calculated with recursive relations.
+\noindent
+The values of $P_N(x)$ and its first derivative $P^\prime_N(x)$
+can be calculated with recursive relations.
 
-The Gauss-Legendre Quadrature for volume integrals, like equations
+The Gauss-Legendre Quadrature for three-dimensional volume integrals,
+like equations
 \ref{eq:tesspot}, \ref{eq:tessgrav}, and \ref{eq:tesstensor},
 becomes \citep{Asgharzadeh2007}
 
@@ -294,6 +293,7 @@ becomes \citep{Asgharzadeh2007}
     \label{eq:glq3d}
 \end{equation}
 
+\noindent
 where
 
 \begin{equation}
@@ -304,56 +304,40 @@ Applying equation~\ref{eq:glq3d} to equations
 \ref{eq:tesspot}, \ref{eq:tessgrav}, and \ref{eq:tesstensor},
 we see that $f(r_i, \phi_j, \lambda_k)$ is the effect of a point
 mass located on the quadrature nodes.
-
-It can be said that the GLQ integration approximates the volume integrals  by a
+Thus, it can be said that the GLQ integration
+approximates the volume integrals  by a
 weighted sum of point mass effects.
-
 
 The accuracy of the integration
 depends on the number of point masses used in the summation.
-
 \citet{Ku1977} showed that it also depends on the ratio between
 the distance to the computation point and the distance between adjacent nodes.
-
 Figure~\ref{fig:glqerrorsample}
 illustrates this effect on the $g_{xy}$ gravity gradient component.
-
 The $g_{xy}$ component was produced by a
 $7^\circ \times 7^\circ \times 20\ km$ tesseroid
 with $2.67\ g.cm^{-3}$ density
 and top at $z=0\ km$.
-
 The maps were calculated on a regular grid
 with $100\times100$ points.
-
-The GLQ order used was the same
-in the radial, longitudinal, and latitudinal dimensions.
-
 Figure~\ref{fig:glqerrorsample}a shows the $g_{xy}$ component
 calculated at 400 km height using
 GLQ with order two (two point masses in the longitude, latitude, and vertical
 directions, respectively).
-
 Figure~\ref{fig:glqerrorsample}b shows $g_{xy}$ computed with order two
 GLQ as well but at 150 km height.
-
 Notice that the computed effect is concentrated around each point mass
 of the GLQ (black dots) and does not resemble the effect of a tesseroid.
-
 \citet{Ku1977} determined an empirical criterion that the distance between
 point masses (quadrature nodes) should be smaller than the minimum distance to
 the computation point.
-
 Thus, if a computation point is too close to the tesseroid one would have to
 decrease the distance between the point masses in order to obtain an accurate
 result.
-
 One way to accomplish this would be increase the order of the quadrature
 $N$ in all three directions.
-
 Figure~\ref{fig:glqerrorsample}c shows the $g_{xy}$ component calculated at
 150km height but with a GLQ order of 30.
-
 The computed $g_{xy}$ component more closely resembles the results from
 \citet{Asgharzadeh2007}.
 
