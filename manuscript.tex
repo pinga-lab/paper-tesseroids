@@ -1,5 +1,5 @@
-\documentclass[paper,twocolumn]{geophysics}
-%\documentclass[manuscript]{geophysics}
+%\documentclass[paper,twocolumn]{geophysics}
+\documentclass[manuscript]{geophysics}
 %\documentclass[manuscript,endfloat]{geophysics}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -16,22 +16,13 @@ Tesseroids: forward modeling gravitational fields in spherical coordinates
 
 \author{
     Leonardo Uieda\footnotemark[1]\footnotemark[2],
-    Val\'eria C. F. Barbosa\footnotemark[2],
-    Carla Braitenberg\footnotemark[3],
-    and
-    Vanderlei C. Oliveira Jr\footnotemark[2]
+    et al.
 }
 
 \address{
     \footnotemark[1]Universidade do Estado do Rio de Janeiro,
     Rio de Janeiro, Brazil.
     email: leouieda@gmail.com
-    \\
-    \footnotemark[2]Observat\'orio Nacional,
-    Rio de Janeiro, Brazil.
-    \\
-    \footnotemark[3]Department of Mathematics and Geosciences,
-    University of Trieste, Trieste, Italy.
 }
 
 \maketitle
@@ -174,7 +165,7 @@ achieve the desired accuracy.
     \label{fig:tesseroid}
 \end{figure}
 
-A tesseroid is a spherical mass element defined in geocentric spherical
+A tesseroid is a mass element defined in geocentric spherical
 coordinates
 (Figure~\ref{fig:tesseroid}).
 It is bounded by two meridians, two parallels, and two concentric circles.
@@ -221,8 +212,7 @@ and
 \noindent
 where $\alpha, \beta \in \{x, y, z\}$,
 $\rho$ is the density,
-$G = 0.00000000006673\ m^3kg^{-1}s^{-1}$ is the gravitational constant,
-$\kappa = {r^\prime}^2 \cos \phi^\prime$,
+$G = 6.673\times10^{-11}\ m^3kg^{-1}s^{-1}$ is the gravitational constant,
 and
 
 \begin{eqnarray}
@@ -230,6 +220,7 @@ and
                  \cos(\lambda^\prime - \lambda), \\
     \Delta_y &=& r^\prime \cos \phi^\prime \sin(\lambda^\prime - \lambda), \\
     \Delta_z &=& r^\prime \cos \psi - r,\\
+    \kappa &=& {r^\prime}^2 \cos \phi^\prime, \\
     \ell &=& \sqrt{{r^\prime}^2 + r^2 - 2 r^\prime r \cos \psi}, \\
     \cos\psi &=& \sin\phi\sin\phi^\prime + \cos\phi\cos\phi^\prime
                  \cos(\lambda^\prime - \lambda).
@@ -276,8 +267,7 @@ The values of $P_N(x)$ and its first derivative $P^\prime_N(x)$
 can be calculated with recursive relations.
 
 The Gauss-Legendre Quadrature for three-dimensional volume integrals,
-like equations
-\ref{eq:tesspot}, \ref{eq:tessgrav}, and \ref{eq:tesstensor},
+like equations~\ref{eq:tesspot}-\ref{eq:tesstensor},
 becomes \citep{Asgharzadeh2007}
 
 \begin{equation}
@@ -300,8 +290,8 @@ where
     A = \frac{(\lambda_2 - \lambda_1)(\phi_2 - \phi_1)(r_2 - r_1)}{8}.
 \end{equation}
 
-Applying equation~\ref{eq:glq3d} to equations
-\ref{eq:tesspot}, \ref{eq:tessgrav}, and \ref{eq:tesstensor},
+Comparing equation~\ref{eq:glq3d} with
+equations~\ref{eq:tesspot}-\ref{eq:tesstensor},
 we see that $f(r_i, \phi_j, \lambda_k)$ is the effect of a point
 mass located on the quadrature nodes.
 Thus, it can be said that the GLQ integration
@@ -322,8 +312,7 @@ The maps were calculated on a regular grid
 with $100\times100$ points.
 Figure~\ref{fig:glqerrorsample}a shows the $g_{xy}$ component
 calculated at 400 km height using
-GLQ with order two (two point masses in the longitude, latitude, and vertical
-directions, respectively).
+GLQ with order two ($2 \times 2 \times 2 = 8$ point masses).
 Figure~\ref{fig:glqerrorsample}b shows $g_{xy}$ computed with order two
 GLQ as well but at 150 km height.
 Notice that the computed effect is concentrated around each point mass
@@ -337,9 +326,10 @@ result.
 One way to accomplish this would be increase the order of the quadrature
 $N$ in all three directions.
 Figure~\ref{fig:glqerrorsample}c shows the $g_{xy}$ component calculated at
-150km height but with a GLQ order of 30.
-The computed $g_{xy}$ component more closely resembles the results from
-\citet{Asgharzadeh2007}.
+150km height but with a GLQ order of 30
+($30 \times 30 \times 30 = 27,000$ point masses).
+The computed $g_{xy}$ component more closely resembles
+the expect results for a single tesseroid \citep{Asgharzadeh2007}.
 
 \begin{figure}
     \centering
@@ -347,19 +337,16 @@ The computed $g_{xy}$ component more closely resembles the results from
     \caption{
         Example of the effect of varying
         the computation height
-        and the number of point masses in the Gauss-Legendre Quadrature
-        (i.e., the GLQ order).
-        Black circles represent the horizontal location of the GLQ nodes
-        (not shown for GLQ order 30).
-        a) Field calculated at $400\ km$ height using GLQ order 2.
-        The effect is similar to that presented by \citet{Asgharzadeh2007}.
-        b) At $150\ km$ height and order 2,
-        the field resembles that of
-        four point sources located at the GLQ nodes.
-        This effect was shown by \citet{Ku1977}
-        for the case of the $g_z$ component of a right rectangular prism.
+        and the number of point masses in the Gauss-Legendre Quadrature.
+        Black circles represent the horizontal location of the point masses.
+        a) $g_{xy}$ calculated at $400\ km$ height using GLQ order 2
+        ($2 \times 2 \times 2 = 8$ point masses).
+        b) At $150\ km$ height and GLQ order 2,
+        the result resembles that of
+        four point mases instead of a single tesseroid.
+        This effect was shown by \citet{Ku1977}.
         c) At $150\ km$ but with a higher GLQ order of 30,
-        the field is similar to that expected for a single mass source.
+        the result is similar to that expected for a single mass source.
     }
     \label{fig:glqerrorsample}
 \end{figure}
@@ -367,91 +354,70 @@ The computed $g_{xy}$ component more closely resembles the results from
 
 \subsection{Adaptive discretization}
 
-
-Instead of increasing the GLQ order,
 \citet{Li2011} proposed an alternative method
 for decreasing the distance between point masses
 and achieve an accurate integration.
-
 Instead of increasing the GLQ order,
-they divide the tesseroid into smaller tesseroids while keeping the number of
-point masses per tesseroid fixed.
-
-The gravitational effect of the larger tesseroid would be calculated as the sum
-of the effects of the eight smaller tesseroids.
-
-This division would effectively decrease the distance between nodes because of
-the smaller tesseroids.
-
-The criterion for dividing a tesseroid is that
-the distance to the computation point must be smaller than
-a constant times the size of the tesseroid.
-
-The size of the tesseroid is used as a proxy for the distance between point
-masses.
-
+they keep it fixed to a given number
+and divide the tesseroid into smaller parts.
+The sum of the effects of the smaller tesseroids
+is equal to the gravitational effect of the larger tesseroid.
+This division effectively decreases
+the distance between nodes because
+of the smaller size of the tesseroids.
+The criterion for dividing a tesseroid or not
+is that the distance to the computation point
+must be smaller than a constant times the size of the tesseroid.
+This is analogous to the criterion of \citet{Ku1977}
+because the size of the tesseroid serves as a proxy
+for the distance between point masses.
 This procedure is repeated recursively
-(i.e., to each of the smaller tesseroids)
-until all tesseroids are within the acceptable distance-size ratio
-or a minimum size is achieved.
+(i.e., to each of the smaller tesseroids and so on)
+until all tesseroids are within the acceptable
+ratio of distance and size or a minimum size is achieved.
 
 
-The advantage of this adaptive discretization is that the number of point
-masses is only increased in regions of the tesseroid that are closer to the
-computation point.
-
-Alternatively, simply increasing the order of the GLQ would increase the number
-of point masses evenly throughout the whole tesseroid.
+The advantage of this adaptive discretization is
+that the number of point masses is only increased
+in regions of the tesseroid that are
+closer to the computation point.
+Alternatively,
+simply increasing the order of the GLQ
+would increase the number of point masses
+evenly throughout the whole tesseroid.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}
 
-The calculation of the tesseroid gravitational fields with adaptive
-discretization is implemented in the open-source package \textit{Tesseroids}.
+We have implemented the calculation of
+the tesseroid gravitational fields
+with adaptive discretization
+in the open-source package \textit{Tesseroids}.
+The software is freely available
+on the Internet\footnote{http://www.leouieda.com/tesseroids}
+under the BSD 3-clause license.
+An archived version of the source code
+is available as part of this article.
 
-Tesseroids is freely available under the BSD 3-clause free-software license.
-
-An archived version of the source code is available along with this article.
-
-The official website\footnote{http://www.leouieda.com/tesseroids}
-hosts the software documentation and
-archives of the latest binary executables and source code.
-
-Ongoing development takes place through the source code hosting site
-Github\footnote{https://github.com/leouieda/tesseroids}.
-
-
-
-\textit{Tesseroids} is written in the C programming language.
-
-Tesseroids consists of command-line programs.
-
-Tesseroids tries to follow the Unix principals of
+\textit{Tesseroids}  consists of command-line programs
+written in the C programming language.
+The command-line interface follows the Unix principals of
 (1) making each program do one thing well,
 (2) using plain text for input and output,
 (3) making each program a ``filter'' that can be used in conjunction with other
 programs.
-
-The gravitational potential, attraction, and Marussi tensor components
-are each computed by a separate program.
-
-Programs for model and computation grid generation are also included.
-
-The package also includes programs for computing the gravitational fields of
-right rectangular prisms in Cartesian and spherical coordinates.
-
-Tesseroids programs receive input through command-line arguments and the
-standard input channel (STDIN) and output the results through
-the standard output channel (STDOUT).
-
-The command-line interface of each program was designed so that they
-can be called in sequence using a Unix pipe.
-
-For example, the command to
-generate a regular grid with $NLON \times NLAT$ points,
-calculate on it the $g_z$ and $g_{zz}$ caused by the tesseroids in file
-MODELFILE,
-and save the results to a file called OUTPUT
+The package includes programs to calculate
+the gravitational fields of tesseroids and
+rectangular prisms (in both Cartesian and spherical coordinates),
+as well as model and computation grid generation.
+All programs receive input through
+command-line arguments and the standard input channel (STDIN)
+and output the results through the standard output channel (STDOUT).
+For example,
+the command to generate a regular grid with $NLON \times NLAT$ points,
+calculate on it $g_z$ and $g_{zz}$ caused by
+the tesseroids in a file ``MODELFILE'',
+and save the results to a file called ``OUTPUT''
 is:
 
 \begin{verbatim}
@@ -460,117 +426,103 @@ tessgrd -rW/E/S/N -bNLON/NLAT -zHEIGHT | \
     tessgzz MODELFILE > OUTPUT
 \end{verbatim}
 
-
-
-The \texttt{src} folder of the distribution archive
+The \texttt{src} folder of the source code archive
 contains the C files that build the command-line programs
 (e.g., \texttt{tessgz.c}).
-
-The \texttt{src/lib} folder contains the source files that implement the
-numerical computations.
-
+The \texttt{src/lib} folder contains
+the source files that implement the numerical computations.
 We will not describe here the implementation of the input/output parsing and
 other miscellanea.
-
 Instead, we will focus on the details of the Gauss-Legendre Quadrature
-integration of equations~\ref{eq:tesspot},~\ref{eq:tessgrav},
-and~\ref{eq:tesstensor}
+integration of equations~\ref{eq:tesspot}-\ref{eq:tesstensor}
 and the adaptive discretization of tesseroids.
 
 
-
-All figures and numerical experiments in this article were produced by the
-IPython notebook\footnote{http://ipython.org}
-files \citep{Perez2007} in the supplementary material.
-
-
-These files combine the analysis source code
-with explanatory text, equations, and the figures generated by the code.
-
-This supplementary material can be run and executed locally or viewed
-online\footnote{https://github.com/pinga-lab/paper-tesseroids}
-(in a non-executable form).
+All figures and numerical experiments in this article
+were produced by IPython notebooks\footnote{http://ipython.org}
+\citep{Perez2007}.
+These files combine the analysis and figure generation source code
+with text, equations, and the figures generated by the code.
+These files,
+as well as instructions for installing and running the analysis,
+are distributed along with the source code archive
+that accompanies this article.
+Alternatively,
+the notebooks and can also be downloaded
+or viewed in a non-executable form from
+an online repository\footnote{https://github.com/pinga-lab/paper-tesseroids}.
 
 
 \subsection{Numerical integration}
 
-The source file \texttt{src/lib/glq.c} contains the code necessary to perform a
-Gauss-Legendre Quadrature integration.
-
+The source file \texttt{src/lib/glq.c}
+contains the code necessary to perform
+a Gauss-Legendre Quadrature integration.
 The first step in the GLQ is to compute the
-locations of the point masses (i.e., the discretization points).
-
+locations of the discretization points (i.e., the point masses).
 These points are roots of Legendre polynomials.
-
-Precomputed values for these roots are available low order polynomials,
-usually up to order 5.
-
-For flexibility, we use the multiple root-finder algorithm of
-\citet{Barrera-Figueroa2006} to compute the roots for polynomials of any order.
-
-The additional computational load is minimal since the root-finder algorithm
+Precomputed values are available low order polynomials,
+typically up to order five.
+For flexibility and to compute higher order roots,
+we use the multiple root-finder algorithm of
+\citet{Barrera-Figueroa2006}.
+The additional computational load is minimal
+because the root-finder algorithm
 must be run only once per program execution.
-
-The root-finder algorithm is implemented in functions \texttt{glq\_nodes} and
-\texttt{glq\_next\_root}.
-
+The root-finder is implemented in functions
+\texttt{glq\_nodes} and \texttt{glq\_next\_root}.
 The computed roots will be in the range $[-1, 1]$
-and must be scaled to the integration limits (the limits of the tesseroid)
+and must be scaled to the integration limits
+(the physical boundaries of the tesseroid)
 using function \texttt{glq\_set\_limits} (see equation~\ref{eq:glq_scaling}).
 
-The GLQ weights are computed using equation~\ref{eq:glq_weights} by function
-\texttt{glq\_weights}.
-
-Both the computed roots and weights are stored in a data structure (a C
-\texttt{struct}) called \texttt{GLQ}.
-
-Function \texttt{glq\_new} allocates the memory necessary,
+The GLQ weights (equation~\ref{eq:glq_weights})
+are computed by function \texttt{glq\_weights}.
+Both the computed roots and weights are stored in a data structure
+(a C \texttt{struct}) called \texttt{GLQ}.
+Function \texttt{glq\_new}
+handles memory allocation,
 calculates the roots and weights,
 and returns the complete \texttt{GLQ} structure.
 
-
-
-The numerical integration is performed by the functions in module
-\texttt{src/lib/grav\_tess.c}.
-
-The functions \texttt{tess\_pot}, \texttt{tess\_gx}, \texttt{tess\_gy},
-and so on, compute the gravitational fields of a single tesseroid on a single
-computation point using the GLQ.
-
-These functions require three \texttt{GLQ} structures that contain the roots
-and weights for GLQ integration in the three dimensions.
-
+The numerical integration of the tesseroid gravitational fields
+is performed by the functions in module \texttt{src/lib/grav\_tess.c}.
+Functions \texttt{tess\_pot}, \texttt{tess\_gx}, \texttt{tess\_gy}, and so on,
+compute the gravitational fields of a single tesseroid
+on a single computation point.
+These functions require three \texttt{GLQ} structures,
+each containing the roots and weights
+for GLQ integration in the three dimensions.
 The roots must be scaled to the
-integration limits $[\lambda_1, \lambda_2], [\phi_1, \phi_2], [r_1, r_2]$
+integration limits
+$[\lambda_1, \lambda_2], [\phi_1, \phi_2], [r_1, r_2]$
 (see equations~\ref{eq:tesspot}-\ref{eq:tesstensor}).
+The integration consists of three loops
+that sum the weighted kernel functions
+evaluated at each GLQ point mass (the scaled roots).
 
-The integration consists of three \texttt{for} loops that sum the weighted
-kernel functions evaluated at each GLQ point mass (the scaled roots).
-
-The evaluation of the trigonometric functions in
-equations~\ref{eq:tesspot}-\ref{eq:tesstensor} inside the inner loops
-are the biggest bottlenecks for the numerical integration.
-
-Better performance is achieved by
-precomputing the sine and cossine of latitudes
-and moving some trigonometric function
-evaluations to the outer loops.
-
+The biggest bottlenecks for the numerical integration are
+the number of point masses used
+and he evaluation of the trigonometric functions in
+equations~\ref{eq:tesspot}-\ref{eq:tesstensor} inside the inner loops.
+Better performance is achieved
+by pre-computing the sine and cosine of latitudes
+and moving some trigonometric function evaluations
+to the outer loops.
 
 
 \subsection{Implementation of adaptive discretization}
 
-
-The adaptive discretization algorithm of \citet{Li2011}
-divides a tesseroid recursively.
-
-A tesseroid will be divided when the smallest distance between it and the
-computation point is smaller than a constant times the largest dimension of the
-tesseroid.
-
+Our implementation of the adaptive discretization algorithm
+differs in a few ways from the original.
+In \citet{Li2011},
+a tesseroid will be divided when
+the smallest distance between it and the computation point
+is smaller than a constant times
+the largest dimension of the tesseroid.
 Instead of the smallest distance,
-we use in our implementation
-the distance $d$ between
+we use the easier to calculate
+distance between
 the computation point $(r, \lambda, \phi)$
 and the geometric center of the tesseroid
 $(r_t, \lambda_t, \phi_t)$
@@ -584,9 +536,10 @@ $(r_t, \lambda_t, \phi_t)$
     \label{eq:distance}
 \end{equation}
 
-We define the dimensions of the tesseroid
-along longitude, latitude, and radius, respectively, as
-(see Figure~\ref{fig:division}a)
+Our definition of the dimensions of the tesseroid
+(the ``side lengths'' of \citet{Li2011})
+along longitude, latitude, and radius, respectively, are
+(Figure~\ref{fig:division}a)
 
 \begin{equation}
     L_\lambda = r_2 \arccos(\sin^2\phi_t +
@@ -601,151 +554,41 @@ along longitude, latitude, and radius, respectively, as
     \label{eq:sizer}
 \end{equation}
 
-We fix the GLQ order $N=2$ for all three dimensions, resulting in eight point
-masses in total.
-
-The criterion we use to determine if a tesseroid must be divided is
+To determine if a tesseroid must be divided,
+we check if
 
 \begin{equation}
     \frac{d}{L_i} < D,
     \label{eq:condition}
 \end{equation}
+
 \noindent
-where $i \in (\lambda, \phi, r)$
-and $D$ is a positive scalar called the ``distance-size ratio''.
-
-$D$ determines how close the
-computation point can be before we must divide the tesseroid.
-
-Thus, the value of $D$ is indirectly responsible for
+for each $i \in (\lambda, \phi, r)$.
+$D$ is a positive scalar
+hereafter referred to as the ``distance-size ratio''.
+If the inequality holds for all three dimensions,
+the tesseroid is not divided.
+Thus, the distance-size ratio determines
+how close the computation point can be
+before we must divide the tesseroid.
+The value of $D$ is indirectly responsible for
 the accuracy of the solution and the computation time.
+We will explore the relationship with the accuracy in the following section.
 
-The modeling programs provide default values of $D$.
-
-It can also be controlled through command-line arguments passed to the
-programs.
-
-
-
-We used a stack-based implementation of the algorithm instead of using
-recursive function calls, as originally proposed by \citet{Li2011}.
-
-Stacks are array-like data structures with a particular way of inserting and
-removing elements from it.
-
-In a stack, one can only insert elements on the top (the last empty position).
-
-Likewise,
-one can only remove the last element that was placed on the stack
-(commonly referred to as ``popping'' the stack).
-
-Stacks are also known as ``Last-in-first-out'', or LIFO, structures.
-
-LIFOs are often described as being analogous to a stack of plates.
-
-One can only place a new plate on the top of the stack and
-can only remove a plate safely from the top of the stack.
-
-
-We will describe the stack-based algorithm for a single tesseroid and
-computation point.
-
-The algorithm is implemented in function \texttt{calc\_tess\_model\_adapt}
-of the file \texttt{src/lib/grav\_tess.c}.
-
-
-Start by creating an empty stack of tesseroids.
-
-The  stack is represented by the \texttt{stack} variable,
-an array of \texttt{TESSEROID} structures.
-
-We must define a maximum size for the stack to allocate memory for it.
-
-Defining a maximum size allows us to avoid an infinite loop and large
-consumption of computer memory in case the computation point is
-on (or sufficiently close to) the surface of the tesseroid.
-
-We use the integer \texttt{stktop} to keep track of the index of the last
-element in the stack (the top of the stack).
-
-The stack is initialized with the input tesseroid.
-
-The initialization is done by copying the tesseroid into the stack and
-setting \texttt{stktop} to zero (the first element).
-
-Once the stack is initialized, the steps of the algorithm are:
-
-\begin{enumerate}
-    \item ``Pop'' the stack (i.e., take the last element from it).
-        This will cause \texttt{stktop} to be reduced by one.
-    \item Compute the distance $d$ between the tesseroid and
-        the computation point (equation~\ref{eq:distance}).
-    \item Compute the dimensions of the tesseroid $L_\lambda$, $L_\phi$,
-        and $L_r$ (equations~\ref{eq:sizelon}-\ref{eq:sizer}).
-    \item Check the condition in equation~\ref{eq:condition} for each
-        dimension of the tesseroid.
-    \item If none of the dimensions fail the above condition,
-        compute the gravitational effect of the tesseroid using the
-        Gauss-Legendre Quadrature with order two
-        (equation~\ref{eq:glq3d}).
-    \item If any of the dimensions fail the condition:
-    \begin{enumerate}
-        \item Divide the tesseroid in half along each dimension that failed
-             the condition.
-        \item Check if the number of new elements plus \texttt{stktop}
-             is smaller than the maximum stack size.
-             If it is not (i.e., the stack is full),
-             warn the user of a ``stack overflow''
-             and compute the effect of the larger tesseroid (step 5).
-        \item If the stack is not full, place the smaller tesseroids into
-             the stack.
-    \end{enumerate}
-    \item Repeat the above steps until the stack is empty
-        (\texttt{stktop} is equal to -1).
-\end{enumerate}
-
-
-This stack-based implementation has some advantages over the original recursive
-implementation suggested by \citet{Li2011}.
-
-(1) It will be faster because it bypasses the overhead of function calls.
-
-The speedup will be specially significant if the implementation is done
-in high level interpreted languages, like Matlab and Python.
-
-(2) It gives the developer more control over the recursion step.
-
-In recursive implementations,
-the developer has no control over the maximum number of consecutive
-recursive calls (the ``recursion depth'').
-
-This limit may vary with programming language, compiler, and operating system.
-
-Overflowing the maximum recursion depth usually results in program
-crashes with cryptic or inexistent error messages.
-
-In the stack-based implementation, the developer has complete control.
-
-Overflowing of the stack can be handled gracefully with an error message or
-even performing a suitable approximation of the result.
-
-
-
-Figure~\ref{fig:division} shows the effect of the distance-size ration $D$
-in the adaptive discretization of a tesseroid for the computation at a point P.
-
-Computing the gravitational effect of the tesseroid in
-Figure~\ref{fig:division}a using the algorithm described above
-is equivalent to computing the effect of the tesseroids in
-Figures~\ref{fig:division}b-d.
-
-Note that increasing the value of $D$ results in a finer mesh of tesseroids.
-
-For $D = 1$ (Figure~\ref{fig:division}b) the number of tesseroids in the
-adaptive discretization is 4,
-for $D = 2$ (Figure~\ref{fig:division}c) it is 38,
-and for $D = 6$ (Figure~\ref{fig:division}d) it is 936.
-
+Figure~\ref{fig:division} shows examples of
+the resulting tesseroid models after adaptive discretization.
+Figure~\ref{fig:division}a shows
+the initial tesseroid and computation point P.
+Figures~\ref{fig:division}b-d are
+the result of adaptive discretization using
+different values of the distance-size ratio $D$,
+respectively,
+$D=1$, $D=2$, and $D=6$.
+The number of tesseroids in the resulting discretization is, respectively,
+4, 38, and 936.
+Code to perform the adaptive discretization
+and produce Figure~\ref{fig:division} is available in
+the IPython notebook \texttt{methods\_figures.ipynb}.
 
 \begin{figure}
     \centering
@@ -767,6 +610,99 @@ and for $D = 6$ (Figure~\ref{fig:division}d) it is 936.
     }
     \label{fig:division}
 \end{figure}
+
+Instead of using recursive function calls,
+as originally proposed by \citet{Li2011},
+we use a stack-based implementation of the algorithm.
+Stacks are array-like data structures
+with a particular way of inserting and removing elements from it.
+In a stack,
+one can only insert elements to the top of the stack
+(the last empty position).
+Likewise,
+one can only remove the last element of the stack
+(commonly referred to as ``popping'' the stack).
+Stacks are also known as ``Last-in-first-out'', or LIFO, structures.
+
+We will describe the stack-based algorithm
+for computing the effect of a single tesseroid
+on a single computation point.
+The algorithm is implemented in function \texttt{calc\_tess\_model\_adapt}
+of the file \texttt{src/lib/grav\_tess.c}.
+The stack of tesseroids is represented by
+the \texttt{stack} variable,
+an array of \texttt{TESSEROID} structures.
+We must define a maximum size for the stack to allocate memory for it.
+Defining a maximum size allows us to
+avoid an infinite loop
+in case the computation point is on
+(or sufficiently close to) the surface of the tesseroid.
+We use the integer \texttt{stktop}
+to keep track of the index of
+the last element in the stack (the top of the stack).
+
+The algorithm starts by creating an empty stack of tesseroids.
+Then, the stack is initialized with the input tesseroid.
+The initialization is done by copying the tesseroid into the stack
+and setting \texttt{stktop} to zero (the first element).
+Once the stack is initialized, the steps of the algorithm are:
+
+\begin{enumerate}
+    \item ``Pop'' the stack (i.e., take the last tesseroid from it).
+        This will cause \texttt{stktop} to be reduced by one.
+        This tesseroid is the one that will be evaluated in the following
+        steps.
+    \item Compute the distance $d$ between
+        the geometric center of the tesseroid and
+        the computation point using equation~\ref{eq:distance}.
+    \item Compute the dimensions of the tesseroid $L_\lambda$, $L_\phi$,
+        and $L_r$ using equations~\ref{eq:sizelon}-\ref{eq:sizer}.
+    \item Check the condition in equation~\ref{eq:condition} for each
+        dimension of the tesseroid.
+    \item If none of the dimensions fail the above condition,
+        compute the gravitational effect of the tesseroid using the
+        Gauss-Legendre Quadrature
+        (equations~\ref{eq:tesspot}-\ref{eq:tesstensor} and~\ref{eq:glq3d}).
+        We use a GLQ order of two for all three dimensions
+        ($2 \times 2 \times 2 = 8$ point masses)
+        by default.
+        This value can be changed using
+        a command-line argument of the modeling programs.
+    \item If any of the dimensions fail the condition:
+    \begin{enumerate}
+        \item Divide the tesseroid in half along each dimension that failed
+             the condition.
+        \item Check if the number of new elements plus \texttt{stktop}
+             is smaller than the maximum stack size.
+             If it is not (i.e., the stack is full),
+             warn the user of a ``stack overflow''
+             and compute the effect of the larger tesseroid (step 5).
+        \item If the stack is not full, place the smaller tesseroids into
+             the stack.
+    \end{enumerate}
+    \item Repeat the above steps until the stack is empty
+        (\texttt{stktop} is equal to -1).
+\end{enumerate}
+
+This stack-based implementation
+has some advantages over the original recursive implementation,
+namely:
+(1) It will be faster because it bypasses the overhead of function calls.
+(2) It gives the developer more control over the recursion step.
+In recursive implementations,
+the developer has no control over
+the maximum number of consecutive recursive calls
+(i.e., the ``recursion depth'').
+This limit may vary with programming language,
+compiler, and operating system.
+Overflowing the maximum recursion depth
+may result in program crashes,
+typically with cryptic or inexistent error messages.
+In the stack-based implementation,
+the developer has complete control.
+Overflowing of the stack can be handled gracefully
+with an error message
+or even performing a suitable approximation of the result.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
