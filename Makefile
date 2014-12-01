@@ -12,5 +12,17 @@ $(PDF): $(TEX) $(FIGS)
 	pdflatex $<
 	pdflatex $<
 
+spell:
+	aspell $(TEX)
+
+words:
+	detex $(TEX) | wc -w
+
+check:
+	write-good $(TEX)
+
+check-notebooks:
+	write-good notebooks/*.ipynb
+
 clean:
 	rm -rf $(PDF) *.aux *.log *.bbl figs/*-eps-converted-to.pdf *.fls *.blg
