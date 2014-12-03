@@ -16,7 +16,10 @@ spell:
 	aspell $(TEX)
 
 words:
-	detex $(TEX) | wc -w
+	@detex $(TEX) | wc -w
+
+page-estimate:
+	@python -c "print `detex $(TEX) | wc -w`/1000. + 0.35*`ls figs/*.eps | wc -l`"
 
 check:
 	write-good $(TEX)
