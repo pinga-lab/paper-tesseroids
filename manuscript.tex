@@ -1,5 +1,5 @@
-%\documentclass[paper,twocolumn]{geophysics}
-\documentclass[manuscript]{geophysics}
+\documentclass[paper,twocolumn]{geophysics}
+%\documentclass[manuscript]{geophysics}
 %\documentclass[manuscript,endfloat]{geophysics}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -708,30 +708,34 @@ or even performing a suitable approximation of the result.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Evaluation of the accuracy}
 
-The key controlling point of their algorithm is the ratio between
-the smallest distance to the computation point and
-the largest side length of the tesseroid.
+The key controlling point of the adaptive discretization algorithm
+is the distance-size ratio $D$ (equation~\ref{eq:condition}).
 
-The value of this ratio is used to decide whether a tesseroid will be divided
-or not.
+The value chosen for this ratio determines how many divisions are made.
 
-Thus, the value chosen for the minimum allowed value of this ratio determines
-how many divisions are made.
-
-Consequently, the value for the minimum distance-size ratio controls both the
-accuracy of the integration and the computation time.
+$D$ controls both accuracy of the integration and the computation time.
 
 \citet{Li2011} provide a few examples of values for this ratio in the case of
 the vertical component of gravitational attraction.
 
-However, there has been no further investigation into
-the relationship between values of the minimum distance-size
-ratio and the computation error.
+There has been no further investigation into
+the relationship between values of the distance-size ratio and
+the computation error.
 
-It is also not clear whether the same relationship holds for the gravitational
-attraction as well as for the gradient tensor components.
+It is also not clear whether the same value of $D$ used for the gravitational
+attraction can be used for the gradient tensor components.
 
-\subsection{$g_{zz}$ variability with computation height}
+
+
+We need a reference value against which to compare the computed tesseroid effects.
+
+The spherical shell is a convenient model with an analytical solution along
+the polar axis.
+
+\citep{Grombein2013} provides the equations for
+the gravitational potential, attraction, and gravity gradient components
+of a homogeneous spherical shell.
+
 
 
 
