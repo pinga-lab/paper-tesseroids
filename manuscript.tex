@@ -1,5 +1,5 @@
-\documentclass[paper,twocolumn]{geophysics}
-%\documentclass[manuscript]{geophysics}
+%\documentclass[paper,twocolumn]{geophysics}
+\documentclass[manuscript]{geophysics}
 %\documentclass[manuscript,endfloat]{geophysics}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -11,8 +11,7 @@
 Tesseroids: forward modeling gravitational fields in spherical coordinates
 }
 \righthead{Tesseroids}
-% manuscript number
-\ms{Submission}
+\ms{Submission} % manuscript number
 
 \author{
     Leonardo Uieda\footnotemark[1]\footnotemark[2],
@@ -23,6 +22,8 @@ Tesseroids: forward modeling gravitational fields in spherical coordinates
     \footnotemark[1]Universidade do Estado do Rio de Janeiro,
     Rio de Janeiro, Brazil.
     email: leouieda@gmail.com
+    \footnotemark[2]Observat\'orio Nacional,
+    Rio de Janeiro, Brazil.
 }
 
 \maketitle
@@ -402,8 +403,8 @@ the tesseroid gravitational fields
 with adaptive discretization
 in the open-source package \textit{Tesseroids}.
 The software is freely available
-on the Internet\footnote{http://www.leouieda.com/tesseroids}
-under the BSD 3-clause license.
+online\footnote{http://www.leouieda.com/tesseroids}
+under the BSD 3-clause open-source license.
 An archived version of the source code
 is available as part of this article.
 
@@ -630,7 +631,7 @@ one can only insert elements to the top of the stack
 Likewise,
 one can only remove the last element of the stack
 (commonly referred to as ``popping'' the stack).
-Stacks are also known as ``Last-in-first-out'', or LIFO, structures.
+Stacks are also known as ``Last-in-first-out'', or LIFO, data structures.
 
 We will describe the stack-based algorithm
 for computing the effect of a single tesseroid
