@@ -1,9 +1,9 @@
-# gzz component calculated with tessgzz 1.1.1-69-g5e83b92:
-#   local time: Fri Nov 21 19:47:17 2014
+# gzz component calculated with tessgzz 1.1.1-82-ge0f7c93:
+#   local time: Sat Feb 28 16:23:50 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: False
-#   Distance-size ratio for recusive division: 6
+#   Distance-size ratio for recusive division: 8
 0.000000 89.000000 50000.000000 1.65313665146447
 0.000000 89.111111 50000.000000 2.02260252162796
 0.000000 89.222222 50000.000000 2.14970228193706

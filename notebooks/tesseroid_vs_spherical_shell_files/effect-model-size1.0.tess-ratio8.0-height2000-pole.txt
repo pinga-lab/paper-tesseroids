@@ -1,59 +1,59 @@
-# gzz component calculated with tessgzz 1.1.1-69-g5e83b92:
-#   local time: Fri Nov 21 19:04:42 2014
+# gzz component calculated with tessgzz 1.1.1-82-ge0f7c93:
+#   local time: Sat Feb 28 15:18:51 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8
-# gyz component calculated with tessgyz 1.1.1-69-g5e83b92:
-#   local time: Fri Nov 21 19:04:42 2014
+# gyz component calculated with tessgyz 1.1.1-82-ge0f7c93:
+#   local time: Sat Feb 28 15:18:51 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8
-# gyy component calculated with tessgyy 1.1.1-69-g5e83b92:
-#   local time: Fri Nov 21 19:04:42 2014
+# gyy component calculated with tessgyy 1.1.1-82-ge0f7c93:
+#   local time: Sat Feb 28 15:18:51 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8
-# gxz component calculated with tessgxz 1.1.1-69-g5e83b92:
-#   local time: Fri Nov 21 19:04:42 2014
+# gxz component calculated with tessgxz 1.1.1-82-ge0f7c93:
+#   local time: Sat Feb 28 15:18:51 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8
-# gxy component calculated with tessgxy 1.1.1-69-g5e83b92:
-#   local time: Fri Nov 21 19:04:42 2014
+# gxy component calculated with tessgxy 1.1.1-82-ge0f7c93:
+#   local time: Sat Feb 28 15:18:51 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8
-# gxx component calculated with tessgxx 1.1.1-69-g5e83b92:
-#   local time: Fri Nov 21 19:04:42 2014
+# gxx component calculated with tessgxx 1.1.1-82-ge0f7c93:
+#   local time: Sat Feb 28 15:18:51 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8
-# gz component calculated with tessgz 1.1.1-69-g5e83b92:
-#   local time: Fri Nov 21 19:04:42 2014
+# gz component calculated with tessgz 1.1.1-82-ge0f7c93:
+#   local time: Sat Feb 28 15:18:51 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8
-# gy component calculated with tessgy 1.1.1-69-g5e83b92:
-#   local time: Fri Nov 21 19:04:42 2014
+# gy component calculated with tessgy 1.1.1-82-ge0f7c93:
+#   local time: Sat Feb 28 15:18:51 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8
-# gx component calculated with tessgx 1.1.1-69-g5e83b92:
-#   local time: Fri Nov 21 19:04:42 2014
+# gx component calculated with tessgx 1.1.1-82-ge0f7c93:
+#   local time: Sat Feb 28 15:18:51 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8
-# Potential calculated with tesspot 1.1.1-69-g5e83b92:
-#   local time: Fri Nov 21 19:04:42 2014
+# Potential calculated with tesspot 1.1.1-82-ge0f7c93:
+#   local time: Sat Feb 28 15:18:51 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
