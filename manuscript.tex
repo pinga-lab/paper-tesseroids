@@ -36,30 +36,122 @@ Tesseroids: forward modeling gravitational fields in spherical coordinates
 \section{Introduction}
 
 
-We use the optimized formula of \citet{Grombein2013} with Cartesian integral
-kernels.
+Satellite missions dedicated to measuring the Earths gravity field
+(like CHAMP, GRACE, and GOCE)
+have provided geophysicists with almost uniform and global data coverage.
+
+These new data have enabled interpretations on regional and global scales
+\citep[e.g.][]{Reguzzoni2013,Braitenberg2015}.
+
+Modeling at such scales requires taking into account the curvature of the
+Earth and calculating gravity gradients as well as the traditional
+gravitational acceleration.
+
+A common approach to achieve this is
+to discretize the Earth into tesseroids (spherical prisms)
+instead of rectangular prisms.
+
+However, the integral formula for the gravitational effects of a tesseroid
+must be solved numerically.
+
+Approaches to this numerical integration include
+Taylor series expansion \citep{Heck2007, Grombein2013}
+and the Gauss-Legendre Quadrature \citep{Asgharzadeh2007}.
+
+Taylor series expansion produces accurate results at low latitudes but
+presents a decrease in accuracy towards the polar regions.
+
+This is attributed to tesseroids degenerating into an approximately triangular
+shape at the poles.
+
+The Gauss-Legendre Quadrature (GLQ) integration consists of approximating
+the volume integral by a weighted sum of the effect of point masses.
+
+An advantage of the GLQ approach is that the accuracy of integration can be
+controlled by the number of point masses used.
+
+A disadvantage is the increased computation time as the number of
+point masses increases.
+
+Thus, there is a trade-off between accuracy and computation time, a common
+theme in numerical methods.
+
+\citet{Wild-Pfeiffer2008} investigated the use of different mass elements,
+including tesseroids, to compute the gravitational effects of topographic
+masses.
+
+The author concludes that using tesseroids with GLQ integration gives the best
+results for near-zone computations.
+
+However, the question of how to determine the optimal parameters for GLQ
+integration remained open.
+
+
+
+Previous work by \citet{Ku1977} investigated the use of the Gauss-Legendre
+Quadrature in gravity forward modeling.
+
+\citet{Ku1977} numerically integrated the vertical component of the
+gravitational acceleration of right rectangular prisms.
+
+The author suggested that the accuracy of the GLQ integration depends on
+the ratio between distance to the computation point and the distance between
+adjacent point masses.
+
+Based on this, \citet{Ku1977} proposed an empirical criteria that the distance
+between adjacent point masses should be less than the distance to the computation point.
+
+\citet{Asgharzadeh2007} proposed using this criteria for the GLQ integration of
+the gravity gradient tensor of tesseroids.
+
+To our knowledge, there has been no investigation if the empirical criteria of
+\citet{Ku1977} is valid for gravity gradient components or for tesseroids.
+
+There has also been no attempt to quantify the error committed in the GLQ
+integration when applying the criteria of \citet{Ku1977}.
+
+
+
+\citet{Li2011} devised an algorithm to automatically enforce the criteria of
+\citet{Ku1977}.
+
+Their algorithm divides the tesseroid into smaller ones instead of increasing
+the number of point masses per tesseroid.
+
+This division effectively increases the total number of point masses
+because the number of points masses per tesseroid is fixed.
+
+The criterion used decide if a division is necessary is
+that the minimum distance to the computation point must be larger than
+the largest dimension of the tesseroid.
+
+This division is repeated recursively until all tesseroids obey the criteria.
+
+Then, GLQ integration is performed for each of the smaller tesseroids
+using the specified number of point masses.
+
+The advantage of this adaptive discretization over
+increasing the number of points masses is that the
+total total distribution of point masses will be greater
+only close to the computation point.
+
+This makes the adaptive discretization more computationally efficient.
+
+
+
+
+\citet{Grombein2013} developed optimized formula for the gravitational fields
+of tesseroids using Cartesian integral kernels.
 
 The Cartesian kernels are faster to compute.
 
 The Cartesian kernels don't have singularities in the poles.
 
-The traditional spherical integral kernels suffer from a singularity at the
-poles \citep{Heck2007, Wild-Pfeiffer2008}.
-
 The Cartesian formula are numerically integrated using a Taylor series
 expansion as proposed by \citet{Heck2007}.
 
-The Taylor series expansion approach produces accurate results at low
-latitudes.
-
-The Taylor series expansion presents a decrease in accuracy towards the polar
-regions.
-
-The tesseroids have an approximately rectangular surface area at low latitudes
-but collapse into an approximately triangular shape at the poles.
-
 \citet{Grombein2013} use a near-zone separation to mitigate the increased error
-in high latitudes.
+at high latitudes.
 
 In the so called "near-zone" of the computation point they use a finner
 discretization with smaller tesseroids.
@@ -67,92 +159,33 @@ discretization with smaller tesseroids.
 This is accomplished by dividing the tesseroids along the horizontal
 dimensions.
 
-The determination of an optimal size of the near-zone remains an open question
-\citep{Grombein2013}.
-
-We use the Gauss-Legendre Quadrature (GLQ) to numerically integrate the Cartesian
-kernels instead of the Taylor series expansion \citep{Asgharzadeh2007}.
-
-The GLQ integration consists of approximating the volume integral by a weighted sum of
-the effect of point masses.
-
-The point masses are distributed according to the roots of Legendre polynomials
-\citep{Hildebrand1987}.
-
-An advantage of the GLQ approach is that the accuracy of integration can be
-controlled by the number of point masses used.
-
-A disadvantage of the GLQ is the increased computation time as the number of
-point masses increases.
-
-There is a trade-off between accuracy and computation time.
-
-\citet{Ku1977} suggests that the accuracy of the GLQ integration depends on
-the ratio between distance to the computation point and the distance between
-adjacent point masses.
-
-\citet{Ku1977} proposes an empirical criteria that the distance between adjacent
-point masses should be less than the distance to the computation point.
-
-This empirical criteria was used by \citet{Asgharzadeh2007} as a way to
-choose the number of point masses used in the GLQ integration.
-
-They suggested using this criteria for gravitational attraction as well as
-the gravity gradient tensor (or Marussi tensor) of a tesseroid.
-
-\citet{Ku1977} presented results for the vertical component of the
-gravitational acceleration ($g_z$) caused by a right rectangular prism.
-
-To our knowledge, there has been no investigation if the empirical criteria of
-\citet{Ku1977} is valid for the second derivatives of the
-gravitational potential.
-
-There has also been no attempt to quantify the error committed in the GLQ
-integration of gravity gradients when applying the criteria of \citet{Ku1977}.
-
-\citet{Li2011} devised an automatic algorithm to enforce the criteria of
-\citet{Ku1977}.
-
-Their algorithm keeps the number of points masses per tesseroid fixed.
-
-They then check the ratio between the minimum distance to the computation point
-and the largest dimension of the tesseroid.
-
-If the ratio below a specified threshold value, the tesseroid is divided into
-smaller tesseroids.
-
-This division is repeated recursively until all tesseroids obey the criteria.
-
-The GLQ integration is then performed for each of the smaller tesseroids
-using the fixed number of point masses.
-
 The algorithm of \citet{Li2011} is similar to the near-zone separation used by
 \citet{Grombein2013}.
 
-The advantage of the adaptive discretization of \citet{Li2011} over simply
-increasing the number of points masses in the GLQ is that the
-amount of point masses will be greater only close to the computation point.
-
-This makes the adaptive discretization more computationally efficient.
+The determination of an optimal size of the near-zone remains an open question
+\citep{Grombein2013}.
 
 
 
-This article describes the software \textit{Tesseroids} and the implementation
-of the adaptive discretization algorithm.
+We have implemented a modified version of the adaptive discretion of
+\citet{Li2011} into the open-source software package \textit{Tesseroids}.
+
+The software uses the Cartesian formula of \citet{Grombein2013} for improved
+performance and robustness.
 
 Previous versions of \textit{Tesseroids} have been used by, e.g.,
 \citet{Alvarez2012, Bouman2013, Bouman2013a, Mariani2013, Braitenberg2014,
 Braitenberg2011, Fullea2014}.
 
-We will attempt to quantify the error committed in the computation of the
-gravity gradients using the GLQ with adaptive discretization.
+This article describes the software \textit{Tesseroids} and the implementation
+of our modified adaptive discretization algorithm.
 
-We will establish an empirical relationship between the integration error and
-the ratio between the distance to the computation point and the dimensions of
-the tesseroid.
+We also present a numerical investigation of the error committed
+in the computations.
 
-This will allow one to choose the appropriate amount of discretization to
-achieve the desired accuracy.
+These results allow us calibrate the adaptive discretization algorithm
+separately for the gravitational potential, gravitational acceleration,
+as well as the gravity gradient tensor components.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
