@@ -1,33 +1,47 @@
-\documentclass[paper,twocolumn]{geophysics}
+\pdfoutput=1
+%\documentclass[paper,twocolumn]{geophysics}
 %\documentclass[manuscript]{geophysics}
 %\documentclass[manuscript,endfloat]{geophysics}
+\documentclass[twocolumn]{article}
+\usepackage{natbib}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{hyperref}
 \newcommand{\mitbf}[1]{\mathbf{{#1}}}
 
-\begin{document}
-
-\title{
-Tesseroids: forward modeling gravitational fields in spherical coordinates
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
+    pdfauthor={Uieda et al.},
+    pdftitle={Tesseroids: forward modeling gravitational fields in spherical
+              coordinates}
 }
-\righthead{Tesseroids}
-\ms{Submission} % manuscript number
-
+\title{
+    Tesseroids: forward modeling gravitational fields in spherical coordinates
+}
 \author{
     Leonardo Uieda\footnotemark[1]\footnotemark[2],
     et al.
 }
 
-\address{
+
+\begin{document}
+
+\maketitle
+
+%\righthead{Tesseroids}
+%\ms{Submission} % manuscript number
+
+%\address{
+    \noindent
     \footnotemark[1]Universidade do Estado do Rio de Janeiro,
     Rio de Janeiro, Brazil.
     email: leouieda@gmail.com
     \footnotemark[2]Observat\'orio Nacional,
     Rio de Janeiro, Brazil.
-}
-
-\maketitle
-
+%}
 
 \begin{abstract}
 \end{abstract}
@@ -147,7 +161,7 @@ as well as the gravity gradient tensor components.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{figs/tesseroid}
+    \includegraphics[width=\columnwidth]{figs/tesseroid}
     \caption{
         View of a tesseroid,
         the integration point $Q$ inside the tesseroid,
@@ -196,12 +210,17 @@ and
         \int\limits_{\lambda_1}^{\lambda_2}
         \int\limits_{\phi_1}^{\phi_2}
         \int\limits_{r_1}^{r_2}
-        \left(
-            \frac{3\Delta_{\alpha} \Delta_{\beta}}{\ell^5} -
-            \frac{\delta_{\alpha\beta}}{\ell^3}
-        \right)
-        \kappa\ dr^\prime d\phi^\prime d\lambda^\prime.
+        I_{\alpha\beta}
+        \ \kappa\ dr^\prime d\phi^\prime d\lambda^\prime.
     \label{eq:tesstensor}
+\end{equation}
+\begin{equation}
+    I_{\alpha\beta} =
+    \left(
+        \frac{3\Delta_{\alpha} \Delta_{\beta}}{\ell^5} -
+        \frac{\delta_{\alpha\beta}}{\ell^3}
+    \right)
+    \label{eq:tesstensorkernel}
 \end{equation}
 
 \noindent
@@ -210,16 +229,26 @@ $\rho$ is the density,
 $G = 6.673\times10^{-11}\ m^3kg^{-1}s^{-1}$ is the gravitational constant,
 and
 
-\begin{eqnarray}
-    \Delta_x &=& r^\prime\cos\phi\sin\phi^\prime - \sin\phi\cos\phi^\prime
-                 \cos(\lambda^\prime - \lambda), \\
-    \Delta_y &=& r^\prime \cos \phi^\prime \sin(\lambda^\prime - \lambda), \\
-    \Delta_z &=& r^\prime \cos \psi - r,\\
-    \kappa &=& {r^\prime}^2 \cos \phi^\prime, \\
-    \ell &=& \sqrt{{r^\prime}^2 + r^2 - 2 r^\prime r \cos \psi}, \\
-    \cos\psi &=& \sin\phi\sin\phi^\prime + \cos\phi\cos\phi^\prime
+\begin{equation}
+    \Delta_x = r^\prime(\cos\phi\sin\phi^\prime - \sin\phi\cos\phi^\prime
+               \cos(\lambda^\prime - \lambda)),
+\end{equation}
+\begin{equation}
+    \Delta_y = r^\prime \cos \phi^\prime \sin(\lambda^\prime - \lambda),
+\end{equation}
+\begin{equation}
+    \Delta_z = r^\prime \cos \psi - r,
+\end{equation}
+\begin{equation}
+    \kappa = {r^\prime}^2 \cos \phi^\prime,
+\end{equation}
+\begin{equation}
+    \ell = \sqrt{{r^\prime}^2 + r^2 - 2 r^\prime r \cos \psi},
+\end{equation}
+\begin{equation}
+    \cos\psi = \sin\phi\sin\phi^\prime + \cos\phi\cos\phi^\prime
                  \cos(\lambda^\prime - \lambda).
-\end{eqnarray}
+\end{equation}
 
 We will follow \citet{Asgharzadeh2007} and perform the numerical integration
 using the Gauss-Legendre Quadrature (GLQ).
@@ -268,7 +297,7 @@ becomes \citep{Asgharzadeh2007}
 \begin{equation}
     \iiint\limits_{\Omega}
     f(r^\prime, \lambda^\prime, \phi^\prime)
-    dr^\prime d\lambda^\prime d\phi^\prime
+    d\Omega
     \approx
     A
     \sum\limits_{i=1}^{N^r}
@@ -328,7 +357,7 @@ the expect results for a single tesseroid \citep{Asgharzadeh2007}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{figs/vary-height-and-order}
+    \includegraphics[width=0.7\columnwidth]{figs/vary-height-and-order}
     \caption{
         Example of the effect of varying
         the computation height
@@ -389,7 +418,8 @@ the tesseroid gravitational fields
 with adaptive discretization
 in the open-source package \textit{Tesseroids}.
 The software is freely available
-online\footnote{http://tesseroids.leouieda.com}
+online\footnote{
+\href{http://tesseroids.leouieda.com}{http://tesseroids.leouieda.com}}
 under the BSD 3-clause open-source license.
 An archived version of the source code
 is available as part of this article.
@@ -433,19 +463,25 @@ integration of equations~\ref{eq:tesspot}-\ref{eq:tesstensor}
 and the adaptive discretization of tesseroids.
 
 
+\subsection{Reproducing analysis and results}
+
+
 All figures and numerical experiments in this article
-were produced by IPython notebooks\footnote{http://ipython.org}
+were produced by IPython notebooks\footnote{
+\href{http://ipython.org}{http://ipython.org}}
 \citep{Perez2007}.
 These files combine the analysis and figure generation source code
 with text, equations, and the figures generated by the code.
-These files,
+The notebook files,
 as well as instructions for installing and running the analysis,
 are distributed along with the source code archive
 that accompanies this article.
 Alternatively,
-the notebooks and can also be downloaded
-or viewed in a non-executable form from
-an online repository\footnote{https://github.com/pinga-lab/paper-tesseroids}.
+all accompanying material can be downloaded
+from an online source code repository\footnote{
+\href{https://github.com/pinga-lab/paper-tesseroids}{https://github.com/pinga-lab/paper-tesseroids}}
+or a persistent archive\footnote{
+\href{}{Zenodo DOI}}.
 
 
 \subsection{Numerical integration}
@@ -524,11 +560,13 @@ $(r_t, \lambda_t, \phi_t)$
 
 \begin{equation}
     d = \left[
-        r^2 + r_t^2 - 2 r r_t
-        \cos(\sin\phi\sin\phi_t + \cos\phi\cos\phi_t
-            \cos(\lambda - \lambda_t))
+        r^2 + r_t^2 - 2 r r_t \cos\psi_t
         \right]^{\frac{1}{2}}.
     \label{eq:distance}
+\end{equation}
+\begin{equation}
+    \cos\psi_t =
+        \sin\phi\sin\phi_t + \cos\phi\cos\phi_t\cos(\lambda - \lambda_t)
 \end{equation}
 
 Our definition of the dimensions of the tesseroid
@@ -548,6 +586,12 @@ along longitude, latitude, and radius, respectively, are
     L_r = r_2 - r_2.
     \label{eq:sizer}
 \end{equation}
+
+\noindent
+$L_\lambda$ and $L_\phi$ are arc-distances measured along the top surface of
+the tesseroid (Figure~\ref{fig:division}a).
+Specifically, $L_\lambda$ is measured long the middle latitude of the
+tesseroid ($\phi_t$).
 
 To determine if a tesseroid must be divided,
 we check if
@@ -581,13 +625,10 @@ respectively,
 $D=1$, $D=2$, and $D=6$.
 The number of tesseroids in the resulting discretization is, respectively,
 4, 38, and 936.
-Code to perform the adaptive discretization
-and produce Figure~\ref{fig:division} is available in
-the IPython notebook \texttt{methods\_figures.ipynb}.
 
 \begin{figure}
     \centering
-    \includegraphics{figs/tesseroid-split}
+    \includegraphics[width=\columnwidth]{figs/tesseroid-split}
     \caption{
         Adaptive discretization
         of the tesseroid shown in (a)
