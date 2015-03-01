@@ -759,54 +759,62 @@ or even performing a suitable approximation of the result.
 The key controlling point of the adaptive discretization algorithm
 is the distance-size ratio $D$ (equation~\ref{eq:condition}).
 
-$D$ controls both the accuracy of the integration and the computation time.
+$D$ indirectly controls both the accuracy of the integration
+and the computation time.
 
-The value chosen for $D$ determines how many divisions are made.
+The specific value chosen for $D$ determines how many divisions will be made
+(Figure~\ref{fig:division}).
 
 \citet{Li2011} provide a few examples of values for this ratio in the case of
 the vertical component of the gravitational attraction.
 
-To our knowledge,
-there has been no further investigation
-into the relationship between
-values of the distance-size ratio and the computation error.
+In this section, we investigate
+the relationship between
+values of the distance-size ratio
+and the computation error.
 
-It is also not clear whether
-the same value of $D$ yields compatible error levels
-for the gravitational attraction
-and the gradient tensor components.
-
-
-We must determine the relationship between the distance-size ratio $D$ and
-the computation error.
-
-We need a reference against which to compare the computed tesseroid fields.
-
-The spherical shell is a convenient reference model.
-
-The spherical shell has a analytical solutions for the gravitational potential,
-attraction, and gradient tensor along the polar axis.
-
-\citep{Grombein2013} provides the equations for
-the gravitational potential, attraction, and gravity gradient components
-of a homogeneous spherical shell.
-
-We used a spherical shell with a thickness of 1 km.
-
-The density of the shell is $2670\ kg.m^{-3}$.
-
-The bottom of the shell is at height 0 km above the reference sphere.
-
-The top of the shell is at 1 km height.
+We perform the error analysis for the gravitational potential,
+acceleration, and gradient tensor components
+to evaluate if the same value of $D$ yields compatible error levels
+for different fields.
 
 
-We can use the spherical shell values to calculate the error of the tesseroid
-computations for varying values of $D$.
 
-We discretized the spherical shell into tesseroids
-with dimensions of $1^\circ \times 1^\circ \times 1\ km$.
+We establish a homogeneous spherical shell as a reference against which to
+compare the computed tesseroid fields.
 
-We calculate the effect of a tesseroid model on a regular grid.
+The shell has analytical solutions for the gravitational potential,
+attraction, and gradient tensor along the polar axis
+\citep{Grombein2013}.
+
+We used a spherical shell with a thickness of 1 km,
+density of $2670\ kg.m^{-3}$,
+bottom at height 0 km above the reference sphere,
+and top at 1 km height.
+
+
+
+We discretized the spherical shell along the horizontal dimensions into
+a regular mesh of tesseroids.
+
+Figure~\ref{fig:glqerrorsample} shows that the largest errors are concentrated
+on top of the tesseroid.
+
+If we calculate the tesseroid fields at a single point, that point might not
+coincide with the point of largest error.
+
+Performing the error analysis on calculations at a single point will not be
+representative of the true error.
+
+Fortunately, the symmetry of the shell allows us to consider the computation point at any
+geographic coordinate.
+
+We calculate the effect of the tesseroid model of the spherical shell
+on a regular grid.
+
+The effect of the shell will be same along the entire grid.
+
+We perform the analysis on the largest error.
 
 The grid is at a constant height of 2 km (1 km above the shell).
 
