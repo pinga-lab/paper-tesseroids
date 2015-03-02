@@ -1,15 +1,15 @@
 \pdfoutput=1
-%\documentclass[paper,twocolumn]{geophysics}
+\documentclass[paper,twocolumn]{geophysics}
 %\documentclass[manuscript]{geophysics}
 %\documentclass[manuscript,endfloat]{geophysics}
-\documentclass{article}
+%\documentclass[twocolumn]{article}
 \usepackage{natbib}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{hyperref}
 \newcommand{\mitbf}[1]{\mathbf{{#1}}}
 
-% To leave comments on Overleaf
+% To leave comments
 \usepackage[colorinlistoftodos]{todonotes}
 
 
@@ -35,17 +35,17 @@
 
 \maketitle
 
-%\righthead{Tesseroids}
-%\ms{Submission} % manuscript number
+\righthead{Tesseroids}
+\ms{Submission} % manuscript number
 
-%\address{
+\address{
     \noindent
     \footnotemark[1]Universidade do Estado do Rio de Janeiro,
     Rio de Janeiro, Brazil.
     email: leouieda@gmail.com
     \footnotemark[2]Observat\'orio Nacional,
     Rio de Janeiro, Brazil.
-%}
+}
 
 \begin{abstract}
 \end{abstract}
@@ -423,12 +423,13 @@ We have implemented the calculation of
 the tesseroid gravitational fields
 with adaptive discretization
 in the open-source package \textit{Tesseroids}.
-The software is freely available
-online\footnote{
+It is freely available
+online through the software website\footnote{
 \href{http://tesseroids.leouieda.com}{http://tesseroids.leouieda.com}}
 under the BSD 3-clause open-source license.
 An archived version of the source code
-is available as part of this article.
+is available as part of this article
+and online\footnote{\href{}{\todo[inline]{insert a ZENODO doi}}}.
 
 \textit{Tesseroids}  consists of command-line programs
 written in the C programming language.
@@ -904,6 +905,40 @@ The experienced user of the software can set smaller values using command-line
 options.
 
 The smaller values result in less computation time.
+
+\begin{figure}
+    %\centering
+    %\includegraphics[width=0.4\textwidth]{figs/distance-size-curves}
+    \missingfigure{}
+    \caption{
+        The maximum difference between the computed tesseroid and shell effects
+        as a function of the distance-size ratio $D$
+        for (a) the gravitational potential, (b) $g_z$, and (c) $g_{zz}$.
+        The difference is given as a percentage of the shell effect.
+        Curves correspond to the different tesseroid models:
+        $1^\circ \times 1^\circ$ tesseroids with computation grid at
+        2 km height at the polar region,
+        $1^\circ \times 1^\circ$ tesseroids with computation grid at
+        2 km height at the equatorial region,
+        $1^\circ \times 1^\circ$ tesseroids with computation grid at
+        260 km height at the polar region,
+        and
+        $30^\circ \times 30^\circ$ tesseroids with computation grid at
+        2 km height at the polar region.
+    }
+    \label{fig:dist-size-curves}
+\end{figure}
+
+\begin{figure}
+    %\centering
+    %\includegraphics[width=0.4\textwidth]{figs/gzz-with-height}
+    \missingfigure{}
+    \caption{
+        Variation of $g_{zz}$ difference curves for computation grids at
+        varying heights.
+    }
+    \label{fig:gzz-with-height}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
