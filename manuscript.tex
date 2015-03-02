@@ -755,156 +755,141 @@ or a persistent archive\footnote{
 The key controlling point of the adaptive discretization algorithm
 is the distance-size ratio $D$ (equation~\ref{eq:condition}).
 
-$D$ indirectly controls both the accuracy of the integration
-and the computation time.
-
 The specific value chosen for $D$ determines how many divisions will be made
 (Figure~\ref{fig:division}).
 
-\citet{Li2011} provide a few examples of values for this ratio in the case of
-the vertical component of the gravitational attraction.
+Thus, $D$ indirectly controls both the accuracy of the integration
+and the computation time.
 
-In this section, we investigate
-the relationship between
-values of the distance-size ratio
-and the computation error.
+In this section, we investigate the relationship between
+values of the distance-size ratio and the integration error.
 
-We perform the error analysis for the gravitational potential,
+We perform the analysis for the gravitational potential,
 acceleration, and gradient tensor components
 to evaluate if the same value of $D$ yields compatible error levels
 for different fields.
 
+The reference against which we compare the computed tesseroid fields
+is a homogeneous spherical shell.
 
+The shell has analytical solutions along the polar axis
+\citep{Grombein2013}
+and can be perfectly discretized into tesseroids.
 
-We establish a homogeneous spherical shell as a reference against which to
-compare the computed tesseroid fields.
-
-The shell has analytical solutions for the gravitational potential,
-attraction, and gradient tensor along the polar axis
-\citep{Grombein2013}.
-
-We used a spherical shell with a thickness of 1 km,
+We chose a spherical shell with a thickness of 1 km,
 density of $2670\ kg.m^{-3}$,
 bottom at height 0 km above the reference sphere,
 and top at 1 km height.
 
+We produced tesseroid models of the shell by discretizing it along the
+horizontal dimensions into a regular mesh.
 
 
-We discretized the spherical shell along the horizontal dimensions into
-a regular mesh of tesseroids.
 
-If we calculate the tesseroid fields at a single point, that point might not
-coincide with the point of largest error.
-
-Figure~\ref{fig:glqerrorsample} shows that the largest errors are concentrated
+Figure~\ref{fig:glqerrorsample} shows that the largest errors are spread over
 on top of the tesseroid.
 
-Performing the error analysis on calculations at a single point will not be
-representative of the true error.
+Thus, calculating the tesseroid fields at a single point might not
+capture the point of largest error.
 
-Fortunately, the symmetry of the shell allows us to consider the computation point at any
-geographic coordinate.
+Instead, we calculate the effect of the tesseroid model on a regular grid
+of $10 \times 10$ points.
 
-We calculate the effect of the tesseroid model of the spherical shell
-on a regular grid.
+Fortunately, the symmetry of the shell allows us to consider the computation
+point at any geographic coordinate.
 
-The effect of the shell will be same along the entire grid.
+Therefore, the effect of the shell will be same along the entire grid.
 
 We compute the differences between the effects of the shell and the tesseroid
-model on the grid and keep only the largest error.
+model on the grid and consider only the largest error.
 
-The grid is at a constant height of 2 km (1 km above the shell).
+By placing the grid on top of a particular tesseroid, we increase the chances
+of capturing the true largest integration error.
 
-The grid is located on top of a tesseroid located at the North pole.
 
-The computation point can be considered at any point with equal radial
-coordinate located outside the shell because of the symmetry of the shell.
 
-We calculate the difference between the shell values and the values computed
-from tesseroids.
 
-We keep only the largest difference.
-
-Calculating on a grid above a tesseroid is important because
-the largest errors in the GLQ integration occur directly on top of the
-tesseroid but not exactly at it's center, as can be seen in
-Figure~\ref{fig:glqerrorsample}.
-
-The difference between shell and tesseroid values would be underestimated
-if the computation was performed only at a single point on the polar axis.
-
-We repeated the tesseroid calculations with values of the distance-size ratio
+We calculate the errors for values of the distance-size ratio
 $D$ varying from 0 (i.e., no divisions) to 10 in 0.5 intervals.
 
+We repeated the analysis in four different numerical experiments,
+each with computation grids at different locations and
+different tesseroid model sizes.
+
+Table~\ref{tbl:experiment} describes the different numerical
+experiments and the corresponding parameters of the computation grid and
+tesseroid model.
 
 
-Figure~\ref{fig:tess_vs_shell} shows the maximum difference between the
-shell and tesseroid fields as a function of $D$.
+
+Figure~\ref{fig:dist-size-curves} shows
+the maximum difference between the shell and tesseroid fields
+as a function of $D$ for the four numerical experiments.
 
 The differences are given as a percentage of the shell value.
 
-The error versus $D$ curves allow us to choose a value of $D$ that
-results in an error below a chosen maximum.
+We established a maximum tolerated error of $0.1\%$, represented by the
+horizontal solid lines in Figure~\ref{fig:dist-size-curves}.
 
-We chose 0.1\% as the maximum allowed error.
+For the potential $V$, a distance-size ratio $D=1$ guarantees that the curves
+for all experiments are below the $0.1\%$ error threshold.
 
-We performed the computations again for three different scenarios: at 260 km
-height (the mean orbit height of the GOCE satellite), on top of a tesseroid at
-the equator, and for a $30^\circ \times 30^\circ \times 1\ km$ tesseroid model
-of the shell.
+For $g_z$, the same is achieved with $D=1.5$.
 
-We performed these computations to investigate if the GLQ error decays the same
-way under different scenarios.
+Conversely, $g_{zz}$ requires a value of $D=8$ to achieve an error level of
+$0.1\%$.
 
-The error curves for the gravitational potential show increased errors at the
-equator and for a $30^\circ$ tesseroid.
+For a computation height of 260 km, the error curve for $G_{zz}$
+intercepts the error threshold line at $D=2.5$.
 
-For $D=1$ all errors are smaller than 0.1\%,
-even in the extreme case of a $30^\circ$ tesseroid with computation points at a
-height of 1 km above the tesseroid.
+This behavior suggests that the error curves for $g_{zz}$ might depend on the
+computation height.
 
-$D=1.5$ is sufficient to achieve errors below 0.1\% in $g_z$.
+To test this hypothesis, we computed the error curves for $g_{zz}$ at
+heights 2, 10, 50, 150, and 260 km.
 
-$D=8$ is required to achieve errors below 0.1\% in
-the gravity gradient components.
+Figure~\ref{fig:gzz-with-height} shows the results for $g_{zz}$ at varying
+computation heights.
 
-The error curves for the computation at 260 km height shows that
-the error is smaller at higher altitudes for all fields.
+Notice that the distance-size ratio needed to achieve $0.1\%$ accuracy
+decreases as the computation height increases.
 
-Computation at 260 km height does not produce errors above the 0.1\% threshold
-for the potential and $g_z$.
+For example, computation at 260 km height requires $D=2.5$ whereas at 10 km
+height a value of $D=5.5$ is required to achieve the same accuracy.
 
-The computation height changes the value of the distance-size ratio required
-for the gravity gradient components.
-
-We computed the error curves for $g_{zz}$ at different heights
-(Figure~\ref{fig:gzz_error_height}).
-
-The distance-size ratio can be reduced to 4 if the computation is done at 50 km
-height.
-
-One can use a distance-size ratio of 2.5 for computations at 260 km height.
-
-These reductions in the distance-size ratio can reduce the computation time
-required to achieve the desired.
+One can take advantage of this behavior to reduce the distance-size ratio for
+computations of the gravity gradient tensor at high altitudes,
+saving computation time.
 
 
 
-The software \textit{Tesseroids} includes default values of the distance-size
-ratio.
 
-We used the values required to achieve 0.1\% accuracy: 1 for the potential,
-1.5 for the gravitational attraction, and 8 for the gravity gradient
-components.
+We have implemented the values of the distance-size ratio producing $0.1\%$
+accuracy as defaults for the software \textit{Tesseroids}.
 
-The value of $D=8$ for the gravity gradients is conservative.
+We chose the conservative value of $D=8$ for the gravity gradient components
+as a fail-safe alternative.
 
-We chose it to ensure the accuracy of the computation in most cases.
+Users can control the value of $D$ used in the computations through
+command-line arguments to achieve greater performance as a trade-off for
+accuracy.
 
-The experienced user of the software can set smaller values using command-line
-options.
 
-The smaller values result in less computation time.
+\begin{table*}
+\centering
+\begin{tabular}{cccc}
+    \hline
+    ~             & Grid location & Grid height & Tesseroid size \\
+    \hline
+    Experiment 1  & 89N--90N/0E--1E & 2 km & $1^\circ \times 1^\circ$ \\
+    Experiment 2  & 0N--1N/0E--1E & 2 km & $1^\circ \times 1^\circ$ \\
+    Experiment 3  & 89N--90N/0E--1E & 260 km & $1^\circ \times 1^\circ$ \\
+    Experiment 4  & 60N--90N/0E--30E & 2 km & $30^\circ \times 30^\circ$ \\
+    \hline
+\end{tabular}
+\caption{Parameters of the numerical experiments.}
+\label{tbl:experiment}
+\end{table*}
 
 \begin{figure}
     %\centering
