@@ -188,7 +188,7 @@ The gravitational fields of a tesseroid at a point $P = (r,\phi,\lambda)$
 are determined with respect to the local North-oriented coordinate system at
 P (x, y, z in Figure~\ref{fig:tesseroid}).
 \citet{Grombein2013} formulated Cartesian kernels for the volume integrals
-that define the tesseroid gravitational potential, gravitational attraction,
+that define the tesseroid gravitational potential, gravitational acceleration,
 and Marussi tensor, respectively,
 
 \begin{equation}
@@ -900,6 +900,163 @@ accuracy.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
+
+We have presented the open-source software package \textit{Tesseroids}.
+
+It consists of command-line programs written in C.
+
+The programs perform the forward modeling of gravitational fields in spherical
+coordinates.
+
+The fields are calculated from a mass model composed of spherical prisms, the
+so-called tesseroids.
+
+The volume integrals of the gravitational fields of a tesseroid are solved
+numerically using the Gauss-Legendre Quadrature (GLQ).
+
+The GLQ approximates the volume integral by a weighted sum of point mass
+effects.
+
+The error of the GLQ integration increases as the computation point gets closer
+to the tesseroid.
+
+The accuracy of the GLQ integration can be increased by using more point
+masses.
+
+Using more point masses also increases the computation time.
+
+The tesseroid can be divided into smaller tesseroids as an alternative to
+increasing the number of point masses in the GLQ.
+
+The effect of each tesseroid is computed using the original number of point
+masses.
+
+This effectively increases the total number of point masses used.
+
+
+
+
+We have implemented and improved upon an adaptive discretization algorithm to
+achieve an optimal division of tesseroids.
+
+Tesseroids are divided into more parts closer to the computation point.
+
+This produces an optimal distribution of point masses needed to produce
+accurate results.
+
+Our implementation of the adaptive discretization uses a ``stack'' data
+structure in place of the original recursive implementation.
+
+The stack-based algorithm is computationally faster and allows more control
+over errors when too many divisions are necessary (and the stack
+``overflows'').
+
+
+The criterion for dividing a tesseroid is based on the ratio the distance
+(measured between the computation point and the geometric center of the
+tesseroid) and the dimensions of the tesseroid.
+
+The tesseroids is divided in two along a particular direction if this ratio
+is larger than a parameter called the distance-size ratio ($D$).
+
+Thus, by the end of the adaptive discretization algorithm, all tesseroids will
+have dimensions smaller than $D$ times the distance to the computation point.
+
+The value of $D$ indirectly controls the accuracy of the integration as well as
+the computation time.
+
+
+
+
+
+We performed an error analysis to determine the optimal value of $D$ to achieve
+a target accuracy.
+
+We used a spherical shell as a reference to determine the computation error of
+our algorithm for different values of the distance-size ratio.
+
+The spherical shell is convenient because there are analytical solutions for
+its gravitational fields and it can be perfectly discretized into tesseroids.
+
+We performed numerical experiments under different conditions.
+
+We varied the size of the tesseroids used to discretize the shell, the height
+of the computation points, and the location of the computation points (near the
+pole or the equator).
+
+We established a maximum allowed error of 0.1\% of the spherical shell
+solutions.
+
+The plots of the computation error per distance-size ratio reveal that the
+values of $D$ required achieve 0.1\% error are
+1 for the potential, 1.5 for the gravitational acceleration,
+and 8 for the gravity gradients.
+
+Previous assumptions were that accurate results are
+guaranteed if the following condition is met:
+the distance to the tesseroid is larger than the distance between
+point masses (approximately the size of the tesseroid for a second-order GLQ).
+
+This same condition was applied indiscriminately to both the gravitational
+acceleration and the gravity gradients.
+
+This condition is equivalent to using a distance-size ratio of 1.5.
+
+Our results show that using $D=1$ produces an acceptable error of
+approximately 0.1\% for the gravitational acceleration.
+
+However, the same condition applied to the gravity gradients produces
+an error of the order of $10^2\%$.
+
+Therefore, the higher frequency gravity gradients require a finer
+discretization of the tesseroids.
+
+
+
+The behavior of the error for the gravity gradients varies with the computation
+height.
+
+The distance-size ratio required for 0.1\% error decreases with height.
+
+This can be attributed to the higher sensitivity of gravity gradient to height
+variations.
+
+The integration kernel for gravity gradients has high frequency components
+and thus requires more point masses for numerical integration.
+
+We chose the value $D=8$ as a conservative default.
+
+The values of the distance-size ratio determined in the error analysis were
+incorporated as defaults in the software \textit{Tesseroids}.
+
+The value of $D$ used can be controlled by a command-line argument.
+
+
+
+In situations that require many tesseroid divisions in the adaptive
+discretization, the stack used in the algorithm will overflow and further
+divisions become impossible.
+
+The current version of \textit{Tesseroids} (1.2) warns the user that
+this situation occurred and proceeds with the GLQ integration without
+division.
+
+Future improvements to the algorithm include a better way to handle situations
+that require many tesseroid divisions in the adaptive discretization.
+
+An alternative would be to replace the tesseroid by an equivalent
+right-rectangular prism and compute its effects instead.
+
+Also, the computation time increases drastically as the computation point
+gets closer to the tesseroid.
+
+This effect can be prohibitive for computing the gravity gradients at
+relatively low heights (e.g., for ground or airborne surveys).
+
+Further investigation of different criteria for dividing the tesseroids could
+yield better performance through a reduced number of divisions.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgments}
