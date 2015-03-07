@@ -47,6 +47,30 @@ Rio de Janeiro, Brazil.
 }
 
 \begin{abstract}
+We present the open-source software \emph{Tesseroids},
+a set of command-line programs to perform the forward modeling
+of gravitational fields in spherical coordinates.
+The fields are calculated numerically using
+the Gauss-Legendre Quadrature (GLQ).
+We have improved upon an adaptive discretization algorithm
+to guarantee the accuracy of the GLQ integration.
+Our implementation of adaptive discretization
+uses a  ``stack'' based algorithm
+instead of recursion to achieve higher performance
+and more control over execution errors and corner cases.
+The algorithm is controlled by
+a scalar called the distance-size ratio ($D$)
+that determines the accuracy of the integration as well as
+the computation time.
+We determined optimal values of $D$
+for the gravitational potential, gravitational acceleration,
+and gravity gradient tensor
+by comparing the computed tesseroids effects
+with those of a homogeneous spherical shell.
+Contrary to previous assumptions,
+our results show that the potential and its first and second derivatives
+require different values of $D$ to achieve a target accuracy of 0.1\%.
+These values were incorporated as defaults in the software.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
