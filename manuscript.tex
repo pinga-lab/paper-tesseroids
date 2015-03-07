@@ -451,10 +451,10 @@ tessgrd -rW/E/S/N -bNLON/NLAT -zHEIGHT | \
     tessgzz MODELFILE > OUTPUT
 \end{verbatim}
 
-The \texttt{src} folder of the source code archive
+The \emph{src} folder of the source code archive
 contains the C files that build the command-line programs
-(e.g., \texttt{tessgz.c}).
-The \texttt{src/lib} folder contains
+(e.g., \emph{tessgz.c}).
+The \emph{src/lib} folder contains
 the source files that implement the numerical computations.
 We will not describe here the implementation of the input/output parsing and
 other miscellanea.
@@ -466,7 +466,7 @@ and the adaptive discretization of tesseroids.
 
 \subsection{Numerical integration}
 
-The source file \texttt{src/lib/glq.c}
+The source file \emph{src/lib/glq.c}
 contains the code necessary to perform
 a Gauss-Legendre Quadrature integration.
 The first step in the GLQ is to compute the
@@ -481,27 +481,27 @@ The additional computational load is minimal
 because the root-finder algorithm
 must be run only once per program execution.
 The root-finder is implemented in functions
-\texttt{glq\_nodes} and \texttt{glq\_next\_root}.
+\emph{glq\_nodes} and \emph{glq\_next\_root}.
 The computed roots will be in the range $[-1, 1]$
 and must be scaled to the integration limits
 (the physical boundaries of the tesseroid)
-using function \texttt{glq\_set\_limits} (see equation~\ref{eq:glq_scaling}).
+using function \emph{glq\_set\_limits} (see equation~\ref{eq:glq_scaling}).
 
 The GLQ weights (equation~\ref{eq:glq_weights})
-are computed by function \texttt{glq\_weights}.
+are computed by function \emph{glq\_weights}.
 Both the computed roots and weights are stored in a data structure
-(a C \texttt{struct}) called \texttt{GLQ}.
-Function \texttt{glq\_new}
+(a C \emph{struct}) called \emph{GLQ}.
+Function \emph{glq\_new}
 handles memory allocation,
 calculates the roots and weights,
-and returns the complete \texttt{GLQ} structure.
+and returns the complete \emph{GLQ} structure.
 
 The numerical integration of the tesseroid gravitational fields
-is performed by the functions in module \texttt{src/lib/grav\_tess.c}.
-Functions \texttt{tess\_pot}, \texttt{tess\_gx}, \texttt{tess\_gy}, and so on,
+is performed by the functions in module \emph{src/lib/grav\_tess.c}.
+Functions \emph{tess\_pot}, \emph{tess\_gx}, \emph{tess\_gy}, and so on,
 compute the gravitational fields of a single tesseroid
 on a single computation point.
-These functions require three \texttt{GLQ} structures,
+These functions require three \emph{GLQ} structures,
 each containing the roots and weights
 for GLQ integration in the three dimensions.
 The roots must be scaled to the
@@ -643,29 +643,29 @@ Stacks are also known as ``Last-in-first-out'', or LIFO, data structures.
 We will describe the stack-based algorithm
 for computing the effect of a single tesseroid
 on a single computation point.
-The algorithm is implemented in function \texttt{calc\_tess\_model\_adapt}
-of the file \texttt{src/lib/grav\_tess.c}.
+The algorithm is implemented in function \emph{calc\_tess\_model\_adapt}
+of the file \emph{src/lib/grav\_tess.c}.
 The stack of tesseroids is represented by
-the \texttt{stack} variable,
-an array of \texttt{TESSEROID} structures.
+the \emph{stack} variable,
+an array of \emph{TESSEROID} structures.
 We must define a maximum size for the stack to allocate memory for it.
 Defining a maximum size allows us to
 avoid an infinite loop
 in case the computation point is on
 (or sufficiently close to) the surface of the tesseroid.
-We use the integer \texttt{stktop}
+We use the integer \emph{stktop}
 to keep track of the index of
 the last element in the stack (the top of the stack).
 
 The algorithm starts by creating an empty stack of tesseroids.
 Then, the stack is initialized with the input tesseroid.
 The initialization is done by copying the tesseroid into the stack
-and setting \texttt{stktop} to zero (the first element).
+and setting \emph{stktop} to zero (the first element).
 Once the stack is initialized, the steps of the algorithm are:
 
 \begin{enumerate}
     \item ``Pop'' the stack (i.e., take the last tesseroid from it).
-        This will cause \texttt{stktop} to be reduced by one.
+        This will cause \emph{stktop} to be reduced by one.
         This tesseroid is the one that will be evaluated in the following
         steps.
     \item Compute the distance $d$ between
@@ -688,7 +688,7 @@ Once the stack is initialized, the steps of the algorithm are:
     \begin{enumerate}
         \item Divide the tesseroid in half along each dimension that failed
              the condition.
-        \item Check if the number of new elements plus \texttt{stktop}
+        \item Check if the number of new elements plus \emph{stktop}
              is smaller than the maximum stack size.
              If it is not (i.e., the stack is full),
              warn the user of a ``stack overflow''
@@ -697,7 +697,7 @@ Once the stack is initialized, the steps of the algorithm are:
              the stack.
     \end{enumerate}
     \item Repeat the above steps until the stack is empty
-        (\texttt{stktop} is equal to -1).
+        (\emph{stktop} is equal to -1).
 \end{enumerate}
 
 This stack-based implementation
