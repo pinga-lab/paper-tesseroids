@@ -109,12 +109,14 @@ This is attributed to tesseroids degenerating into an approximately triangular
 shape at the poles.
 The Gauss-Legendre Quadrature (GLQ) integration consists of approximating
 the volume integral by a weighted sum of the effect of point masses.
-An advantage of the GLQ approach is that the accuracy of integration can be
+An advantage of the GLQ approach is that it can be
 controlled by the number of point masses used.
+The larger the number of point masses, the better the accuracy of GLQ
+integration.
 A disadvantage is the increased computation time as the number of
 point masses increases.
-Thus, there is a trade-off between accuracy and computation time, a common
-theme in numerical methods.
+Thus, there is a trade-off between accuracy and computation time.
+This is a common theme in numerical methods.
 \citet{Wild-Pfeiffer2008} investigated the use of different mass elements,
 including tesseroids, to compute the gravitational effects of topographic
 masses.
@@ -124,8 +126,7 @@ However, the question of how to determine the optimal parameters for GLQ
 integration remained open.
 
 
-Previous work by \citet{Ku1977} investigated the use of the Gauss-Legendre
-Quadrature in gravity forward modeling.
+Previous work by \citet{Ku1977} investigated the use of the GLQ in gravity forward modeling.
 \citet{Ku1977} numerically integrated the vertical component of the
 gravitational acceleration of right rectangular prisms.
 The author suggested that the accuracy of the GLQ integration depends on
@@ -133,10 +134,11 @@ the ratio between distance to the computation point and the distance between
 adjacent point masses.
 Based on this, \citet{Ku1977} proposed an empirical criteria that the distance
 between adjacent point masses should be less than the distance to the computation point.
-\citet{Asgharzadeh2007} proposed using this criteria for the GLQ integration of
+\citet{Asgharzadeh2007} used  this criteria for the GLQ integration of
 the gravity gradient tensor of tesseroids.
-To our knowledge, there has been no investigation if the empirical criteria of
-\citet{Ku1977} is valid for gravity gradient components or for tesseroids.
+To our knowledge, the analysis if this ad hoc criteria of
+\citet{Ku1977} works well for gravity gradient components or for tesseroids has never been done before.
+
 There has also been no attempt to quantify the error committed in the GLQ
 integration when applying the criteria of \citet{Ku1977}.
 
@@ -147,29 +149,33 @@ Their algorithm divides the tesseroid into smaller ones instead of increasing
 the number of point masses per tesseroid.
 This division effectively increases the total number of point masses
 because the number of points masses per tesseroid is fixed.
-The criterion used decide if a division is necessary is
-that the minimum distance to the computation point must be larger than
-the largest dimension of the tesseroid.
-This division is repeated recursively until all tesseroids obey the criteria.
+A tesseroid is divided if the minimum distance to the computation point
+is smaller than the largest dimension of the tesseroid.
+\todo[inline]{VAL:
+Leo, I have modified the above sentence because I have not understood the original meaning.
+}
+\todo[inline]{LEO: There was a mistake in that sentence.
+I've rewritten it. Is it better now?}
+This division is repeated recursively until all tesseroids obey the criterion.
 Then, GLQ integration is performed for each of the smaller tesseroids
 using the specified number of point masses.
 The advantage of this adaptive discretization over
 increasing the number of points masses is that the
-total total distribution of point masses will be greater
+total distribution of point masses will be greater
 only close to the computation point.
 This makes the adaptive discretization more computationally efficient.
 
 
 \citet{Grombein2013} developed optimized formula for the gravitational fields
 of tesseroids using Cartesian integral kernels.
-These formula are faster to compute and don't have singularities at the poles
+These formulas are faster to compute and do not have singularities at the poles
 like their spherical counterparts.
 The Cartesian formula are numerically integrated using a Taylor series
 expansion as per \citet{Heck2007}.
 \citet{Grombein2013} use a near-zone separation to mitigate the increased error
 at high latitudes.
-In the so called ``near-zone'' of the computation point they use a finner
-discretization with smaller tesseroids.
+In the so called ``near-zone'' of the computation point they use a finer
+discretization composed by smaller tesseroids.
 This is accomplished by dividing the tesseroids along their horizontal
 dimensions.
 However, the determination of an optimal size of the near-zone remains an
@@ -183,6 +189,10 @@ performance and robustness.
 Previous versions of the software have been used by, e.g.,
 \citet{Alvarez2012, Bouman2013, Bouman2013a, Mariani2013, Braitenberg2014,
 Braitenberg2011, Fullea2014}.
+
+\todo[inline]{Valeria: Leo,  what does the above sentence mean? Does it mean that these mentioned authors have already used a former version of this software?}
+\todo[inline]{Leo: exactly. These are the papers I found that mentioned using Tesseroids.}
+
 This article describes the software design and the implementation
 of our modified adaptive discretization algorithm.
 We also present a numerical investigation of the error committed
@@ -340,6 +350,7 @@ becomes \citep{Asgharzadeh2007}
     \sum\limits_{i=1}^{N^r}
     \sum\limits_{j=1}^{N^\phi}
     \sum\limits_{k=1}^{N^\lambda}
+    W_i^r W_j^\phi W_k^\lambda
     f(r_i, \phi_j, \lambda_k),
     \label{eq:glq3d}
 \end{equation}
@@ -378,7 +389,7 @@ Figure~\ref{fig:glqerrorsample}b shows $g_{xy}$ computed with order two
 GLQ as well but at 150 km height.
 Notice that the computed effect is concentrated around each point mass
 of the GLQ (black dots) and does not resemble the effect of a tesseroid.
-\citet{Ku1977} determined an empirical criterion that the distance between
+\citet{Ku1977} determined an ad hoc criterion that the distance between
 point masses (quadrature nodes) should be smaller than the minimum distance to
 the computation point.
 Thus, if a computation point is too close to the tesseroid one would have to
@@ -404,10 +415,9 @@ the expect results for a single tesseroid \citep{Asgharzadeh2007}.
         ($2 \times 2 \times 2 = 8$ point masses).
         b) At $150\ km$ height and GLQ order 2,
         the result resembles that of
-        four point mases instead of a single tesseroid.
+        four point masses instead of a single tesseroid.
         This effect was shown by \citet{Ku1977}.
-        c) At $150\ km$ but with a higher GLQ order of 30,
-        the result is similar to that expected for a single mass source.
+        c) At $150\ km$ but with a higher GLQ order of 30. In (c) the horizontal locations of the point masses were not shown. Notice that the result shown in (c) is similar to that expected for a single mass source.
     }
     \label{fig:glqerrorsample}
 \end{figure}
@@ -416,36 +426,34 @@ the expect results for a single tesseroid \citep{Asgharzadeh2007}.
 \subsection{Adaptive discretization}
 
 \citet{Li2011} proposed an alternative method
-for decreasing the distance between point masses
-and achieve an accurate integration.
+for decreasing the distance between point masses on the quadrature nodes
+aiming at achieving an accurate integration.
 Instead of increasing the GLQ order,
 they keep it fixed to a given number
-and divide the tesseroid into smaller parts.
+and divide the tesseroid into smaller volumes.
 The sum of the effects of the smaller tesseroids
 is equal to the gravitational effect of the larger tesseroid.
 This division effectively decreases
 the distance between nodes because
 of the smaller size of the tesseroids.
-The criterion for dividing a tesseroid or not
-is that the distance to the computation point
-must be smaller than a constant times the size of the tesseroid.
-This is analogous to the criterion of \citet{Ku1977}
+The criterion for dividing a tesseroid is that the distance to the computation point
+should be smaller than a constant times the size of the tesseroid.
+This is analogous to the criterion proposed by \citet{Ku1977}
 because the size of the tesseroid serves as a proxy
 for the distance between point masses.
 This procedure is repeated recursively
-(i.e., to each of the smaller tesseroids and so on)
 until all tesseroids are within the acceptable
 ratio of distance and size or a minimum size is achieved.
 
 
 The advantage of this adaptive discretization is
 that the number of point masses is only increased
-in regions of the tesseroid that are
+in regions where the tesseroid are
 closer to the computation point.
-Alternatively,
+Notice that the alternative approach of
 simply increasing the order of the GLQ
 would increase the number of point masses
-evenly throughout the whole tesseroid.
+evenly throughout the whole tesseroids.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}
@@ -467,14 +475,16 @@ The package includes programs to calculate
 the gravitational fields of tesseroids and
 rectangular prisms (in both Cartesian and spherical coordinates),
 as well as model and computation grid generation.
+\todo[inline]{Valeria: Leo, I did not understand "as well as model and computation grid generation"}
+\todo[inline]{Leo: I mean that there are programs to generate the model files and the grid files. This can be removed without any problem.}
 All programs receive input through
 command-line arguments and the standard input channel (STDIN)
 and output the results through the standard output channel (STDOUT).
 For example,
 the command to generate a regular grid with $NLON \times NLAT$ points,
 calculate on it $g_z$ and $g_{zz}$ caused by
-the tesseroids in a file ``MODELFILE'',
-and save the results to a file called ``OUTPUT''
+the tesseroids in a file "MODELFILE'',
+and save the results to a file called "OUTPUT''
 is:
 
 \begin{verbatim}
@@ -557,7 +567,7 @@ to the outer loops.
 \subsection{Implementation of adaptive discretization}
 
 Our implementation of the adaptive discretization algorithm
-differs in a few ways from the original.
+differs in a few ways from one proposed by \citet{Li2011}.
 In \citet{Li2011},
 a tesseroid will be divided when
 the smallest distance between it and the computation point
@@ -582,7 +592,7 @@ $(r_t, \lambda_t, \phi_t)$
 \end{equation}
 
 Our definition of the dimensions of the tesseroid
-(the ``side lengths'' of \citet{Li2011})
+(the "side lengths'' of \citet{Li2011})
 along longitude, latitude, and radius, respectively, are
 (Figure~\ref{fig:division}a)
 
@@ -609,14 +619,15 @@ To determine if a tesseroid must be divided,
 we check if
 
 \begin{equation}
-    \frac{d}{L_i} < D,
+    \frac{d}{L_i} > D,
     \label{eq:condition}
 \end{equation}
+\todo[inline]{Leo: the condition was wrong. It had a $<$ when it should be a $>$. I fixed it.}
 
 \noindent
 for each $i \in (\lambda, \phi, r)$.
 $D$ is a positive scalar
-hereafter referred to as the ``distance-size ratio''.
+hereafter referred to as the "distance-size ratio''.
 If the inequality holds for all three dimensions,
 the tesseroid is not divided.
 Thus, the distance-size ratio determines
@@ -647,9 +658,6 @@ The number of tesseroids in the resulting discretization is, respectively,
         for a computation point P
         using the distance-size ratio $D$ equal to
         (b) 1, (c) 2, and (d) 6.
-        $d$ is the Cartesian distance between
-        the center of the top face of the tesseroid
-        and $P$.
         $L_r$, $L_\phi$, and $L_\lambda$ are the dimensions of the tesseroid.
         Note that increasing $D$
         results in a fine division of the tesseroid
@@ -700,15 +708,30 @@ Once the stack is initialized, the steps of the algorithm are:
         This will cause \emph{stktop} to be reduced by one.
         This tesseroid is the one that will be evaluated in the following
         steps.
-    \item Compute the distance $d$ between
+    \item Compute the distance $d$ (equation~\ref{eq:distance}) between
         the geometric center of the tesseroid and
-        the computation point using equation~\ref{eq:distance}.
+        the computation point.
     \item Compute the dimensions of the tesseroid $L_\lambda$, $L_\phi$,
         and $L_r$ using equations~\ref{eq:sizelon}-\ref{eq:sizer}.
     \item Check the condition in equation~\ref{eq:condition} for each
         dimension of the tesseroid.
-    \item If none of the dimensions fail the above condition,
-        compute the gravitational effect of the tesseroid using the
+
+
+\todo[inline]{  Regarding the Item 5  - I think that it is confusing.
+
+In the item 5 is written " If none of the dimensions fail the above condition, ...."
+
+This  means that all the dimensions hold the inequality (21). Ok ?
+
+So, Item 5 could be written directly,
+
+5. If all the dimensions hold the inequality (21), hence the tesseroid is not divided and the gravitational effect of the tesseroid is computed by using the
+        Gauss-Legendre Quadrature.....}
+\todo[inline]{Leo: I agree completely. I have made the modifications below.}
+
+    \item If all dimensions hold the inequality \ref{eq:condition},
+        the tesseroid is not divided and its
+        gravitational effect is computed using the
         Gauss-Legendre Quadrature
         (equations~\ref{eq:tesspot}-\ref{eq:tesstensor} and~\ref{eq:glq3d}).
         We use a GLQ order of two for all three dimensions
@@ -720,12 +743,34 @@ Once the stack is initialized, the steps of the algorithm are:
     \begin{enumerate}
         \item Divide the tesseroid in half along each dimension that failed
              the condition.
-        \item Check if the number of new elements plus \emph{stktop}
-             is smaller than the maximum stack size.
-             If it is not (i.e., the stack is full),
+
+\todo[inline]{   Regarding the Item 6b  - I am not sure, but I think that it might be wrong or written in an awkward style
+
+Item 6b is written - "Check if the number of new elements plus \emph{stktop} is smaller than the maximum stack size."
+Based on item 6c, I think that in 6b you are check if the stack is full, ok ?
+
+My suggestion is to merge items 6b and 6c, for example:
+
+If the stack is full, place the smaller tesseroids into the stack; otherwise warn the user of "stak overflow" and compute the effect of the larger tesseroid (step 5)
+
+}
+\todo[inline]{Leo: Yes, that sentence was a bit confusing.
+The idea is checking if the newly generated tesseroids
+fit in the stack.
+I just wanted to explain how to check for that
+(the number of new elements ...).
+I'll rephrase it.}
+\todo[inline]{Leo: By the way, the proper way of writing " in LaTeX is ``like this''.}
+
+        \item Check if there is room in the stack
+            for the new tesseroids
+            (i.e.,the number of new elements plus \emph{stktop}
+             is smaller than the maximum stack size).
+             If there isn't,
              warn the user of a ``stack overflow''
              and compute the effect of the larger tesseroid (step 5).
-        \item If the stack is not full, place the smaller tesseroids into
+             If there is room in the stack,
+             place the smaller tesseroids into
              the stack.
     \end{enumerate}
     \item Repeat the above steps until the stack is empty
@@ -740,7 +785,7 @@ namely:
 In recursive implementations,
 the developer has no control over
 the maximum number of consecutive recursive calls
-(i.e., the ``recursion depth'').
+(i.e., the "recursion depth").
 This limit may vary with programming language,
 compiler, and operating system.
 Overflowing the maximum recursion depth
@@ -752,27 +797,65 @@ Overflowing of the stack can be handled gracefully
 with an error message
 or even performing a suitable approximation of the result.
 
-\subsection{Reproducing the analysis and results}
+\subsection{Code for figures and error analysis}
 
 
-All figures and numerical experiments in this article
-were produced in IPython notebooks\footnote{
-\url{http://ipython.org}}
+The error analysis and all figures in this article
+were produced in IPython notebooks
 \citep{Perez2007}.
-These files combine the analysis and figure generation source code
-with text, equations, and the figures generated by the code.
-We used the libraries
-\emph{pandas} by \citet{Mckinney2010}
-to perform the data analysis,
-\emph{matplotlib} by \citet{Hunter2007} for graphs,
-and \emph{Mayavi} by \citet{Ramachandran2011} for 3D graphs.
+The notebook files combine source code in various programming languages,
+program execution,
+text, equations,
+and the figures generated by the code
+into a single document.
+We used the following Python language libraries
+to perform the error analysis and generate figures:
+\emph{pandas} by \citet{Mckinney2010},
+\emph{matplotlib} by \citet{Hunter2007} for 2D figures and maps,
+and \emph{Mayavi} by \citet{Ramachandran2011} for 3D figures.
 
-The notebook files,
-as well as instructions for installing and running the analysis,
-are distributed along with
+
+\todo[inline]{ VAL: The code was written in C., was not it? I think that there is a  version in Python. However, the readers do not known. }
+
+\todo[inline]{Leo: The code that we are discussing in this paper was written in C.
+The figures were generated in IPython notebooks in Python.
+The error analysis was done in IPython notebooks as well.
+However, it does NOT use the Python version of the tesseroid code.
+It runs the C programs and uses Python to calculate the differences
+The modeling that is written in Python is not included or discussed here.
+Readers do not need to know that it exists.}
+
+\todo[inline]{VAL: The above sentence is confusing:
+1) "These files combine the analysis and figure.... ",
+What are the files? Probably, they are the IPython notebooks. Ok?
+Why are you saying "the analysis"
+In the last paragraph, you said "running the analysis".
+What is the analysis? Is the test to evaluate the accuracy?
+I think that you want to say
+"The Ipython nootebook files combine source codes in python, code executions, text, equations, dnd the figures generated by the code into a single document"
+You need keeping in mind that you know about Ipython nootebook. However, the readers cannot know.}
+
+\todo[inline]{LEO: Yes, that part is a bit confusing now that I read it again.
+By analysis, I mean the error analysis.
+That is done in \href{http://nbviewer.ipython.org/github/pinga-lab/paper-tesseroids/blob/master/notebooks/tesseroid_vs_spherical_shell.ipynb}{this IPython notebook}.
+This file will be  available  with the article.
+There is a link to this online version in \url{https://github.com/pinga-lab/paper-tesseroids}
+which is mentioned in the text.
+There are two other notebooks that make the figures for the methods and the final results.
+There are links to those two in the above link  as well.
+I'll rewrite the paragraph to make it more clear.}
+
+
+
+The IPython notebooks
+and the data generated for the error analysis,
+as well as instructions for installing the software
+and running the programs,
+are also included in
 the source code archive that accompanies this article.
 Alternatively,
-all accompanying material is also available online\footnote{
+all accompanying material is available
+in online repositories\footnote{
 \url{https://github.com/pinga-lab/paper-tesseroids}}\footnote{
 \url{}\todo[inline]{Replace with the Zenodo/figshare DOI for the repository.}}.
 
@@ -780,6 +863,8 @@ all accompanying material is also available online\footnote{
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Evaluation of the accuracy}
+
+
 
 The key controlling point of the adaptive discretization algorithm
 is the distance-size ratio $D$ (equation~\ref{eq:condition}).
@@ -794,6 +879,7 @@ acceleration, and gradient tensor components
 to evaluate if the same value of $D$ yields compatible error levels
 for different fields.
 
+\todo[inline]{ VAL: The above paragraph is great !}
 
 The reference against which we compare the computed tesseroid fields
 is a homogeneous spherical shell.
@@ -813,15 +899,30 @@ on top of the tesseroid.
 Thus, calculating the tesseroid fields at a single point might not
 capture the point of largest error.
 Instead, we calculate the effect of the tesseroid model on a regular grid
-of $10 \times 10$ points.
+of $10 \times 10$ points at different geographic locations
+(Table~\ref{tbl:experiment}).
+\todo[inline]{ VAL: A grid of 10 X  10  point covers a are of ??? X ???? km}
+\todo[inline]{LEO: The grid location varied in each experiment of the numerical analysis. Table 1 shows the locations of the grids.
+This is discussed below.
+I'll add this information to the text.}
 Fortunately, the symmetry of the shell allows us to consider the computation
 point at any geocentric coordinate.
 Therefore, the effect of the shell will be same along the entire grid.
 We compute the differences between the effects of the shell and the tesseroid
-model on the grid and consider only the largest error.
-By placing the grid on top of a particular tesseroid, we increase the chances
-of capturing the true largest integration error.
+model on the grid.
+However, we will consider only the largest error in our analysis.
+\todo[inline]{ VAL: I rewrite the above sentence by:
+"We compute the differences between the effects of the shell and the tesseroid model on the grid; however, we consider  the largest error only.  }
+\todo[inline]{LEO: Rewritten. Is it better now?}
+We placed the grid on top of a particular tesseroid
+to increase the chances of capturing the true largest integration error.
+\todo[inline]{ VAL:I rewrite the above sentence as:
+"We decided for the nonconservative procedure of placing the grid on top of a particular tesseroid to increase the chances
+of capturing the true largest integration error"}
+\todo[inline]{LEO: Changed. I don't think this is really
+``nonconservative'' so I left it out.}
 
+\todo[inline]{ I've stopped here - VALERIA}
 
 We calculate the errors for values of the distance-size ratio
 $D$ varying from 0 (i.e., no divisions) to 10 in 0.5 intervals.
