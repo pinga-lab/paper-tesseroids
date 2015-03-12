@@ -111,8 +111,7 @@ The Gauss-Legendre Quadrature (GLQ) integration consists of approximating
 the volume integral by a weighted sum of the effect of point masses.
 An advantage of the GLQ approach is that it can be
 controlled by the number of point masses used.
-The larger the number of point masses, the better the accuracy of GLQ
-integration.
+The larger the number of point masses, the better the accuracy of GLQ integration.
 A disadvantage is the increased computation time as the number of
 point masses increases.
 Thus, there is a trade-off between accuracy and computation time.
@@ -136,12 +135,12 @@ Based on this, \citet{Ku1977} proposed an empirical criteria that the distance
 between adjacent point masses should be less than the distance to the computation point.
 \citet{Asgharzadeh2007} used  this criteria for the GLQ integration of
 the gravity gradient tensor of tesseroids.
-To our knowledge, the analysis if this ad hoc criteria of
-\citet{Ku1977} works well for gravity gradient components or for tesseroids has never been done before.
-
+To our knowledge, an analysis of how well this ad hoc criteria of
+\citet{Ku1977} works for gravity gradient components or for tesseroids
+has never been done before.
 There has also been no attempt to quantify the error committed in the GLQ
 integration when applying the criteria of \citet{Ku1977}.
-
+\todo[inline]{LEO: Valeria, I've made some modifications to your correction.}
 
 \citet{Li2011} devised an algorithm to automatically enforce the criteria of
 \citet{Ku1977}.
@@ -417,7 +416,10 @@ the expect results for a single tesseroid \citep{Asgharzadeh2007}.
         the result resembles that of
         four point masses instead of a single tesseroid.
         This effect was shown by \citet{Ku1977}.
-        c) At $150\ km$ but with a higher GLQ order of 30. In (c) the horizontal locations of the point masses were not shown. Notice that the result shown in (c) is similar to that expected for a single mass source.
+        c) At $150\ km$ but with a higher GLQ order of 30.
+        In (c) the horizontal locations of the point masses were not shown.
+        Notice that the results shown in (c) are similar to that expected
+        for a single mass source.
     }
     \label{fig:glqerrorsample}
 \end{figure}
@@ -448,12 +450,17 @@ ratio of distance and size or a minimum size is achieved.
 
 The advantage of this adaptive discretization is
 that the number of point masses is only increased
-in regions where the tesseroid are
+in parts of the tesseroid that are
 closer to the computation point.
 Notice that the alternative approach of
 simply increasing the order of the GLQ
 would increase the number of point masses
-evenly throughout the whole tesseroids.
+evenly throughout the whole tesseroid.
+\todo[inline]{LEO: Valeria, this correction you made is wrong.
+It is not ``in regions where the tesseroids are closer''.
+It is actually ``in parts of the tesseroid that are closer''.
+This is all happening inside a single tesseroid.
+I have corrected the text above.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}
@@ -473,18 +480,17 @@ is also available as part of this article.
 written in the C programming language.
 The package includes programs to calculate
 the gravitational fields of tesseroids and
-rectangular prisms (in both Cartesian and spherical coordinates),
-as well as model and computation grid generation.
+rectangular prisms (in both Cartesian and spherical coordinates).
 \todo[inline]{Valeria: Leo, I did not understand "as well as model and computation grid generation"}
 \todo[inline]{Leo: I mean that there are programs to generate the model files and the grid files. This can be removed without any problem.}
 All programs receive input through
-command-line arguments and the standard input channel (STDIN)
-and output the results through the standard output channel (STDOUT).
+command-line arguments and the standard input channel (``STDIN'')
+and output the results through the standard output channel (``STDOUT'').
 For example,
 the command to generate a regular grid with $NLON \times NLAT$ points,
 calculate on it $g_z$ and $g_{zz}$ caused by
-the tesseroids in a file "MODELFILE'',
-and save the results to a file called "OUTPUT''
+the tesseroids in a file ``MODELFILE'',
+and save the results to a file called ``OUTPUT''
 is:
 
 \begin{verbatim}
@@ -592,7 +598,7 @@ $(r_t, \lambda_t, \phi_t)$
 \end{equation}
 
 Our definition of the dimensions of the tesseroid
-(the "side lengths'' of \citet{Li2011})
+(the ``side lengths'' of \citet{Li2011})
 along longitude, latitude, and radius, respectively, are
 (Figure~\ref{fig:division}a)
 
@@ -627,7 +633,7 @@ we check if
 \noindent
 for each $i \in (\lambda, \phi, r)$.
 $D$ is a positive scalar
-hereafter referred to as the "distance-size ratio''.
+hereafter referred to as the ``distance-size ratio''.
 If the inequality holds for all three dimensions,
 the tesseroid is not divided.
 Thus, the distance-size ratio determines
@@ -785,7 +791,7 @@ namely:
 In recursive implementations,
 the developer has no control over
 the maximum number of consecutive recursive calls
-(i.e., the "recursion depth").
+(i.e., the ``recursion depth'').
 This limit may vary with programming language,
 compiler, and operating system.
 Overflowing the maximum recursion depth
@@ -900,7 +906,7 @@ Thus, calculating the tesseroid fields at a single point might not
 capture the point of largest error.
 Instead, we calculate the effect of the tesseroid model on a regular grid
 of $10 \times 10$ points at different geographic locations
-(Table~\ref{tbl:experiment}).
+(see Table~\ref{tbl:experiment}).
 \todo[inline]{ VAL: A grid of 10 X  10  point covers a are of ??? X ???? km}
 \todo[inline]{LEO: The grid location varied in each experiment of the numerical analysis. Table 1 shows the locations of the grids.
 This is discussed below.
@@ -1144,3 +1150,4 @@ FAPERJ (grant E-26/103.175/2011).
 \bibliographystyle{seg}
 \bibliography{references.bib}
 \end{document}
+
