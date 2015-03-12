@@ -1,4 +1,4 @@
-# Tesseroidds: forward modeling of gravitational fields in spherical coordinates
+# Tesseroids: forward modeling of gravitational fields in spherical coordinates
 
 by [Leonardo Uieda](http://www.leouieda.com/) et al.
 
@@ -28,7 +28,7 @@ You can view a static version of the notebooks from the
 
 To actually run the code in the notebooks,
 you'll need to have the files on your machine.
-You can download a 
+You can download a
 [zip archive of this repository](https://github.com/pinga-lab/paper-tesseroids/archive/master.zip)
 to get everything.
 
@@ -37,7 +37,7 @@ to get everything.
 First, you'll need to download the Tesseroids v1.2 software.
 You can get the source code and compiled binaries from:
 
-* The official site: hhtp://tesseroids.leouieda.com
+* The official site: http://tesseroids.leouieda.com
 * Zenodo: **INCLUDE DOI FOR v1.2**
 
 Unpack the executables (or compile the code) and place them
@@ -46,11 +46,11 @@ somewhere included in your PATH environment variable
 
 Next, you'll need to install Python and the required libraries
 to execute the IPython notebooks.
-The easiest way to get Python and all libraries installed 
+The easiest way to get Python and all libraries installed
 is through the
 [Anaconda Python distribution](http://continuum.io/downloads).
 Be sure to select the **Python 2.7** version of Anaconda.
-After you've installed Anaconda, 
+After you've installed Anaconda,
 install the libraries by running the following command
 in your terminal:
 
@@ -60,11 +60,11 @@ After Anaconda, you'll need to install the geophysics library
 [Fatiando a Terra](http://www.fatiando.org).
 You can do this by running the following command
 in your terminal:
- 
+
     pip install fatiando==0.3
 
-**Note to Windows users**: See the 
-[documentation of Fatiando a Terra](http://fatiando.github.io/v0.3/install.html) 
+**Note to Windows users**: See the
+[documentation of Fatiando a Terra](http://fatiando.github.io/v0.3/install.html)
 for extra software you'll need.
 
 ### Running the IPython notebooks
