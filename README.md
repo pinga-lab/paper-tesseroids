@@ -2,10 +2,13 @@
 
 by [Leonardo Uieda](http://www.leouieda.com/) et al.
 
-This is a draft of a paper about the open-source software package
+This repository contains the manuscript and supplementary code
+and data for a paper about the open-source software package
 [Tesseroids](http://tesseroids.leouieda.com).
 It also describes an optimal method for modeling gravitational
 fields due to spherical prism mass elements (tesseroids).
+
+The repository is archived in Zenodo: http://dx.doi.org/10.5281/zenodo.16032
 
 ## Reproducing the results
 
@@ -38,9 +41,14 @@ First, you'll need to download the Tesseroids v1.2 software.
 You can get the source code and compiled binaries from:
 
 * The official site: http://tesseroids.leouieda.com
-* Zenodo: **INCLUDE DOI FOR v1.2**
+* Zenodo: http://dx.doi.org/10.5281/zenodo.16033
 
-Unpack the executables (or compile the code) and place them
+The Zenodo DOI link takes you directly to version 1.2
+and should be available even if the official site
+goes offline.
+
+After downloading, unpack the executables
+(or compile the code) and place them
 somewhere included in your PATH environment variable
 (so that your terminal or `cmd.exe` can find them).
 
