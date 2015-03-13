@@ -28,4 +28,5 @@ check-notebooks:
 	write-good notebooks/*.ipynb
 
 clean:
-	rm -rf $(PDF) *.out *.aux *.log *.bbl figs/*-eps-converted-to.pdf *.fls *.blg
+	rm -rf $(PDF) *.out *.aux *.log *.bbl figs/*-eps-converted-to.pdf *.fls \
+		*.blg *.fff *.lof *.lot *.ttt
