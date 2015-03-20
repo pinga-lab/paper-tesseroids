@@ -75,7 +75,7 @@ These values were incorporated as defaults in the software.
 \section{Introduction}
 
 
-Satellite missions dedicated to measuring the Earths gravity field
+Satellite missions dedicated to measuring the Earth's gravity field
 (like CHAMP, GRACE, and GOCE)
 have provided geophysicists with almost uniform and global data coverage.
 These new data have enabled interpretations on regional and global scales
@@ -121,7 +121,11 @@ gravitational acceleration of right rectangular prisms.
 The author suggested that the accuracy of the GLQ integration depends on
 the ratio between distance to the computation point and the distance between
 adjacent point masses.
-Based on this, \citet{Ku1977} proposed an empirical criteria that the distance
+Based on this, \citet{Ku1977} proposed an empirical criterion that the distance
+% * <berg@units.it> 2015-03-19T13:46:11.161Z:
+%
+%  an criterion or proposed empirical criteria
+%
 between adjacent point masses should be less than
 the distance to the computation point.
 \citet{Asgharzadeh2007} used  this criteria for the GLQ integration of
@@ -138,6 +142,10 @@ Their algorithm divides the tesseroid into smaller ones instead of increasing
 the number of point masses per tesseroid.
 This division effectively increases the total number of point masses
 because the number of points masses per tesseroid is fixed.
+% * <berg@units.it> 2015-03-19T13:48:33.551Z:
+%
+%  sentence is repeated later.
+%
 A tesseroid is divided if the minimum distance to the computation point
 is smaller than the largest dimension of the tesseroid.
 This division is repeated recursively until all tesseroids obey the criterion.
@@ -155,6 +163,10 @@ of tesseroids using Cartesian integral kernels.
 These formulas are faster to compute and do not have singularities at the poles
 like their spherical counterparts.
 The Cartesian formula are numerically integrated using a Taylor series
+% * <berg@units.it> 2015-03-19T13:49:40.239Z:
+%
+%  singular or plural?
+%
 expansion as per \citet{Heck2007}.
 \citet{Grombein2013} use a near-zone separation to mitigate the increased error
 at high latitudes.
@@ -281,6 +293,7 @@ We will follow \citet{Asgharzadeh2007} and perform the numerical integration
 using the Gauss-Legendre Quadrature (GLQ).
 The GLQ consists of approximating the integral by a weighted sum of the
 integration kernel \citep{Hildebrand1987},
+
 \begin{equation}
     \int\limits_a^b f(x) dx \approx
     \frac{b-a}{2}\sum\limits_{i=1}^N W_i f(x_i),
@@ -463,7 +476,7 @@ command-line arguments and the standard input channel (``STDIN'')
 and output the results through the standard output channel (``STDOUT'').
 For example,
 the command to generate a regular grid with $NLON \times NLAT$ points,
-calculate on it $g_z$ and $g_{zz}$ caused by
+ $g_z$ and $g_{zz}$ caused by
 the tesseroids in a file ``MODELFILE'',
 and save the results to a file called ``OUTPUT''
 is:
@@ -495,7 +508,7 @@ a Gauss-Legendre Quadrature integration.
 The first step in the GLQ is to compute the
 locations of the discretization points (i.e., the point masses).
 These points are roots of Legendre polynomials.
-Precomputed values are available low order polynomials,
+Precomputed values are available for low order polynomials,
 typically up to order five.
 For flexibility and to compute higher order roots,
 we use the multiple root-finder algorithm of
@@ -586,7 +599,7 @@ along longitude, latitude, and radius, respectively, are
     L_\phi = r_2 \arccos(\sin\phi_2\sin\phi_1 + \cos\phi_2\cos\phi_1),
 \end{equation}
 \begin{equation}
-    L_r = r_2 - r_2.
+    L_r = r_2 - r_1.
     \label{eq:sizer}
 \end{equation}
 
@@ -679,6 +692,10 @@ the last element in the stack (the top of the stack).
 
 The algorithm starts by creating an empty stack of tesseroids.
 Then, the stack is initialized with the input tesseroid.
+% * <berg@units.it> 2015-03-19T21:04:01.768Z:
+%
+%  the description of the operation of stack is not clear- is it the input tesseroid array?
+%
 The initialization is done by copying the tesseroid into the stack
 and setting \emph{stktop} to zero (the first element).
 Once the stack is initialized, the steps of the algorithm are:
@@ -861,6 +878,10 @@ Figure~\ref{fig:gzz-with-height} shows the results for $g_{zz}$ at varying
 computation heights.
 Notice that the distance-size ratio required to achieve $0.1\%$ accuracy
 decreases as the computation height increases.
+% * <berg@units.it> 2015-03-19T21:07:33.445Z:
+%
+%  what is the height dependence due to? Should the distance not include height already? Is the height a second control parameter, next to the distance ratio? What is that due to? Is it only for gzz or also for the other gradient components? What about the gx?
+%
 For example, computation at 260 km height requires $D=2.5$ whereas at 10 km
 height a value of $D=5.5$ is required to achieve the same accuracy.
 One can take advantage of this behavior to reduce the distance-size ratio for
@@ -1039,8 +1060,9 @@ Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior
 (CAPES),
 Brazil.
 Additional support for the authors was provided by
-the Brazilian agency FAPERJ (grant E-26/103.175/2011).
+the Brazilian agency FAPERJ (grant E-26/103.175/2011) and by the GOCE-Italy project (ASI).
 
 \bibliographystyle{seg}
 \bibliography{references.bib}
 \end{document}
+
