@@ -38,8 +38,8 @@ email: leouieda@gmail.com
 Rio de Janeiro, Brazil.
 email: valcris@on.br
 \\
-\footnotemark[3]Department of Mathematics and Geosciences, University of
-Trieste, Trieste, Italy
+\footnotemark[3]Department of Mathematics and Geosciences,
+University of Trieste, Trieste, Italy
 }
 
 \begin{abstract}
@@ -126,6 +126,10 @@ Based on this, \citet{Ku1977} proposed an empirical criterion that the distance
 %
 %  an criterion or proposed empirical criteria
 %
+% ^ <leouieda@gmail.com> 2015-03-20T17:41:12.218Z:
+%
+%  It was an criterion
+%
 between adjacent point masses should be less than
 the distance to the computation point.
 \citet{Asgharzadeh2007} used  this criteria for the GLQ integration of
@@ -140,11 +144,13 @@ integration when applying the criteria of \citet{Ku1977}.
 \citet{Ku1977}.
 Their algorithm divides the tesseroid into smaller ones instead of increasing
 the number of point masses per tesseroid.
-This division effectively increases the total number of point masses
-because the number of points masses per tesseroid is fixed.
 % * <berg@units.it> 2015-03-19T13:48:33.551Z:
 %
 %  sentence is repeated later.
+%
+% ^ <leouieda@gmail.com> 2015-03-20T17:40:17.120Z:
+%
+%  I removed it.
 %
 A tesseroid is divided if the minimum distance to the computation point
 is smaller than the largest dimension of the tesseroid.
@@ -162,10 +168,14 @@ This makes the adaptive discretization more computationally efficient.
 of tesseroids using Cartesian integral kernels.
 These formulas are faster to compute and do not have singularities at the poles
 like their spherical counterparts.
-The Cartesian formula are numerically integrated using a Taylor series
+The Cartesian formulae are numerically integrated using a Taylor series
 % * <berg@units.it> 2015-03-19T13:49:40.239Z:
 %
 %  singular or plural?
+%
+% ^ <leouieda@gmail.com> 2015-03-20T17:41:54.790Z:
+%
+%  It should be the plural (formulae)
 %
 expansion as per \citet{Heck2007}.
 \citet{Grombein2013} use a near-zone separation to mitigate the increased error
@@ -476,7 +486,7 @@ command-line arguments and the standard input channel (``STDIN'')
 and output the results through the standard output channel (``STDOUT'').
 For example,
 the command to generate a regular grid with $NLON \times NLAT$ points,
- $g_z$ and $g_{zz}$ caused by
+ calculate $g_z$ and $g_{zz}$ caused by
 the tesseroids in a file ``MODELFILE'',
 and save the results to a file called ``OUTPUT''
 is:
@@ -673,11 +683,11 @@ one can only remove the last element of the stack
 (commonly referred to as ``popping'' the stack).
 Stacks are also known as ``Last-in-first-out'', or LIFO, data structures.
 
-We will describe the stack-based algorithm
-for computing the effect of a single tesseroid
-on a single computation point.
-The algorithm is implemented in function \emph{calc\_tess\_model\_adapt}
+The discretization algorithm is implemented in
+function \emph{calc\_tess\_model\_adapt}
 of the file \emph{src/lib/grav\_tess.c}.
+This function calculates the effect of a single tesseroid
+on a single computation point.
 The stack of tesseroids is represented by
 the \emph{stack} variable,
 an array of \emph{TESSEROID} structures.
@@ -690,14 +700,25 @@ We use the integer \emph{stktop}
 to keep track of the index of
 the last element in the stack (the top of the stack).
 
+Below, we describe the algorithm to calculate
+the effect of a single tesseroid from the input model
+on a single computation point.
 The algorithm starts by creating an empty stack of tesseroids.
-Then, the stack is initialized with the input tesseroid.
+Then, the stack is initialized with the single input tesseroid.
 % * <berg@units.it> 2015-03-19T21:04:01.768Z:
 %
 %  the description of the operation of stack is not clear- is it the input tesseroid array?
 %
+% ^ <leouieda@gmail.com> 2015-03-20T18:02:14.018Z:
+%
+%  I modified the description above and added more text below as well. Is it clearer now?
+%
 The initialization is done by copying the tesseroid into the stack
 and setting \emph{stktop} to zero (the first element).
+It is important to note that the stack is not the input tesseroid model.
+Instead, it is a buffer used to temporarily store
+each stage of the discretization algorithm.
+
 Once the stack is initialized, the steps of the algorithm are:
 
 \begin{enumerate}
@@ -740,6 +761,27 @@ Once the stack is initialized, the steps of the algorithm are:
     \item Repeat the above steps until the stack is empty
         (\emph{stktop} is equal to -1).
 \end{enumerate}
+
+The algorithm above is repeated
+for every tesseroid of the input model
+and the results are summed.
+This will yield the gravitational effect
+of the input tesseroid model on a single point.
+Thus, the computations must be repeated
+for every computation point.
+The whole algorithm can be summarized
+in the following pseudo-code.
+
+\begin{verbatim}
+Initialize the output array with zeros.
+for tesseroid in model:
+  for point in grid:
+    Initialize the stack with tesseroid.
+    stktop = 0
+    while stktop >= 0:
+      Perform steps 1-6 of the algorithm.
+    Sum the calculated value to the output.
+\end{verbatim}
 
 This stack-based implementation
 has some advantages over the original recursive implementation,
@@ -882,6 +924,10 @@ decreases as the computation height increases.
 %
 %  what is the height dependence due to? Should the distance not include height already? Is the height a second control parameter, next to the distance ratio? What is that due to? Is it only for gzz or also for the other gradient components? What about the gx?
 %
+% ^ <leouieda@gmail.com> 2015-03-20T18:23:53.901Z:
+%
+%  The height is included in the distance and is not a control variable. This happens for all tensor components but not to the potential, gx, gy, and gz. I think this is because the decay factor for the tensor components is 1/r^3 whereas the discreatization algorithm compares D to r/size. So as the  computation point becomes closer. the field increases more rapidly than the algorithm increases the  amount of discretization. That is why you need higher D (more discretization) when you are closer to the tesseroid.
+%
 For example, computation at 260 km height requires $D=2.5$ whereas at 10 km
 height a value of $D=5.5$ is required to achieve the same accuracy.
 One can take advantage of this behavior to reduce the distance-size ratio for
@@ -1016,11 +1062,19 @@ an error of the order of $10^2\%$.
 
 For the gravity gradients in particular,
 the distance-size ratio required for 0.1\% error decreases with height.
-This can be attributed to the higher sensitivity of gravity gradients
-to height variations because they decay with the distance cubed.
-This behavior causes the integration kernel to have more high frequency
-components, thus requiring more point masses for numerical integration.
+We believe this is because the decay factor for
+the gravity gradient components is $d^{-3}$,
+whereas the discretization algorithm uses $d/L_i$.
+As the computation point becomes closer to the tesseroid,
+the field increases more rapidly than
+the algorithm increases the amount of discretization.
+Hence, a higher value of D (i.e., more discretization)
+is required.
 
+% * <leouieda@gmail.com> 2015-03-20T18:43:18.571Z:
+%
+%  I have modified the above paragraph to try to explain why the ratio for gzz varies with height.
+%
 
 The values of the distance-size ratio determined above were
 incorporated as defaults in the software \emph{Tesseroids}.
@@ -1060,9 +1114,9 @@ Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior
 (CAPES),
 Brazil.
 Additional support for the authors was provided by
-the Brazilian agency FAPERJ (grant E-26/103.175/2011) and by the GOCE-Italy project (ASI).
+the Brazilian agency FAPERJ (grant E-26/103.175/2011)
+and by the GOCE-Italy project (ASI).
 
 \bibliographystyle{seg}
 \bibliography{references.bib}
 \end{document}
-
