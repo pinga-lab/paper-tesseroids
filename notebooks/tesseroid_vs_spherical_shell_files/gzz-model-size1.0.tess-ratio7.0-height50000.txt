@@ -1,5 +1,5 @@
-# gzz component calculated with tessgzz 1.1.1-82-ge0f7c93:
-#   local time: Sat Feb 28 16:25:57 2015
+# gzz component calculated with tessgzz 1.2.0:
+#   local time: Mon Mar 23 11:41:16 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True

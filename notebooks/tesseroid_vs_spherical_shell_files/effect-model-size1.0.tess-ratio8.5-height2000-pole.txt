@@ -1,59 +1,59 @@
-# gzz component calculated with tessgzz 1.1.1-82-ge0f7c93:
-#   local time: Sat Feb 28 15:20:03 2015
+# gzz component calculated with tessgzz 1.2.0:
+#   local time: Mon Mar 23 10:55:36 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8.5
-# gyz component calculated with tessgyz 1.1.1-82-ge0f7c93:
-#   local time: Sat Feb 28 15:20:03 2015
+# gyz component calculated with tessgyz 1.2.0:
+#   local time: Mon Mar 23 10:55:36 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8.5
-# gyy component calculated with tessgyy 1.1.1-82-ge0f7c93:
-#   local time: Sat Feb 28 15:20:03 2015
+# gyy component calculated with tessgyy 1.2.0:
+#   local time: Mon Mar 23 10:55:36 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8.5
-# gxz component calculated with tessgxz 1.1.1-82-ge0f7c93:
-#   local time: Sat Feb 28 15:20:03 2015
+# gxz component calculated with tessgxz 1.2.0:
+#   local time: Mon Mar 23 10:55:36 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8.5
-# gxy component calculated with tessgxy 1.1.1-82-ge0f7c93:
-#   local time: Sat Feb 28 15:20:03 2015
+# gxy component calculated with tessgxy 1.2.0:
+#   local time: Mon Mar 23 10:55:36 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8.5
-# gxx component calculated with tessgxx 1.1.1-82-ge0f7c93:
-#   local time: Sat Feb 28 15:20:03 2015
+# gxx component calculated with tessgxx 1.2.0:
+#   local time: Mon Mar 23 10:55:36 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8.5
-# gz component calculated with tessgz 1.1.1-82-ge0f7c93:
-#   local time: Sat Feb 28 15:20:03 2015
+# gz component calculated with tessgz 1.2.0:
+#   local time: Mon Mar 23 10:55:36 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8.5
-# gy component calculated with tessgy 1.1.1-82-ge0f7c93:
-#   local time: Sat Feb 28 15:20:03 2015
+# gy component calculated with tessgy 1.2.0:
+#   local time: Mon Mar 23 10:55:36 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8.5
-# gx component calculated with tessgx 1.1.1-82-ge0f7c93:
-#   local time: Sat Feb 28 15:20:03 2015
+# gx component calculated with tessgx 1.2.0:
+#   local time: Mon Mar 23 10:55:36 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
 #   Distance-size ratio for recusive division: 8.5
-# Potential calculated with tesspot 1.1.1-82-ge0f7c93:
-#   local time: Sat Feb 28 15:20:03 2015
+# Potential calculated with tesspot 1.2.0:
+#   local time: Mon Mar 23 10:55:36 2015
 #   model file: tesseroid_vs_spherical_shell_files/model-size1.0.tess (64800 tesseroids)
 #   GLQ order: 2 lon / 2 lat / 2 r
 #   Use recursive division of tesseroids: True
