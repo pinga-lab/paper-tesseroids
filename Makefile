@@ -3,6 +3,7 @@ TEX := $(MS).tex
 BIB := references.bib
 PDF := $(MS).pdf
 FIGS := $(wildcard figs/*.eps)
+SUP := tesseroids-supplementary-material
 
 all: $(PDF)
 
@@ -29,4 +30,7 @@ check-notebooks:
 
 clean:
 	rm -rf $(PDF) *.out *.aux *.log *.bbl figs/*-eps-converted-to.pdf *.fls \
-		*.blg *.fff *.lof *.lot *.ttt
+		*.blg *.fff *.lof *.lot *.ttt $(SUP).zip
+
+package:
+	git archive -o $(SUP).zip master
