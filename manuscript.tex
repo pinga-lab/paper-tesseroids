@@ -120,17 +120,7 @@ in gravity forward modeling.
 gravitational acceleration of right rectangular prisms.
 The author suggested that the accuracy of the GLQ integration depends on
 the ratio between distance to the computation point and the distance between
-% * <valeria.valcris@gmail.com> 2015-03-23T17:28:28.769Z:
-%
-%  Leo, the sentence "Based on this, \citet{Ku1977} proposed an empirical criterion that the distance the distance to the computation point."
-%
-% ^ <valeria.valcris@gmail.com> 2015-03-23T17:57:28.416Z.
 adjacent point masses.
-% * <valeria.valcris@gmail.com> 2015-03-23T17:29:37.800Z:
-%
-%  is wrong. The criterion disappeared.
-%
-% ^ <valeria.valcris@gmail.com> 2015-03-23T17:57:27.222Z.
 Based on this, \citet{Ku1977} proposed an empirical criterion that
 the distance between point masses should be greater than
 the distance to the computation point.
@@ -156,7 +146,6 @@ increasing the number of points masses is that the
 total distribution of point masses will be greater
 only close to the computation point.
 This makes the adaptive discretization more computationally efficient.
-
 
 \citet{Grombein2013} developed optimized formula for the gravitational fields
 of tesseroids using Cartesian integral kernels.
@@ -262,18 +251,6 @@ and
 where $\alpha, \beta \in \{x, y, z\}$,
 $\rho$ is the density,
 $G = 6.674\times10^{-11}\ m^3kg^{-1}s^{-1}$ is the gravitational constant,
-% * <berg@units.it> 2015-03-22T10:56:54.365Z:
-%
-%  Leo, on the link below the digits are 6.67384, so if you truncate it should be 6.674 not 6.673 as on the wikipedia article on G.
-%
-% * <berg@units.it> 2015-03-22T10:54:00.463Z:
-%
-%  http://physics.nist.gov/cgi-bin/cuu/Value?bg|search_for=universal_in!
-%
-% ^ <leouieda@gmail.com> 2015-03-22T21:20:28.891Z:
-%
-%  That's correct, thanks. It must have been a typing error.
-%
 and
 
 \begin{equation}
@@ -448,7 +425,6 @@ for the distance between point masses.
 This procedure is repeated recursively
 until all tesseroids are within the acceptable
 ratio of distance and size or a minimum size is achieved.
-
 
 The advantage of this adaptive discretization is
 that the number of point masses is only increased
@@ -703,14 +679,6 @@ the effect of a single tesseroid from the input model
 on a single computation point.
 The algorithm starts by creating an empty stack of tesseroids.
 Then, the stack is initialized with the single input tesseroid.
-% * <berg@units.it> 2015-03-19T21:04:01.768Z:
-%
-%  the description of the operation of stack is not clear- is it the input tesseroid array?
-%
-% ^ <leouieda@gmail.com> 2015-03-20T18:02:14.018Z:
-%
-%  I modified the description above and added more text below as well. Is it clearer now?
-%
 The initialization is done by copying the tesseroid into the stack
 and setting \emph{stktop} to zero (the first element).
 It is important to note that the stack is not the input tesseroid model.
@@ -751,7 +719,7 @@ Once the stack is initialized, the steps of the algorithm are:
              is smaller than the maximum stack size).
              If there isn't,
              warn the user of a ``stack overflow''
-             and compute the effect of the larger tesseroid (step 5).
+             and compute the effect of the tesseroid, as in step 5.
              If there is room in the stack,
              place the smaller tesseroids into
              the stack.
@@ -759,15 +727,8 @@ Once the stack is initialized, the steps of the algorithm are:
     \item Repeat the above steps until the stack is empty
         (\emph{stktop} is equal to -1).
 \end{enumerate}
-% * <valeria.valcris@gmail.com> 2015-03-23T19:53:50.437Z:
-%
-%  Leo, item 6b I suggest changing " warn the user of a ``stack overflow''              and compute the effect of the larger tesseroid (step 5)." by
-%
+
 The algorithm above is repeated
-% * <valeria.valcris@gmail.com> 2015-03-23T21:09:58.768Z:
-%
-%  by "warn the user of a ``stack overflow''  and compute the effect of the tesseroid computed on the step 5."
-%
 for every tesseroid of the input model
 and the results are summed.
 This will yield the gravitational effect
@@ -833,9 +794,8 @@ are also included in
 the source code archive that accompanies this article.
 Alternatively,
 all accompanying material is available
-in online repositories\footnote{
-https://github.com/pinga-lab/paper-tesseroids}\footnote{
-http://dx.doi.org/10.5281/zenodo.16032}.
+in an online repository\footnote{
+https://github.com/pinga-lab/paper-tesseroids}.
 
 
 
@@ -876,14 +836,6 @@ Thus, calculating the tesseroid fields at a single point might not
 capture the point of largest error.
 Instead, we calculate the effect of the tesseroid model on a regular grid
 of $10 \times 10$ points at different geographic locations
-% * <berg@units.it> 2015-03-22T12:57:56.006Z:
-%
-%  and takethe average over the hundert points. Leo: is that correct? Should we add it to be more clear?
-%
-% ^ <leouieda@gmail.com> 2015-03-22T20:37:47.094Z:
-%
-%  No, I don't take the average. I take the largest error. I didn't mention that above because I only talk about the error further on ("Figure~\ref{fig:dist-size-curves} shows the maximum difference between the shell and tesseroid fields").
-%
 (see Table~\ref{tbl:experiment}).
 Fortunately, the symmetry of the shell allows us to consider the computation
 point at any geocentric coordinate.
@@ -897,14 +849,6 @@ We placed the grid on top of a particular tesseroid
 to increase the chances of capturing the true largest integration error.
 We calculate the errors for values of the distance-size ratio
 $D$ varying from 0 (i.e., no divisions) to 10 in 0.5 intervals.
-% * <berg@units.it> 2015-03-22T13:00:05.803Z:
-%
-%  D=0 means we are sitting in the center of the tesseroid, more than no division. Maybe you could be more precise on this, as D=0 will not happen, as you are at 2km height?
-%
-% ^ <leouieda@gmail.com> 2015-03-22T20:45:02.247Z:
-%
-%  I'm not moving the computation grid during this test. What I do is I vary the value of D used in the adaptive discretization. That's what is shown in Fig 4. Each curve corresponds to a fixed grid. Changing D just means that the adaptive discretization is performed differently because of the inequality in eq 17. Notice that if D=0, any combination of distance/size is larger than D. So there won't be any divisions.
-%
 Furthermore, we repeated the error analysis in four different numerical experiments,
 each with computation grids at different locations and
 different tesseroid model sizes.
@@ -920,14 +864,6 @@ The differences are given as a percentage of the shell value.
 We established a maximum tolerated error of $0.1\%$, represented by the
 horizontal solid lines in Figure~\ref{fig:dist-size-curves}.
 Only results for the gravitational potential, $g_z$, and $g_{zz}$ are shown.
-% * <berg@units.it> 2015-03-22T13:02:41.484Z:
-%
-%  Not sure I understand what you did for the 30° tesseroid. Errors are nearly the same. It means that at D=1 the tesseroid has been divided into many small tesseroids so as to have the correct distance-size ratio: Already for D=.5 the calculation is made on small tesseroids that make up the big 30° tesseroid. So actually the different curves represent very similar  tesseroids in the near field, only in the far field are the tesseroids left with the large size. We see that the result is nearly the same, with a great reduction in computer time in the case of the 30° tesseroid as for distant tesseroids no division is necessary. Leo: maybe we could add this comment, if my interpretation is correct.
-%
-% ^ <leouieda@gmail.com> 2015-03-22T21:19:24.057Z:
-%
-%  Carla, your interpretation is correct. In practice there is no advantage to using large tesseroids with this algorithm because I don't take into account a finer resolution model in the near zone (like a proper near-far zone separation).  The difference is that I'm dividing a corse model into small but equivalent tesseroids. For a near-far zone separation I'd average out the fine model in the far zone.
-%
 The results for the other diagonal components of the gravity gradient tensor
 are similar to $g_{zz}$.
 Figures for these components can be found in the supplementary material
@@ -949,22 +885,6 @@ Figure~\ref{fig:gzz-with-height} shows the results for $g_{zz}$ at varying
 computation heights.
 Notice that the distance-size ratio required to achieve $0.1\%$ accuracy
 decreases as the computation height increases.
-% * <berg@units.it> 2015-03-19T21:07:33.445Z:
-%
-%  what is the height dependence due to? Should the distance not include height already? Is the height a second control parameter, next to the distance ratio? What is that due to? Is it only for gzz or also for the other gradient components? What about the gx?
-%
-% ^ <leouieda@gmail.com> 2015-03-20T18:23:53.901Z:
-%
-%  The height is included in the distance and is not a control variable. This happens for all tensor components but not to the potential, gx, gy, and gz. I think this is because the decay factor for the tensor components is 1/r^3 whereas the discreatization algorithm compares D to r/size. So as the  computation point becomes closer. the field increases more rapidly than the algorithm increases the  amount of discretization. That is why you need higher D (more discretization) when you are closer to the tesseroid.
-%
-% ^ <berg@units.it> 2015-03-22T13:32:27.725Z:
-%
-%  hello Leo: are you sure D<2 is what he is calculating at 260km height? if it is a 1° tesseroid and you are at 260km height, your distance is greater than the biggest sidelength of the tesseroid, and maybe that is why the error starts to decrease for D>2.5, because for smalle D your condition is satisfied by itself .
-%
-% ^ <leouieda@gmail.com> 2015-03-22T21:14:00.081Z:
-%
-%  That is exactly it. For 1º tesseroids at 260km, there are no divisions for D < 2 because the condition is already satisfied. That's why the error curve is flat.
-%
 For example, computation at 260 km height requires $D=2.5$ whereas at 10 km
 height a value of $D=5.5$ is required to achieve the same accuracy.
 One can take advantage of this behavior to reduce the distance-size ratio for
@@ -1108,10 +1028,6 @@ the algorithm increases the amount of discretization.
 Hence, a higher value of D (i.e., more discretization)
 is required.
 
-% * <leouieda@gmail.com> 2015-03-20T18:43:18.571Z:
-%
-%  I have modified the above paragraph to try to explain why the ratio for gzz varies with height.
-%
 
 The values of the distance-size ratio determined above were
 incorporated as defaults in the software \emph{Tesseroids}.
