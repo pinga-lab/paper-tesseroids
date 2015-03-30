@@ -1,6 +1,9 @@
 # Tesseroids: forward modeling of gravitational fields in spherical coordinates
 
-by [Leonardo Uieda](http://www.leouieda.com/) et al.
+by [Leonardo Uieda](http://www.leouieda.com/)
+[Valéria C. F. Barbosa](http://lattes.cnpq.br/0391036221142471),
+and
+[Carla Braitenberg](http://www.lithoflex.org)
 
 This repository contains the manuscript and supplementary code
 and data for a paper about the open-source software package
@@ -8,7 +11,8 @@ and data for a paper about the open-source software package
 It also describes an optimal method for modeling gravitational
 fields due to spherical prism mass elements (tesseroids).
 
-The repository is archived in Zenodo: http://dx.doi.org/10.5281/zenodo.16032
+**The manuscript has been submitted for publication in the journal
+[Geophysics](http://library.seg.org/journal/gpysa7)**.
 
 ## Reproducing the results
 
