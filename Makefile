@@ -4,6 +4,8 @@ BIB := references.bib
 PDF := $(MS).pdf
 FIGS := $(wildcard figs/*.eps)
 SUP := tesseroids-supplementary-material
+CONDAENV := tesseroids
+PYTHON := 2.7
 
 all: $(PDF)
 
@@ -34,3 +36,15 @@ clean:
 
 package:
 	git archive -o $(SUP).zip master
+
+setup: mkenv install_requires
+
+mkenv:
+	conda create -n $(CONDAENV) --yes pip python=$(PYTHON)
+
+install_requires:
+	bash -c "source activate $(CONDAENV) && conda install --yes --file requirements.txt"
+	bash -c "source activate $(CONDAENV) && pip install fatiando==0.3"
+
+delete_env:
+	bash -c "source deactivate; conda env remove --name $(CONDAENV)"
