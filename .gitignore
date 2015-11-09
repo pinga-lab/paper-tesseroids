@@ -14,5 +14,5 @@
 manuscript.pdf
 references.bib.bak
 .ipynb_checkpoints/
-notebooks/tesseroid_vs_spherical_shell_files/
+notebooks/*_files/
 figs/*eps-converted-to.pdf
