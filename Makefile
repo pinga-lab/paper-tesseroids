@@ -9,7 +9,7 @@ PYTHON := 2.7
 
 all: $(PDF)
 
-$(PDF): $(TEX) $(FIGS)
+$(PDF): $(TEX) $(FIGS) $(BIB)
 	pdflatex $<
 	bibtex $(MS)
 	pdflatex $<
