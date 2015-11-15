@@ -2,8 +2,7 @@
 
 by [Leonardo Uieda](http://www.leouieda.com/),
 [Valéria C. F. Barbosa](http://lattes.cnpq.br/0391036221142471),
-and
-[Carla Braitenberg](http://www.lithoflex.org)
+and [Carla Braitenberg](http://www.lithoflex.org)
 
 This repository contains the manuscript and supplementary code and data for a
 paper about the open-source software package
@@ -18,8 +17,10 @@ output, and generate plots.
 
 **The manuscript has been accepted for publication in the journal
 [Geophysics](http://library.seg.org/journal/gpysa7)**.
-See [software.seg.org](http://software.seg.org) for the official version of the
-paper and source-code.
+You will find the C source-code for Tesseroids and the contents of this
+repository at [software.seg.org](http://software.seg.org).
+A "live" version of this repository is available at
+[github.com/pinga-lab/paper-tesseroids](https://github.com/pinga-lab/paper-tesseroids).
 
 
 ## Reproducing the results
@@ -55,6 +56,7 @@ service (links below):
 
 If you have IPython installed, see below for instructions on running the code
 in the notebooks.
+
 
 ### Getting the files
 
@@ -126,6 +128,7 @@ Be sure to execute the code cells in descending order to get the correct
 results.
 Some cells may take a long time to run, particularly those that calculate the
 tesseroid fields.
+
 
 ## Compiling the manuscript
 
