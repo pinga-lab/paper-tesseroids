@@ -15,6 +15,17 @@ $(PDF): $(TEX) $(FIGS) $(BIB)
 	pdflatex $<
 	pdflatex $<
 
+diff-R1: $(MS)-marked-R1.pdf
+
+$(MS)-marked-R1.pdf: $(MS)-marked-R1.tex
+	pdflatex $<
+	bibtex $(MS)-marked-R1
+	pdflatex $<
+	pdflatex $<
+
+$(MS)-marked-R1.tex: $(TEX) $(FIGS) $(BIB)
+	git ldiff submitted $< > $@
+
 spell:
 	aspell $(TEX)
 
@@ -32,7 +43,7 @@ check-notebooks:
 
 clean:
 	rm -rf $(PDF) *.out *.aux *.log *.bbl figs/*-eps-converted-to.pdf *.fls \
-		*.blg *.fff *.lof *.lot *.ttt $(SUP).zip
+		*.blg *.fff *.lof *.lot *.ttt $(SUP).zip $(MS)-marked-R1.*
 
 package:
 	git archive -o $(SUP).zip master
