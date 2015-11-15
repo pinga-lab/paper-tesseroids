@@ -767,8 +767,9 @@ for tesseroid in model:
 This stack-based implementation
 has some advantages over the original recursive implementation,
 namely:
-(1) It will be faster because it bypasses the overhead of function calls.
-(2) It gives the developer more control over the recursion step.
+(1) It gives the developer more control over the recursion step.
+(2) In general, it is faster because it bypasses the overhead of function
+calls.
 In recursive implementations,
 the developer has no control over
 the maximum number of consecutive recursive calls
@@ -999,7 +1000,10 @@ Tesseroids are divided into more parts closer to the computation point,
 where more point masses are needed.
 Our implementation of the adaptive discretization uses a ``stack'' data
 structure in place of the originally proposed recursive implementation.
-The stack-based algorithm is computationally faster and allows more control
+As a rule of thumb in procedural languages (like C),
+stack-base implementations are computationally faster
+than the equivalent code using function recursion.
+Furthermore, the stack-based algorithm allows more control
 over errors when too many divisions are necessary.
 The adaptive discretization is controlled by
 a scalar called the distance-size ratio ($D$).
