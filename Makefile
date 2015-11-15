@@ -4,7 +4,7 @@ BIB := references.bib
 PDF := $(MS).pdf
 FIGS := $(wildcard figs/*.eps)
 SUP := tesseroids-supplementary-material
-CONDAENV := tesseroids
+CONDAENV := paper-tesseroids
 PYTHON := 2.7
 
 all: $(PDF)

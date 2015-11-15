@@ -6,3 +6,4 @@ mayavi=4.4.0
 pillow=3.0.0
 pandas=0.16.2
 basemap=1.0.7
+scons=2.3.0
