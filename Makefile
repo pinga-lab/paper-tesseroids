@@ -6,6 +6,7 @@ FIGS := $(wildcard figs/*.eps)
 SUP := tesseroids-supplementary-material
 CONDAENV := paper-tesseroids
 PYTHON := 2.7
+PKG := supplement
 
 all: $(PDF)
 
@@ -43,10 +44,21 @@ check-notebooks:
 
 clean:
 	rm -rf $(PDF) *.out *.aux *.log *.bbl figs/*-eps-converted-to.pdf *.fls \
-		*.blg *.fff *.lof *.lot *.ttt $(SUP).zip $(MS)-marked-R1.*
+		*.blg *.fff *.lof *.lot *.ttt $(SUP).zip $(MS)-marked-R1.* \
+		$(PKG) $(PKG).zip $(PKG).tar.gz
+	find . -name "*.pyc" -exec rm -v {} \;
+	find . -name "*~" -exec rm -v {} \;
 
-package:
-	git archive -o $(SUP).zip master
+package: clean
+	@echo "Creating zip and tar.gz packages..."
+	mkdir -p $(PKG)
+	cp -r data $(PKG)
+	cp -r figs $(PKG)
+	cp -r notebooks $(PKG)
+	cp README.md $(PKG)
+	cp requirements.txt $(PKG)
+	zip -r $(PKG).zip $(PKG)
+	tar -zcvf $(PKG).tar.gz $(PKG)
 
 setup: mkenv install_requires
 
