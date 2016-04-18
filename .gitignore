@@ -11,6 +11,7 @@
 *.pyc
 *.out
 *~
+.env
 manuscript.pdf
 references.bib.bak
 .ipynb_checkpoints/

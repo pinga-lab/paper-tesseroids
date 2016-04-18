@@ -1,0 +1,15 @@
+name: paper-tesseroids
+dependencies:
+    - python=2.7
+    - pip
+    - numpy=1.9.3
+    - scipy=0.16.0
+    - jupyter=1.0.0
+    - matplotlib=1.4.3
+    - mayavi=4.4.0
+    - pillow=3.0.0
+    - pandas=0.16.2
+    - basemap=1.0.7
+    - scons=2.3.0
+    - pip:
+        - fatiando==0.3
