@@ -7,8 +7,16 @@ SUP := tesseroids-supplementary-material
 CONDAENV := paper-tesseroids
 PYTHON := 2.7
 PKG := supplement
+FINAL := manuscript-final
 
 all: $(PDF)
+
+final: $(FINAL).pdf
+
+$(FINAL).pdf: $(FINAL).tex $(FIGS)
+	pdflatex $<
+	pdflatex $<
+	pdflatex $<
 
 $(PDF): $(TEX) $(FIGS) $(BIB)
 	pdflatex $<
@@ -43,7 +51,7 @@ check-notebooks:
 	write-good notebooks/*.ipynb
 
 clean:
-	rm -rf $(PDF) *.out *.aux *.log *.bbl figs/*-eps-converted-to.pdf *.fls \
+	rm -rf $(PDF) $(FINAL).pdf *.out *.aux *.log *.bbl figs/*-eps-converted-to.pdf *.fls \
 		*.blg *.fff *.lof *.lot *.ttt $(SUP).zip $(MS)-marked-R1.* \
 		$(PKG) $(PKG).zip $(PKG).tar.gz
 	find . -name "*.pyc" -exec rm -v {} \;
