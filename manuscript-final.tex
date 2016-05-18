@@ -1,4 +1,8 @@
-\documentclass[manuscript,endfloat]{geophysics}
+% Final version submitted to the journal system. Had to remove all
+% cross-references to figures and tables and include only the captions.
+% Bibliography is included in this file, instead of the .bib file.
+
+\documentclass[manuscript]{geophysics}
 \usepackage{natbib}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -85,7 +89,7 @@ Modeling at such scales requires taking into account the curvature of the
 Earth and calculating gravity gradients as well as the traditional
 gravitational acceleration.
 A common approach to achieve this is
-to discretize the Earth into tesseroids (Figure~\ref{fig:tesseroid})
+to discretize the Earth into tesseroids (Figure~1)
 instead of rectangular prisms.
 An analytical solution exists when the computation point is along
 the polar axis and the tesseroid is extended into a spherical cap
@@ -188,29 +192,14 @@ as well as the gravity gradient tensor components.
 \section{Theory}
 
 
-\begin{figure}
-    \centering
-    \includegraphics{figs/figure1}
-    \caption{
-        View of a tesseroid,
-        the integration point $Q$ inside the tesseroid,
-        a geocentric coordinate system $(X, Y, Z)$,
-        the computation $P$ and it's local coordinate system $(x, y, z)$.
-        $r$, $\phi$, $\lambda$ are
-        the radius, latitude, and longitude, respectively, of point $P$,
-        and $\ell$ is the Cartesian distance between $P$ and $Q$.
-        After \citet{uieda2015}.
-    }
-    \label{fig:tesseroid}
-\end{figure}
 
 A tesseroid is a mass element defined in geocentric spherical
 coordinates
-(Figure~\ref{fig:tesseroid}).
+(Figure~1).
 It is bounded by two meridians, two parallels, and two concentric circles.
 The gravitational fields of a tesseroid at a point $P = (r,\phi,\lambda)$
 are determined with respect to the local North-oriented coordinate system at
-P (x, y, z in Figure~\ref{fig:tesseroid}).
+P (x, y, z in Figure~1).
 \citet{Grombein2013} formulated Cartesian kernels for the volume integrals
 that define the tesseroid gravitational potential, gravitational acceleration,
 and Marussi tensor, respectively,
@@ -361,7 +350,7 @@ The accuracy of the integration
 depends on the number of point masses used in the summation.
 \citet{Ku1977} showed that it also depends on the ratio between
 the distance to the computation point and the distance between adjacent nodes.
-Figure~\ref{fig:glqerrorsample}
+Figure~2
 illustrates this effect on the $g_{xy}$ gravity gradient component.
 The $g_{xy}$ component was produced by a
 $7^\circ \times 7^\circ \times 20\ km$ tesseroid
@@ -369,10 +358,10 @@ with $2.67\ g.cm^{-3}$ density
 and top at $z=0\ km$.
 The maps were calculated on a regular grid
 with $100\times100$ points.
-Figure~\ref{fig:glqerrorsample}a shows the $g_{xy}$ component
+Figure~2a shows the $g_{xy}$ component
 calculated at 400 km height using
 GLQ with order two ($2 \times 2 \times 2 = 8$ point masses).
-Figure~\ref{fig:glqerrorsample}b shows $g_{xy}$ computed with order two
+Figure~2b shows $g_{xy}$ computed with order two
 GLQ as well but at 150 km height.
 Notice that the computed effect is concentrated around each point mass
 of the GLQ (black dots) and does not resemble the effect of a tesseroid.
@@ -384,33 +373,12 @@ decrease the distance between the point masses in order to obtain an accurate
 result.
 One way to accomplish this would be increase the order of the quadrature
 $N$ in all three directions.
-Figure~\ref{fig:glqerrorsample}c shows the $g_{xy}$ component calculated at
+Figure~2c shows the $g_{xy}$ component calculated at
 150km height but with a GLQ order of 30
 ($30 \times 30 \times 30 = 27,000$ point masses).
 The computed $g_{xy}$ component more closely resembles
 the expect results for a single tesseroid \citep{Asgharzadeh2007}.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.4\textwidth]{figs/figure2}
-    \caption{
-        Example of the effect of varying
-        the computation height
-        and the number of point masses in the Gauss-Legendre Quadrature.
-        Black circles represent the horizontal location of the point masses.
-        a) $g_{xy}$ calculated at $400\ km$ height using GLQ order 2
-        ($2 \times 2 \times 2 = 8$ point masses).
-        b) At $150\ km$ height and GLQ order 2,
-        the result resembles that of
-        four point masses instead of a single tesseroid.
-        This effect was shown by \citet{Ku1977}.
-        c) At $150\ km$ but with a higher GLQ order of 30.
-        In (c) the horizontal locations of the point masses were not shown.
-        Notice that the results shown in (c) are similar to that expected
-        for a single mass source.
-    }
-    \label{fig:glqerrorsample}
-\end{figure}
 
 
 \subsection{Adaptive discretization}
@@ -581,7 +549,7 @@ $(r_t, \lambda_t, \phi_t)$
 Our definition of the dimensions of the tesseroid
 (the ``side lengths'' of \citet{Li2011})
 along longitude, latitude, and radius, respectively, are
-(Figure~\ref{fig:division}a)
+(Figure~3a)
 
 \begin{equation}
     L_\lambda = r_2 \arccos(\sin^2\phi_t +
@@ -598,7 +566,7 @@ along longitude, latitude, and radius, respectively, are
 
 \noindent
 $L_\lambda$ and $L_\phi$ are arc-distances measured along the top surface of
-the tesseroid (Figure~\ref{fig:division}a).
+the tesseroid (Figure~3a).
 Specifically, $L_\lambda$ is measured long the middle latitude of the
 tesseroid ($\phi_t$).
 
@@ -623,35 +591,17 @@ The value of $D$ is indirectly responsible for
 the accuracy of the solution and the computation time.
 We will explore the relationship with the accuracy in the following section.
 
-Figure~\ref{fig:division} shows examples of
+Figure~3 shows examples of
 the resulting tesseroid models after adaptive discretization.
-Figure~\ref{fig:division}a shows
+Figure~3a shows
 the initial tesseroid and computation point P.
-Figures~\ref{fig:division}b-d are
+Figures~3b-d are
 the result of adaptive discretization using
 different values of the distance-size ratio $D$,
 respectively,
 $D=1$, $D=2$, and $D=6$.
 The number of tesseroids in the resulting discretization is, respectively,
 4, 38, and 936.
-
-\begin{figure}
-    \centering
-    \includegraphics{figs/figure3}
-    \caption{
-        Adaptive discretization
-        of the tesseroid shown in (a)
-        for a computation point P
-        using the distance-size ratio $D$ equal to
-        (b) 1, (c) 2, and (d) 6.
-        $L_r$, $L_\phi$, and $L_\lambda$ are the dimensions of the tesseroid.
-        Note that increasing $D$
-        results in a fine division of the tesseroid
-        close the computation point
-        and a coarser division further away.
-    }
-    \label{fig:division}
-\end{figure}
 
 Instead of using recursive function calls,
 as originally proposed by \citet{Li2011},
@@ -818,7 +768,7 @@ https://github.com/pinga-lab/paper-tesseroids}.
 The key controlling point of the adaptive discretization algorithm
 is the distance-size ratio $D$ (equation~\ref{eq:condition}).
 The specific value chosen for $D$ determines how many divisions will be made
-(Figure~\ref{fig:division}).
+(Figure~3).
 Thus, $D$ indirectly controls both the accuracy of the integration
 and the computation time.
 In this section, we investigate the relationship between
@@ -841,13 +791,13 @@ We produced tesseroid models of the shell by discretizing it along the
 horizontal dimensions into a regular mesh.
 
 
-Figure~\ref{fig:glqerrorsample} shows that the largest errors are spread over
+Figure~2 shows that the largest errors are spread over
 on top of the tesseroid.
 Thus, calculating the tesseroid fields at a single point might not
 capture the point of largest error.
 Instead, we calculate the effect of the tesseroid model on a regular grid
 of $10 \times 10$ points at different geographic locations
-(see Table~\ref{tbl:experiment}).
+(see Table~1).
 Fortunately, the symmetry of the shell allows us to consider the computation
 point at any geocentric coordinate.
 Therefore, the effect of the shell will be same along the entire grid.
@@ -863,17 +813,17 @@ $D$ varying from 0 (i.e., no divisions) to 10 in 0.5 intervals.
 Furthermore, we repeated the error analysis in four different numerical experiments,
 each with computation grids at different locations and
 different tesseroid model sizes.
-Table~\ref{tbl:experiment} describes the different numerical
+Table~1 describes the different numerical
 experiments and the corresponding parameters of the computation grid and
 tesseroid model.
 
 
-Figure~\ref{fig:dist-size-curves} shows
+Figure~4 shows
 the maximum difference between the shell and tesseroid fields
 as a function of $D$ for the four experiments.
 The differences are given as a percentage of the shell value.
 We established a maximum tolerated error of $0.1\%$, represented by the
-horizontal solid lines in Figure~\ref{fig:dist-size-curves}.
+horizontal solid lines in Figure~4.
 Only results for the gravitational potential, $g_z$, and $g_{zz}$ are shown.
 The results for the other diagonal components of the gravity gradient tensor
 are similar to $g_{zz}$.
@@ -892,7 +842,7 @@ This behavior suggests that the error curves for $g_{zz}$ might depend on the
 computation height.
 To test this hypothesis, we computed the error curves for $g_{zz}$ at
 heights 2, 10, 50, 150, and 260 km.
-Figure~\ref{fig:gzz-with-height} shows the results for $g_{zz}$ at varying
+Figure~5 shows the results for $g_{zz}$ at varying
 computation heights.
 Notice that the distance-size ratio required to achieve $0.1\%$ accuracy
 decreases as the computation height increases.
@@ -912,39 +862,6 @@ command-line arguments to achieve greater performance at the cost of
 accuracy.
 
 
-\input{table1.tex}
-
-
-\begin{figure}
-    \centering
-    \includegraphics{figs/figure4}
-    \caption{
-        The maximum difference between the computed tesseroid and shell effects
-        as a function of the distance-size ratio $D$
-        for (a) the gravitational potential, (b) $g_z$, and (c) $g_{zz}$.
-        The difference is given as a percentage of the shell effect.
-        Curves correspond to the different tesseroid models and computation
-        grids shown in Table~\ref{tbl:experiment}.
-        The horizontal solid black line marks the established error threshold
-        of $0.1\%$.
-        A value of $D=0$ means that no divisions are made.
-    }
-    \label{fig:dist-size-curves}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics{figs/figure5}
-    \caption{
-        Difference between the computed $g_{zz}$ for the spherical shell and
-        the tesseroid model at different heights. Curves show the maximum
-        difference as a percentage of the shell value.
-        The horizontal solid black line marks the established error threshold
-        of $0.1\%$.
-        A value of $D=0$ means that no divisions are made.
-    }
-    \label{fig:gzz-with-height}
-\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1192,5 +1109,68 @@ Wild-Pfeiffer, F.,  2008, A comparison of different mass elements for use in
   gravity gradiometry: Journal of Geodesy, {\bf 82}, 637--653.
 
 \end{thebibliography}
+
+
+\newpage
+\section{Figure captions}
+
+\begin{enumerate}
+    \item
+    View of a tesseroid, the integration point $Q$ inside the tesseroid, a
+    geocentric coordinate system $(X, Y, Z)$, the computation $P$ and it's
+    local coordinate system $(x, y, z)$.  $r$, $\phi$, $\lambda$ are the
+    radius, latitude, and longitude, respectively, of point $P$, and $\ell$ is
+    the Cartesian distance between $P$ and $Q$.  After \citet{uieda2015}.
+
+    \item
+    Example of the effect of varying the computation height and the number of
+    point masses in the Gauss-Legendre Quadrature.  Black circles represent the
+    horizontal location of the point masses.  a) $g_{xy}$ calculated at $400\
+    km$ height using GLQ order 2 ($2 \times 2 \times 2 = 8$ point masses).  b)
+    At $150\ km$ height and GLQ order 2, the result resembles that of four
+    point masses instead of a single tesseroid.  This effect was shown by
+    \citet{Ku1977}.  c) At $150\ km$ but with a higher GLQ order of 30.  In (c)
+    the horizontal locations of the point masses were not shown.  Notice that
+    the results shown in (c) are similar to that expected for a single mass
+    source.
+
+    \item
+    Adaptive discretization of the tesseroid shown in (a) for a computation
+    point P using the distance-size ratio $D$ equal to (b) 1, (c) 2, and
+    (d) 6.  $L_r$, $L_\phi$, and $L_\lambda$ are the dimensions of the
+    tesseroid.  Note that increasing $D$ results in a fine division of the
+    tesseroid close the computation point and a coarser division further
+    away.
+
+    \item
+    The maximum difference between the computed tesseroid and shell effects
+    as a function of the distance-size ratio $D$ for (a) the gravitational
+    potential, (b) $g_z$, and (c) $g_{zz}$.  The difference is given as a
+    percentage of the shell effect.  Curves correspond to the different
+    tesseroid models and computation grids shown in Table~1.  The
+    horizontal solid black line marks the established error threshold of
+    $0.1\%$.  A value of $D=0$ means that no divisions are made.
+
+    \item
+    Difference between the computed $g_{zz}$ for the spherical shell and
+    the tesseroid model at different heights. Curves show the maximum
+    difference as a percentage of the shell value.  The horizontal solid
+    black line marks the established error threshold of $0.1\%$.  A value
+    of $D=0$ means that no divisions are made.
+
+\end{enumerate}
+
+
+\newpage
+\section{Table captions}
+
+\begin{enumerate}
+    \item
+    Parameters of the numerical experiments to quantify the accuracy of the
+    numerical integration.  All grids had $10\times10$ regularly spaced
+    computation points at a constant height.  Tesseroids used to discretize the
+    spherical shell had 1 km thickness and the horizontal dimensions shown in
+    the table.
+\end{enumerate}
 
 \end{document}
