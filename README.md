@@ -152,3 +152,12 @@ click on the notebook file you want to run.  You can execute the code cells by
 clicking on one and typing `Shift+Enter`.  Be sure to execute the code cells in
 descending order to get the correct results.  Some cells may take a long time
 to run, particularly those that calculate the tesseroid fields.
+
+## License
+
+All source code is made available under a BSD 3-clause license.  You can freely
+use and modify the code, without warranty, so long as you provide attribution
+to the authors.  See `LICENSE.md` for the full license text.
+
+The manuscript text is not open source. The rights to the article content are
+reserved to the journal Geophysics, where it has been accepted for publication.
