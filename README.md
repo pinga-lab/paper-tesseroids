@@ -22,6 +22,7 @@ repository at [software.seg.org](http://software.seg.org).
 A "live" version of this repository is available at
 [github.com/pinga-lab/paper-tesseroids](https://github.com/pinga-lab/paper-tesseroids).
 
+![Figure showing the adaptive discretization method](https://raw.githubusercontent.com/pinga-lab/paper-tesseroids/master/figs/tesseroid-split.png)
 
 ## Abstract
 

@@ -14,11 +14,11 @@
    height="183.60001"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="tesseroid-split.svg"
    inkscape:export-filename="tesseroid-split.png"
-   inkscape:export-xdpi="600"
-   inkscape:export-ydpi="600">
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
   <defs
      id="defs4">
     <marker
@@ -305,9 +305,9 @@
      showgrid="false"
      units="pc"
      inkscape:window-width="1366"
-     inkscape:window-height="744"
+     inkscape:window-height="743"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="6"
      inkscape:window-maximized="1"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -334,35 +334,35 @@
     <image
        sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/tesseroid-split-ratio1.png"
        xlink:href="tesseroid-split-ratio1.png"
-       width="149.85001"
-       height="83.666252"
-       id="image3030"
+       y="855.06165"
        x="149.64491"
-       y="855.06165" />
+       id="image3030"
+       height="83.666252"
+       width="149.85001" />
     <image
        sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/tesseroid-split-ratio2.png"
        xlink:href="tesseroid-split-ratio2.png"
-       width="149.85001"
-       height="83.666252"
-       id="image3041"
+       y="944.97382"
        x="0.35714287"
-       y="944.97382" />
+       id="image3041"
+       height="83.666252"
+       width="149.85001" />
     <image
        sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/tesseroid-split-ratio6.png"
        xlink:href="tesseroid-split-ratio6.png"
-       width="149.85001"
-       height="83.666252"
-       id="image3052"
+       y="944.97382"
        x="149.64491"
-       y="944.97382" />
+       id="image3052"
+       height="83.666252"
+       width="149.85001" />
     <image
        sodipodi:absref="/home/leo/pub/paper-tesseroids/figs/tesseroid-split-whole.png"
        xlink:href="tesseroid-split-whole.png"
-       width="149.85001"
-       height="83.666252"
-       id="image3063"
+       y="855.06165"
        x="0.35714287"
-       y="855.06165" />
+       id="image3063"
+       height="83.666252"
+       width="149.85001" />
     <g
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
        id="text3100"
