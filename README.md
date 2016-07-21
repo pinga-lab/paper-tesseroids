@@ -15,8 +15,16 @@ external dependencies (other than a C compiler).  The error analysis presented
 in the paper was performed using Python code to run the C programs, examine the
 output, and generate plots.
 
-**The manuscript has been accepted for publication in the journal
-[Geophysics](http://library.seg.org/journal/gpysa7)**.
+**The manuscript has been published in the journal
+[Geophysics](http://library.seg.org/journal/gpysa7) on the September-October
+2016 issue**.
+
+doi:[10.1190/geo2015-0204.1](http://dx.doi.org/10.1190/geo2015-0204.1)
+
+Please cite it as:
+
+> Uieda, L., V. Barbosa, and C. Braitenberg (2016), Tesseroids: Forward-modeling gravitational fields in spherical coordinates, GEOPHYSICS, F41–F48, doi:10.1190/geo2015-0204.1.
+
 You will find the C source-code for Tesseroids and the contents of this
 repository at [software.seg.org](http://software.seg.org).
 A "live" version of this repository is available at
